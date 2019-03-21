@@ -41,7 +41,7 @@ class Atendimento(models.Model):
         verbose_name = 'Atendimento'
         verbose_name_plural = 'Atendimentos'
 
-    # @property
+    # @property # question__name
     # def feedback_field(self):
     #     """Returns the feedback_field null."""
     #     return '%s' % 'Digite seu parecer'
@@ -52,7 +52,7 @@ class Atendimento(models.Model):
     def get_absolute_url(self):
         return reverse('atendimento_update', args=[str(self.pk)])
 
-
-class Parecer(models.Model):
-    atendimento = models.ForeignKey('crm.atendimento', related_name='Atendimento', on_delete=models.CASCADE)
-    parecer = models.TextField('Parecer',)
+#
+# class Parecer(models.Model):
+#     atendimento = models.ForeignKey('crm.atendimento', related_name='Atendimento', on_delete=models.CASCADE)
+#     parecer = models.TextField('Parecer',)
