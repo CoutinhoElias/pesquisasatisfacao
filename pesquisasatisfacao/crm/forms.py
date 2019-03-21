@@ -5,7 +5,7 @@ from pesquisasatisfacao.crm.models import Atendimento
 
 class AtendimentoForm(forms.ModelForm):
     feedback = forms.CharField(label='Parecer Anterior', widget=forms.Textarea(attrs={'readonly': 'readonly'}))
-    feedback_field = forms.CharField(label='Novo parecer', widget=forms.TextInput())
+    feedback_field = forms.CharField(label='Novo parecer', widget=forms.TextInput(),  null=True, blank=True)
 
     class Meta:
         model = Atendimento
