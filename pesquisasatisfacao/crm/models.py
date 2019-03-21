@@ -23,7 +23,7 @@ class Atendimento(models.Model):
     person = models.ForeignKey('core.client', related_name='AtendimentoClient', on_delete=models.CASCADE)
     product = models.ForeignKey('core.product', related_name='Produtos', verbose_name='Produto', on_delete=models.CASCADE)
     priority = models.PositiveIntegerField('Prioridade', default=0)
-    feedback = models.TextField('Parecer Anterior',)
+    feedback = models.TextField('Parecer Anterior', null=True, blank=True)
     created_on = models.DateField(
         'Criado em.',
         auto_now_add=False,
