@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class Typeofservice(models.Model):
@@ -19,9 +21,11 @@ class Atendimento(models.Model):
         auto_now_add=False,
         auto_now=True
     )
-    type = models.ForeignKey('crm.typeofservice', related_name='TipoDeAtendimento', verbose_name='Tipo de atendimento', on_delete=models.CASCADE)
+    type = models.ForeignKey('crm.typeofservice', related_name='TipoDeAtendimento', verbose_name='Tipo de atendimento',
+                             on_delete=models.CASCADE)
     person = models.ForeignKey('core.client', related_name='AtendimentoClient', on_delete=models.CASCADE)
-    product = models.ForeignKey('core.product', related_name='Produtos', verbose_name='Produto', on_delete=models.CASCADE)
+    product = models.ForeignKey('core.product', related_name='Produtos', verbose_name='Produto',
+                                on_delete=models.CASCADE)
     priority = models.PositiveIntegerField('Prioridade', default=0)
     feedback = models.TextField('Parecer Anterior', null=True, blank=True)
     created_on = models.DateField(
@@ -30,6 +34,7 @@ class Atendimento(models.Model):
         auto_now=True
     )
     deadline = models.DateField('Próximo Parecer')
+    user = models.ForeignKey(User, verbose_name="Enviar para", on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('created_on',)
@@ -44,8 +49,8 @@ class Atendimento(models.Model):
     def __str__(self):
         return self.type.name
 
-    # def get_absolute_url(self):
-    #     return reverse('person_client_detail', args=[str(self.pk)])
+    def get_absolute_url(self):
+        return reverse('atendimento_update', args=[str(self.pk)])
 
 
 class Parecer(models.Model):

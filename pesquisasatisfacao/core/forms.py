@@ -4,23 +4,7 @@ from material import *
 from pesquisasatisfacao.core.models import Client, Question, Search, SearchItem, Product
 from django.forms import inlineformset_factory
 
-#
-# class PersonForm(forms.ModelForm):
-#
-#     class Meta:
-#         model = Person
-#         fields = (
-#             'cdalterdata',
-#             'name',
-#             'phone',
-#         )
-#
-#     layout = Layout(
-#         Fieldset("Inclua uma Pessoa",
-#                  Row(Span4('cdalterdata'),Span8('name'), ),
-#                  Row('phone')
-#                  )
-#     )
+
 SYSTEM_CHOICES = (
     ('0', 'Pack'),
     ('1', 'Shop'),

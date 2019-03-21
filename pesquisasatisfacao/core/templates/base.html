@@ -49,6 +49,13 @@
       <li><a href="#!">em breve...</a></li>
     </ul>
 
+    <ul id="drp_crm" class="dropdown-content">
+      <li><a href="{% url 'atendimento_create' %}"><i class="material-icons">question_answer</i>Novo atendimento</a></li>
+      <li><a href="{% url 'atendimento_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de atendimentos</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">em breve...</a></li>
+    </ul>
+
     <!--NAVBAR-->
     <nav class="#1a237e indigo darken-4 col s12 m6">
         <div class="nav-wrapper">
@@ -58,6 +65,7 @@
             <li><a class="dropdown-trigger" href="#!" data-target="drp_clientes">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-trigger" href="#!" data-target="drp_questions">Pesquisa<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-trigger" href="#!" data-target="drp_representative">Representantes<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="drp_crm">CRM<i class="material-icons right">arrow_drop_down</i></a></li>
 
             {% if user.is_authenticated %}
                 <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
@@ -125,7 +133,9 @@
             $(document).ready(function(){
                 //MATERIALIZE
                 $('.sidenav').sidenav();
-                $('.dropdown-trigger').dropdown({ hover: true, constrainWidth: false });
+                $('.dropdown-trigger').dropdown({ hover: true,
+                                                  constrainWidth: false,
+                                                  coverTrigger: false });
                 $('.fixed-action-btn').floatingActionButton();
                 $('.datepicker').datepicker(
                     {

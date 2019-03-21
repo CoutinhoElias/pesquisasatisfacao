@@ -11,11 +11,12 @@ def atendimento_create(request):
         form = AtendimentoForm(request.POST)
 
         # Retira toda validação do campo
-        form.errors.pop('feedback')
+        # form.errors.pop('feedback')
 
         if form.is_valid():
             print('<<<<==== FORM VALIDO ====>>>>')
             new = form.save(commit=False)
+            new.feedback = form.cleaned_data['feedback_field'] + '\n' + ('-' * 195) + '\n' + new.feedback
             new.save()
             #form.save_m2m()
 
@@ -55,5 +56,5 @@ def atendimento_update(request, pk):
 
 
 def atendimento_list(request):
-    atendimentos = Atendimento.objects.all().order_by("-priority", "id", "type")
+    atendimentos = Atendimento.objects.filter(user_id=request.user).order_by("-priority", "id", "type")
     return render(request, 'atendimento_list.html', {'atendimentos': atendimentos})
