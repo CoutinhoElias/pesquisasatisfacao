@@ -10,6 +10,9 @@ def atendimento_create(request):
     if request.method == 'POST':
         form = AtendimentoForm(request.POST)
 
+        # Retira toda validação do campo
+        form.errors.pop('feedback')
+
         if form.is_valid():
             print('<<<<==== FORM VALIDO ====>>>>')
             new = form.save(commit=False)
