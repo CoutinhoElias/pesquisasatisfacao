@@ -20,7 +20,7 @@ def atendimento_create(request):
         else:
             print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
             print(form)
-            return render(request, 'question_create.html', {'form': form})
+            return render(request, 'atendimento_create.html', {'form': form})
     else:
         context = {'form': AtendimentoForm()}
         return render(request, 'atendimento_create.html', context)

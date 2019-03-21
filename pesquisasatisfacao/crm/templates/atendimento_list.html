@@ -28,7 +28,7 @@
                             {% endif %}">
 
                     <td class="center-align">
-                       <a href="{{ question.get_absolute_url }}">{{ atendimento.type|linebreaks }}</a>
+                       <a href="{{ atendimento.get_absolute_url }}">{{ atendimento.type|linebreaks }}</a>
                     </td>
                     <td>{{ atendimento.person|linebreaks }}</td>
                     <td>{{ atendimento.product }}</td>
