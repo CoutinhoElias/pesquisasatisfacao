@@ -18,10 +18,6 @@ urlpatterns = [
     path('cliente/listar/', views.person_client_list, name='person_client_list'),
     path('cliente/<int:pk>/pesquisas/', views.person_client_detail, name='person_client_detail'),
 
-    # Usa a mesma view de cliente
-
-
-
 
     path('pergunta/nova/', views.question_create, name='question_create'),
     path('pergunta/<int:pk>/editar/', views.question_update, name='question_update'),

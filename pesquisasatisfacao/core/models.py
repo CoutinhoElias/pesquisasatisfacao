@@ -35,6 +35,7 @@ class Client(models.Model):
                                        verbose_name="Representante")
     products = models.ManyToManyField('core.product', related_name="products", verbose_name="Produtos")
     last_search = models.CharField('Última pesquisa.', max_length=11, null=True, blank=True)
+    priority = models.PositiveIntegerField('Prioridade', default=0)
     created_on = models.DateField(
         'Criado em.',
         auto_now_add=True,

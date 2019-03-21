@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.admin.widgets import FilteredSelectMultiple
 from material import *
 
 from pesquisasatisfacao.core.models import Client, Question, Search, SearchItem, Product
@@ -54,7 +53,7 @@ class ClientForm(forms.ModelForm):
             'last_search',
             'products',
         )
-        exclude = ('is_representative',)
+        exclude = ('is_representative', 'priority',)
 
     layout = Layout(
         Fieldset("Cadastro de Cliente",
@@ -88,7 +87,7 @@ class RepresentativeForm(forms.ModelForm):
             'estado',
             'products',
         )
-        exclude = ('representative', 'is_representative', 'last_search',)
+        exclude = ('representative', 'is_representative', 'last_search', 'priority',)
 
     layout = Layout(
         Fieldset("Cadastro de Filial ou Representação",
