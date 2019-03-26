@@ -1,5 +1,5 @@
 from django import forms
-from django.db.models import Count
+
 from material import *
 
 from pesquisasatisfacao.core.models import SalesItem, Sales
@@ -22,11 +22,11 @@ class AtendimentoForm(forms.ModelForm):
             'feedback',
             'user',
             'deadline',)
+        exclude = ('person',)
 
     layout = Layout(
         Fieldset("Atendimento ",
                  Row(Span3('type'), Span9('product'), ),
-                 Row(Span12('person'), ),
                  Row(Span4('priority'), Span4('user'), Span4('deadline')),
                  Row(Span6('feedback_field'), Span6('feedback'), ),
                  ),

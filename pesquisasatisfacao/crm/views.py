@@ -48,6 +48,7 @@ def atendimento_update(request, id):
         if form.is_valid():
             print('<<<<==== FORM VALIDO ====>>>>')
             new = form.save(commit=False)
+            new.person = pk
             new.feedback = form.cleaned_data['feedback_field'] + '\n' + ('-' * 195) + '\n' + new.feedback
             new.save()
             form.save_m2m()
