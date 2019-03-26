@@ -18,6 +18,7 @@
         <table class="highlight">
             <thead class="#cfd8dc blue-grey lighten-4">
                 <tr>
+                    <th class="center-align">CRM</th>
                     <th class="center-align">Id.</th>
                     <th class="center-align">Cód. Alterdata</th>
                     <th>Nome</th>
@@ -26,6 +27,9 @@
             </thead>
             {% for client in clients %}
                 <tr>
+                    <td class="center-align">
+                        <a href="{% url 'person_client_home' pk=client.id %}"><i class="material-icons prefix">home</i></a>
+                    </td>
                     <td class="center-align">
                         <a href="{% url 'person_client_update' pk=client.id %}">{{ client.id|linebreaks }}</a>
                     </td>

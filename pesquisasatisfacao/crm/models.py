@@ -24,7 +24,7 @@ class Atendimento(models.Model):
     type = models.ForeignKey('crm.typeofservice', related_name='TipoDeAtendimento', verbose_name='Tipo de atendimento',
                              on_delete=models.CASCADE)
     person = models.ForeignKey('core.client', related_name='AtendimentoClient', on_delete=models.CASCADE)
-    product = models.ForeignKey('core.product', related_name='Produtos', verbose_name='Produto',
+    product = models.ForeignKey('core.salesitem', related_name='Produtos', verbose_name='Produto',
                                 on_delete=models.CASCADE)
     priority = models.PositiveIntegerField('Prioridade', default=0)
     feedback = models.TextField('Parecer Anterior', null=True, blank=True)

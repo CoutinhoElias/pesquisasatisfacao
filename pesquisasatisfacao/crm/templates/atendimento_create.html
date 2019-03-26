@@ -8,6 +8,7 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
 
             <div class="card-content">
+                <div class="card-panel #424242 grey darken-3 center" id="title-panel">{{client.name}}</div>
                 <!--<span class="card-title grey-text text-darken-2">Pessoa</span>-->
                 {% form %}
 

@@ -2,6 +2,31 @@ from django.db import models
 from django.urls import reverse
 
 
+class Sales(models.Model):
+    client = models.ForeignKey("core.client", related_name="client_sale",
+                               on_delete=models.CASCADE, verbose_name="Cliente")
+
+    class Meta:
+        verbose_name = 'Venda'
+        verbose_name_plural = 'Vendas'
+
+    def __str__(self):
+        return self.client.name
+
+
+class SalesItem(models.Model):
+    sales = models.ForeignKey("core.sales", related_name="sale_sale_item", on_delete=models.CASCADE, verbose_name="Venda")
+    product = models.ForeignKey("core.product", related_name="product_sale_item", on_delete=models.CASCADE,
+                                verbose_name="Produto")
+
+    class Meta:
+        verbose_name = 'Venda Detalhe'
+        verbose_name_plural = 'Vendas Detalhe'
+
+    def __str__(self):
+        return self.product.name
+
+
 class Product(models.Model):
     name = models.CharField('Nome', max_length=100)
 
@@ -12,9 +37,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
-    # def get_absolute_url(self):
-    #     return reverse('person_client_detail', args=[str(self.pk)])
 
 
 class Client(models.Model):

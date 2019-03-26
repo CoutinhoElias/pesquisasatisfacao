@@ -2,13 +2,16 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
+from pesquisasatisfacao.core.models import Client
 from pesquisasatisfacao.crm.forms import AtendimentoForm
 from pesquisasatisfacao.crm.models import Atendimento
 
 
-def atendimento_create(request):
+def atendimento_create(request, pk):
+    client = get_object_or_404(Client, pk=pk)
     if request.method == 'POST':
         form = AtendimentoForm(request.POST)
+        #form = AtendimentoForm(request.POST)
 
         # Retira toda validação do campo
         # form.errors.pop('feedback')
@@ -16,6 +19,7 @@ def atendimento_create(request):
         if form.is_valid():
             print('<<<<==== FORM VALIDO ====>>>>')
             new = form.save(commit=False)
+            new.person = client
             new.feedback = form.cleaned_data['feedback_field'] + '\n' + ('-' * 195) + '\n' + new.feedback
             new.save()
             #form.save_m2m()
@@ -23,10 +27,10 @@ def atendimento_create(request):
             return HttpResponseRedirect('/atendimento/listar/')
         else:
             print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
-            print(form)
             return render(request, 'atendimento_create.html', {'form': form})
     else:
-        context = {'form': AtendimentoForm()}
+        # context = {'client': client}
+        context = {'form': AtendimentoForm(pk)}
         return render(request, 'atendimento_create.html', context)
 
 

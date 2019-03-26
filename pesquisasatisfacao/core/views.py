@@ -11,6 +11,7 @@ from pesquisasatisfacao.core.forms import (QuestionForm,
                                            SearchItemFormSet, RepresentativeForm)
 
 from pesquisasatisfacao.core.models import Search, Question, Client, SearchItem
+from pesquisasatisfacao.crm.models import Atendimento
 
 
 def home(request):
@@ -109,6 +110,73 @@ def person_client_update(request, pk):
         form = ClientForm(instance=client)
     context = {'form': form}
     return render(request, 'person_create.html', context)
+
+
+def person_client_home(request, pk):
+    # Pega a chave da URL acima com (request, pk)
+    client = get_object_or_404(Client, pk=pk)
+    form = ClientForm(instance=client)
+
+    atendimentos = Atendimento.objects.filter(person_id=pk).order_by("-priority", "id", "type")
+# --------------------------------------------------------------------------------------------------------------------
+    searchs = Search.objects.select_related().filter(person_id=pk).values('id', 'search_key', 'researched', 'person')
+# --------------------------------------------------------------------------------------------------------------------
+    dataset = SearchItem.objects.select_related().filter(search__person_id=pk).values('question__level').annotate(
+        true_count=Count('question__level', filter=Q(response=True)), false_count=Count('question__level',
+                                                                                        filter=Q(response=False))
+    ).order_by('question__level')
+
+    categories = list()
+    true_series_data = list()
+    false_series_data = list()
+
+    for entry in dataset:
+        if entry['question__level'] == '0':
+            qlevel = 'Dependência'
+        elif entry['question__level'] == '1':
+            qlevel = 'Confiança'
+        elif entry['question__level'] == '2':
+            qlevel = 'Compromentimento'
+        else:
+            qlevel = 'Preditiva'
+
+        categories.append(qlevel)
+        true_series_data.append(entry['true_count'])
+        false_series_data.append(entry['false_count'])
+
+    true_series = {
+        'name': 'Resposta Sim',
+        'data': true_series_data,
+        'color': 'green'
+    }
+
+    false_series = {
+        'name': 'Resposta Não',
+        'data': false_series_data,
+        'color': 'red'
+    }
+
+    chart = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'Pesquisa Alterdata Todos os Períodos'},
+        'xAxis': {'categories': categories},
+        'series': [true_series, false_series]
+    }
+
+    dump = json.dumps(chart)
+# --------------------------------------------------------------------------------------------------------------------
+    # Cria variável na session
+    request.session['person_id'] = pk
+
+    context = {
+        'form': form,
+        'client': client,
+        'searchs': searchs,
+        'atendimentos': atendimentos,
+        'chart': dump
+    }
+
+    return render(request, 'person_home.html', context)
 
 
 def person_populate(request):

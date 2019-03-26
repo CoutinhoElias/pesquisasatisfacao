@@ -1,6 +1,8 @@
 from django import forms
+from django.db.models import Count
 from material import *
 
+from pesquisasatisfacao.core.models import SalesItem, Sales
 from pesquisasatisfacao.crm.models import Atendimento
 
 
@@ -22,18 +24,21 @@ class AtendimentoForm(forms.ModelForm):
             'deadline',)
 
     layout = Layout(
-        Fieldset("Atendimento",
+        Fieldset("Atendimento ",
                  Row(Span3('type'), Span9('product'), ),
                  Row(Span12('person'), ),
                  Row(Span4('priority'), Span4('user'), Span4('deadline')),
                  Row(Span6('feedback_field'), Span6('feedback'), ),
                  ),
-
             )
-    # def save(self, commit=True):
-    #   instance = super(AtendimentoForm, self).save(commit=False)
-    #   feedback = Menu.objects.filter(project=self.project)
 
-    # def save(self, *args, **kwargs):
-    #     self.feedback = self.feedback + self.feedback_field.upper()
-    #     super(AtendimentoForm, self).save(*args, **kwargs)
+    def __init__(self, pk,  *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        sales_id = Sales.objects.select_related().filter(client_id=pk)
+        self.fields['product'].queryset = SalesItem.objects.filter(sales_id__in=sales_id)
+        """
+        A variavel pk acima vem da view atendimento_create(request, pk): onde envio esse valor
+        no GET na linha 29
+        context = {'form': AtendimentoForm(pk)}
+        """
+

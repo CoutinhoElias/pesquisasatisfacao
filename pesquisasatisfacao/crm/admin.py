@@ -7,6 +7,7 @@ from pesquisasatisfacao.crm.models import Typeofservice, Atendimento
 class TypeofserviceAdmin(admin.ModelAdmin):
     list_display = ('__str__', )
     # search_fields = ('cdalterdata', 'name', 'city', 'last_search')
+    # filter_horizontal = ('qualification',)
 
 
 @admin.register(Atendimento)
