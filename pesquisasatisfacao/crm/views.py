@@ -10,8 +10,8 @@ from pesquisasatisfacao.crm.models import Atendimento
 def atendimento_create(request, pk):
     client = get_object_or_404(Client, pk=pk)
     if request.method == 'POST':
-        form = AtendimentoForm(request.POST)
-        #form = AtendimentoForm(request.POST)
+        print(request.POST, '<<<<<<<<<<<<<<<<<<<<<<<')
+        form = AtendimentoForm(pk, request.POST)
 
         # Retira toda validação do campo
         # form.errors.pop('feedback')
@@ -29,18 +29,21 @@ def atendimento_create(request, pk):
             print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
             return render(request, 'atendimento_create.html', {'form': form})
     else:
-        # context = {'client': client}
-        context = {'form': AtendimentoForm(pk)}
+        context = {'form': AtendimentoForm(pk),
+                   'client': client}
         return render(request, 'atendimento_create.html', context)
 
 
-def atendimento_update(request, pk):
+def atendimento_update(request, id):
     # Pega a chave da URL acima com (request, pk)
     # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro
-    atendimento = get_object_or_404(Atendimento, pk=pk)
+
+    atendimento = get_object_or_404(Atendimento, id=id)
 
     if request.method == 'POST':
-        form = AtendimentoForm(request.POST, instance=atendimento)
+        pk = atendimento.person
+
+        form = AtendimentoForm(pk, request.POST, instance=atendimento)
 
         if form.is_valid():
             print('<<<<==== FORM VALIDO ====>>>>')
@@ -54,8 +57,11 @@ def atendimento_update(request, pk):
             print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
             return render(request, 'atendimento_create.html', {'form': form})
     else:
-        form = AtendimentoForm(instance=atendimento)
-    context = {'form': form}
+        form = AtendimentoForm(pk=atendimento.person, instance=atendimento)
+        client = get_object_or_404(Client, id=atendimento.person_id)
+
+    context = {'form': form,
+               'client': client}
     return render(request, 'atendimento_create.html', context)
 
 
