@@ -3,6 +3,7 @@ import datetime
 import random
 
 import weasyprint
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
@@ -21,7 +22,7 @@ from pesquisasatisfacao.accounts.forms import (RegistrationForm,
 from pesquisasatisfacao.accounts.models import WorkSchedule, WorkScheduleItem, Feriado, Compensacao
 from pesquisasatisfacao.utils import render_to_pdf
 
-
+@login_required
 def random_time():
     entra = random.randint(8, 9)
     almoco = random.randint(entra + 3, 13)
@@ -56,6 +57,7 @@ def random_time():
     return value_en, value_ea, value_va, value_out
 
 
+@login_required
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -75,6 +77,7 @@ def register(request):
         return render(request, 'register.html', context)
 
 
+@login_required
 def schedule(request):
     if request.method == 'POST':
         form = ScheduleForm(request.POST)
@@ -94,6 +97,7 @@ def schedule(request):
         return render(request, 'schedule.html', context)
 
 
+@login_required
 def add_work_schedule_item(period, key, feriado_user):
     year_month = str(period)
     m, y = year_month.split('/')
@@ -148,6 +152,7 @@ def add_work_schedule_item(period, key, feriado_user):
                                                        )
 
 
+@login_required
 def work_schedule_create(request):
     # Cria variável na session
     request.session['person_id'] = 1
@@ -180,6 +185,7 @@ def work_schedule_create(request):
         return render(request, 'work_schedule_create.html', context)
 
 
+@login_required
 def work_schedule_update(request, id):
     # Pega a chave da URL acima com (request, pk)
     # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro
@@ -216,6 +222,7 @@ def work_schedule_update(request, id):
     return render(request, 'visita_form.html', context)
 
 
+@login_required
 def admin_receipt_pdf(request, id=id):
     work_schedule = WorkSchedule.objects.select_related('user__userinfo').get(id=id)
     work_schedule_itens = WorkScheduleItem.objects.select_related('workschedule').filter(workschedule_id=id)\
@@ -267,6 +274,7 @@ class GeneratePDF(View):
         return HttpResponse("Not found")
 
 
+@login_required
 def work_schedule_list(request):
     q = request.GET.get('searchInput')
     if q:

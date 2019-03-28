@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.serializers import json
 import json
 from django.db import transaction
@@ -19,6 +20,7 @@ def home(request):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
+@login_required
 def person_client_create(request):
     if request.method == 'POST':
         form = ClientForm(request.POST)
@@ -40,6 +42,7 @@ def person_client_create(request):
         return render(request, 'person_create.html', context)
 
 
+@login_required
 def person_representative_create(request):
     if request.method == 'POST':
         form = RepresentativeForm(request.POST)
@@ -61,6 +64,7 @@ def person_representative_create(request):
         return render(request, 'person_create.html', context)
 
 
+@login_required
 def person_representative_update(request, pk):
     # Pega a chave da URL acima com (request, pk)
     # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro
@@ -86,6 +90,7 @@ def person_representative_update(request, pk):
     return render(request, 'person_create.html', context)
 
 
+@login_required
 def person_client_update(request, pk):
     # Pega a chave da URL acima com (request, pk)
     # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro
@@ -112,6 +117,7 @@ def person_client_update(request, pk):
     return render(request, 'person_create.html', context)
 
 
+@login_required
 def person_client_home(request, pk):
     # Pega a chave da URL acima com (request, pk)
     client = get_object_or_404(Client, pk=pk)
@@ -179,6 +185,7 @@ def person_client_home(request, pk):
     return render(request, 'person_home.html', context)
 
 
+@login_required
 def person_populate(request):
     # Não podemos trabalhar com multiclasses com bulk create, temos que unificar as tabelas Person e Client.
     from pesquisasatisfacao.core import create_data
@@ -194,6 +201,7 @@ def person_populate(request):
     return HttpResponseRedirect('/cliente/listar')
 
 
+@login_required
 def person_client_list(request):
     q = request.GET.get('searchInput')
     print(request.GET)
@@ -209,6 +217,7 @@ def person_client_list(request):
     return render(request, 'person_client_list.html', context)
 
 
+@login_required
 def person_representative_list(request):
     q = request.GET.get('searchInput')
     print(request.GET)
@@ -224,6 +233,7 @@ def person_representative_list(request):
     return render(request, 'person_representative_list.html', context)
 
 
+@login_required
 def person_client_detail(request, pk):
     # client = get_object_or_404(Client, person_id=pk)
     clients = Client.objects.select_related().filter(id=pk)
@@ -287,6 +297,7 @@ def person_client_detail(request, pk):
 # ----------------------------------------------------------------------------------------------------------------------
 
 
+@login_required
 def question_create(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -307,6 +318,7 @@ def question_create(request):
         return render(request, 'question_create.html', context)
 
 
+@login_required
 def question_update(request, pk):
     # Pega a chave da URL acima com (request, pk)
     # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro
@@ -333,6 +345,7 @@ def question_update(request, pk):
     return render(request, 'question_create.html', context)
 
 
+@login_required
 def question_populate(request):
 
     from pesquisasatisfacao.core import create_data
@@ -348,11 +361,13 @@ def question_populate(request):
     return HttpResponseRedirect('/perguntas/listar')
 
 
+@login_required
 def question_list(request):
     questions = Question.objects.all().order_by("level", "id", "question")
     return render(request, 'question_list.html', {'questions': questions})
 
 
+@login_required
 def question_level_view(request):
     dataset = SearchItem.objects.values('question__level').annotate(
         true_count=Count('question__level', filter=Q(response=True)),
@@ -383,6 +398,7 @@ def question_level_view(request):
     })
 
 
+@login_required
 def question_level_view2(request):
     dataset = SearchItem.objects.values('question__level').annotate(
         true_count=Count('question__level', filter=Q(response=True)),
@@ -431,6 +447,7 @@ def question_level_view2(request):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
+@login_required
 def add_search_item(search):
     questions = Question.objects.all()
 
@@ -438,6 +455,7 @@ def add_search_item(search):
         SearchItem.objects.get_or_create(search=search, question=question, response='False')
 
 
+@login_required
 def seach_create(request):
 
         if request.method == 'POST':
@@ -479,6 +497,7 @@ def seach_create(request):
                 return HttpResponseRedirect('/cliente/listar')
 
 
+@login_required
 def search_list(request):
     seachs = Search.objects.all()
     return render(request, 'search_list.html', {'seachs': seachs})
@@ -527,6 +546,7 @@ def search_list(request):
 # search_list2 = SearchDetailWiew.as_view()
 
 
+@login_required
 def pesquisa_create(request):
     # success_message = 'The Search was edited correctly.'
     if request.method == 'POST':
@@ -552,6 +572,7 @@ def pesquisa_create(request):
     return render(request, 'receipt_form.html', context)
 
 
+@login_required
 def pesquisa_update(request, pk):
     # Pega a chave da URL acima com (request, pk)
     # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro

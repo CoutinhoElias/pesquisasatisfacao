@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
@@ -7,6 +8,7 @@ from pesquisasatisfacao.crm.forms import AtendimentoForm
 from pesquisasatisfacao.crm.models import Atendimento
 
 
+@login_required
 def atendimento_create(request, pk):
     client = get_object_or_404(Client, pk=pk)
     if request.method == 'POST':
@@ -34,6 +36,7 @@ def atendimento_create(request, pk):
         return render(request, 'atendimento_create.html', context)
 
 
+@login_required
 def atendimento_update(request, id):
     # Pega a chave da URL acima com (request, pk)
     # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro
@@ -66,6 +69,7 @@ def atendimento_update(request, id):
     return render(request, 'atendimento_create.html', context)
 
 
+@login_required
 def atendimento_list(request):
     atendimentos = Atendimento.objects.filter(user_id=request.user).order_by("-priority", "id", "type")
     return render(request, 'atendimento_list.html', {'atendimentos': atendimentos})
