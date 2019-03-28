@@ -9,14 +9,15 @@
 
             <div class="card-content">
                 {% form %}
-                    {% part form.username prefix %}<i class="material-icons prefix">account_box</i>{% endpart %}
-                    {% part form.password prefix %}<i class="material-icons prefix">lock</i>{% endpart %}
+                    {% part form.cdalterdata prefix %}<i class="material-icons prefix">person_pin</i>{% endpart %}
+                    {% part form.phone prefix %}<i class="material-icons prefix">phone</i>{% endpart %}
+                    {% part form.email prefix %}<i class="material-icons prefix">contact_mail</i>{% endpart %}
                 {% endform %}
             </div>
 
             <div class="card-action">
                 <div class="right-align">
-                    <button class="waves-effect waves-light btn" type="submit">Logar</button>
+                    <button class="waves-effect waves-light btn" type="submit">Registrar</button>
                 </div>
             </div>
         </form>

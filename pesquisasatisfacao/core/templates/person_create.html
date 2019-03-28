@@ -9,7 +9,11 @@
 
             <div class="card-content">
                 {% form %}
-
+                    {% part form.cdalterdata prefix %}<i class="material-icons prefix">person</i>{% endpart %}
+                    {% part form.representative prefix %}<i class="material-icons prefix">person_pin</i>{% endpart %}
+                    {% part form.phone prefix %}<i class="material-icons prefix">phone</i>{% endpart %}
+                    {% part form.email prefix %}<i class="material-icons prefix">contact_mail</i>{% endpart %}
+                    {% part form.last_search prefix %}<i class="material-icons prefix">perm_contact_calendar</i>{% endpart %}
                 {% endform %}
             </div>
 

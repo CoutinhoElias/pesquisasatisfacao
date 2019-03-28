@@ -22,6 +22,7 @@ from pesquisasatisfacao.accounts.forms import (RegistrationForm,
 from pesquisasatisfacao.accounts.models import WorkSchedule, WorkScheduleItem, Feriado, Compensacao
 from pesquisasatisfacao.utils import render_to_pdf
 
+
 def random_time():
     entra = random.randint(8, 9)
     almoco = random.randint(entra + 3, 13)
@@ -164,9 +165,8 @@ def work_schedule_create(request):
             new.save()
             # form.save_m2m()
             # a, b, c, my_id, e, f = new.get_absolute_url().split('/')
-            print('period: ', new.period, ', key: ', new.id, ', feriado_user: ', request.user)
+            # print('period: ', new.period, ', key: ', new.id, ', feriado_user: ', request.user)
             add_work_schedule_item(period=new.period, key=new.id, feriado_user=request.user)
-
             return HttpResponseRedirect('/accounts/ficha/' + str(new.id) + '/editar/')
         else:
             print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')

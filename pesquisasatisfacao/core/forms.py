@@ -35,7 +35,6 @@ class ClientForm(forms.ModelForm):
             'estado',
             'representative',
             'last_search',
-            'products',
         )
         exclude = ('is_representative', 'priority',)
 
@@ -45,7 +44,6 @@ class ClientForm(forms.ModelForm):
                  Row(Span12('representative'), ),
                  Row(Span4('phone'), Span8('cpf_cnpj')),
                  Row(Span9('email'), Span3('last_search'), ),
-                 Row(Span12('products'), ),
                  ),
         Fieldset('Endereço',
                  Row(Span2('cep'), Span8('logradouro'), Span2('numero')),
@@ -69,7 +67,6 @@ class RepresentativeForm(forms.ModelForm):
             'bairro',
             'cidade',
             'estado',
-            'products',
         )
         exclude = ('representative', 'is_representative', 'last_search', 'priority',)
 
@@ -77,7 +74,7 @@ class RepresentativeForm(forms.ModelForm):
         Fieldset("Cadastro de Filial ou Representação",
                  Row(Span3('cdalterdata'), Span9('name'), ),
                  Row(Span4('phone'), Span8('cpf_cnpj')),
-                 Row(Span5('email'), Span7('products'), ),
+                 Row(Span12('email'), ),
                  ),
         Fieldset('Endereço',
                  Row(Span2('cep'), Span8('logradouro'), Span2('numero')),

@@ -58,10 +58,10 @@ def person_representative_create(request):
         else:
             print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
             print(form)
-            return render(request, 'person_create.html', {'form': form})
+            return render(request, 'representative_create.html', {'form': form})
     else:
         context = {'form': RepresentativeForm()}
-        return render(request, 'person_create.html', context)
+        return render(request, 'representative_create.html', context)
 
 
 @login_required
