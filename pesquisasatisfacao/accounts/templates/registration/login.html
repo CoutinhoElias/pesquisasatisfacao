@@ -4,23 +4,32 @@
 
 {% block container %}
 
-    <div class="card larger" id="card-radius">
-        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+<div class="container expand-on-small-only">
+    <div class="row valign change-form">
+        <div class="col s12 m8 offset-m2 l8 offset-l2">
 
-            <div class="card-content">
-                {% form %}
-                    {% part form.username prefix %}<i class="material-icons prefix">account_box</i>{% endpart %}
+            <div class="card larger" id="card-radius">
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
 
-                    {% part form.password prefix %}<i class="material-icons prefix">lock</i>{% endpart %}
-                {% endform %}
+                    <div class="card-content">
+                        {% form %}
+                            {% part form.username prefix %}<i class="material-icons prefix">account_box</i>{% endpart %}
+
+                            {% part form.password prefix %}<i class="material-icons prefix">lock</i>{% endpart %}
+                        {% endform %}
+                    </div>
+
+                    <div class="card-action">
+                        <div class="right-align">
+                            <a class="button secondaryAction blue-text" href="#!">Esqueceu a senha?</a>
+                            <button class="waves-effect waves-light btn" type="submit">Logar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <div class="card-action">
-                <div class="right-align">
-                    <button class="waves-effect waves-light btn" type="submit">Logar</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
+</div>
 
 {% endblock %}

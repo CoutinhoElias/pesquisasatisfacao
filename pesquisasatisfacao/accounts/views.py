@@ -22,7 +22,6 @@ from pesquisasatisfacao.accounts.forms import (RegistrationForm,
 from pesquisasatisfacao.accounts.models import WorkSchedule, WorkScheduleItem, Feriado, Compensacao
 from pesquisasatisfacao.utils import render_to_pdf
 
-@login_required
 def random_time():
     entra = random.randint(8, 9)
     almoco = random.randint(entra + 3, 13)
@@ -96,7 +95,6 @@ def schedule(request):
         return render(request, 'schedule.html', context)
 
 
-@login_required
 def add_work_schedule_item(period, key, feriado_user):
     year_month = str(period)
     m, y = year_month.split('/')
@@ -165,8 +163,9 @@ def work_schedule_create(request):
             new.user = request.user
             new.save()
             # form.save_m2m()
-            a, b, c, my_id, e, f = new.get_absolute_url().split('/')
-            add_work_schedule_item(period=request.POST['period'], key=my_id, feriado_user=request.user)
+            # a, b, c, my_id, e, f = new.get_absolute_url().split('/')
+            print('period: ', new.period, ', key: ', new.id, ', feriado_user: ', request.user)
+            add_work_schedule_item(period=new.period, key=new.id, feriado_user=request.user)
 
             return HttpResponseRedirect('/accounts/ficha/' + str(new.id) + '/editar/')
         else:
