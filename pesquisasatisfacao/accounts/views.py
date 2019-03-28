@@ -57,7 +57,6 @@ def random_time():
     return value_en, value_ea, value_va, value_out
 
 
-@login_required
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
