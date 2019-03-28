@@ -34,6 +34,10 @@ table th, table td {
     width: 100%;
 }
 
+.img-logo {
+    max-height: 64px!important;
+    padding: 15px 0!important;
+}
 
 /*.chk_box input[type='checkbox'] {
 position: static!important;

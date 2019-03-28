@@ -32,51 +32,52 @@
 
     <!-- Dropdown Structure -->
     <ul id="drp_clientes" class="dropdown-content">
-      <li><a href="{% url 'person_client_create' %}"><i class="material-icons">person</i>Novo Cliente</a></li>
-      <li><a href="{% url 'person_client_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Clientes</a></li>
+      <li><a class="black-text darken-4" href="{% url 'person_client_create' %}"><i class="material-icons">person</i>Novo Cliente</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'person_client_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Clientes</a></li>
       <li class="divider"></li>
-      <li><a href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">date_range</i>Cadastro Ficha</a></li>
-      <li><a href="{% url 'accounts:work_schedule_list' %}"><i class="material-icons">format_list_bulleted</i>Listar Fichas</a></li>
-      <li><a href="#!">em breve...</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">date_range</i>Cadastro Ficha</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'accounts:work_schedule_list' %}"><i class="material-icons">format_list_bulleted</i>Listar Fichas</a></li>
+      <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
     </ul>
 
     <ul id="drp_questions" class="dropdown-content">
-      <li><a href="{% url 'question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
-      <li><a href="{% url 'question_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de Perguntas</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'question_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de Perguntas</a></li>
       <li class="divider"></li>
-      <li><a href="#!">em breve...</a></li>
+      <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
     </ul>
 
     <ul id="drp_representative" class="dropdown-content">
-      <li><a href="{% url 'person_representative_create' %}"><i class="material-icons">person_pin</i>Novo Representante</a></li>
-      <li><a href="{% url 'person_representative_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Representantes</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'person_representative_create' %}"><i class="material-icons">person_pin</i>Novo Representante</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'person_representative_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Representantes</a></li>
       <li class="divider"></li>
-      <li><a href="#!">em breve...</a></li>
+      <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
     </ul>
 
     <ul id="drp_crm" class="dropdown-content">
 
-      <li><a href="{% url 'atendimento_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de atendimentos</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'atendimento_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de atendimentos</a></li>
       <li class="divider"></li>
-      <li><a href="#!">em breve...</a></li>
+      <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
     </ul>
 
     <!--NAVBAR-->
-    <nav class="#1a237e indigo darken-4 col s12 m6">
+    <nav class="#fafafa grey lighten-5 col s12 m6">
         <div class="nav-wrapper">
-        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
-        <a href="" class="brand-logo">Alterdata Filiais</a>
-            <ul class="right hide-on-med-and-down">
-            <li><a class="dropdown-trigger" href="#!" data-target="drp_clientes">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="drp_questions">Pesquisa<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="drp_representative">Representantes<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="drp_crm">CRM<i class="material-icons right">arrow_drop_down</i></a></li>
+        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large black-text darken-4"><i class="material-icons">menu</i></a>
+        <img src="{% static 'img/logo_alterdata.svg' %}" alt="" class="img-logo"/>
+<!--        <a href="" class="brand-logo">Alterdata Filiais</a>-->
+            <ul class="right hide-on-med-and-down ">
+            <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_clientes">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_questions">Pesquisa<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_representative">Representantes<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_crm">CRM<i class="material-icons right">arrow_drop_down</i></a></li>
 
             {% if user.is_authenticated %}
-                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                <li><a class="black-text darken-4" href="{% url 'accounts:logout' %}">Logout</a></li>
             {% else %}
-                <li><a href="{% url 'accounts:register' %}">Cadastre-se</a></li>
-                <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                <li><a class="black-text darken-4" href="{% url 'accounts:register' %}">Cadastre-se</a></li>
+                <li><a class="black-text darken-4" href="{% url 'accounts:login' %}">Login</a></li>
             {% endif %}
 
 

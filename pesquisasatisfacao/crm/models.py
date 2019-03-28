@@ -27,6 +27,7 @@ class Atendimento(models.Model):
     product = models.ForeignKey('core.salesitem', related_name='Produtos', null=True, blank=True, verbose_name='Produto',
                                 on_delete=models.CASCADE)
     priority = models.PositiveIntegerField('Prioridade', default=0)
+    contact = models.TextField('Contato', null=True, blank=True, max_length=50)
     feedback = models.TextField('Parecer Anterior', null=True, blank=True)
     created_on = models.DateField(
         'Criado em.',

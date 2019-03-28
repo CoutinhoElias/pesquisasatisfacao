@@ -21,13 +21,14 @@ class AtendimentoForm(forms.ModelForm):
             'feedback_field',
             'feedback',
             'user',
+            'contact',
             'deadline',)
         exclude = ('person',)
 
     layout = Layout(
         Fieldset("Atendimento ",
                  Row(Span3('type'), Span9('product'), ),
-                 Row(Span4('priority'), Span4('user'), Span4('deadline')),
+                 Row(Span3('priority'), Span3('user'), Span3('deadline'), Span3('contact')),
                  Row(Span6('feedback_field'), Span6('feedback'), ),
                  ),
             )
