@@ -10,6 +10,9 @@ class AtendimentoForm(forms.ModelForm):
     feedback = forms.CharField(label='Parecer Anterior', widget=forms.Textarea(attrs={'readonly': 'readonly'}),
                                required=False)
     feedback_field = forms.CharField(label='Novo parecer', widget=forms.Textarea(),  required=True)
+    deadline = forms.DateField(label='Próximo parecer',
+                               widget=forms.DateInput(format='%d-%m-%Y',
+                                                      attrs={'class': 'datetimepicker'}), required=False)
 
     class Meta:
         model = Atendimento
@@ -22,13 +25,14 @@ class AtendimentoForm(forms.ModelForm):
             'feedback',
             'user',
             'contact',
-            'deadline',)
-        exclude = ('person',)
+            'deadline',
+            'closed',)
+        exclude = ('person', 'priority',)
 
     layout = Layout(
         Fieldset("Atendimento ",
                  Row(Span3('type'), Span9('product'), ),
-                 Row(Span3('priority'), Span3('user'), Span3('deadline'), Span3('contact')),
+                 Row(Span3('user'), Span3('deadline'), Span3('contact'), Span3('closed'),),
                  Row(Span6('feedback_field'), Span6('feedback'), ),
                  ),
             )

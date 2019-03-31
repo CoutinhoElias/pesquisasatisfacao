@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import json
 import json
@@ -16,7 +18,24 @@ from pesquisasatisfacao.crm.models import Atendimento
 
 
 def home(request):
-    return render(request, 'index.html')
+    # dataset = Atendimento.objects.filter(deadline__lte=datetime.now()).values('closed').annotate(
+    #     attended_count=Count('closed', filter=Q(closed=True)),
+    #     open_count=Count('closed', filter=Q(closed=False))).order_by('closed')
+
+    moviments = Atendimento.objects.none()
+
+    client_active_count = Client.objects.filter(is_representative=False).aggregate(Count('is_representative'))
+    attended_count = Atendimento.objects.filter(deadline__lte=datetime.now(), closed=True).aggregate(Count('closed'))
+    open_count = Atendimento.objects.filter(deadline__lte=datetime.now(), closed=False).aggregate(Count('closed'))
+    attendance_count = Atendimento.objects.filter().aggregate(Count('closed'))
+
+    moviments.cliente = moviments.total_cliente = client_active_count['is_representative__count']
+    moviments.atendido = moviments.total_atendido = attended_count['closed__count']
+    moviments.aberto = moviments.total_aberto = open_count['closed__count']
+    moviments.atendimentos = moviments.total_atendimento = attendance_count['closed__count']
+
+    context = {'moviments': moviments}
+    return render(request, 'dashboard.html', context)
 
 
 # ----------------------------------------------------------------------------------------------------------------------

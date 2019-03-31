@@ -36,6 +36,7 @@ class Atendimento(models.Model):
     )
     deadline = models.DateField('Próximo Parecer')
     user = models.ForeignKey(User, verbose_name="Enviar para", on_delete=models.CASCADE)
+    closed = models.BooleanField('Encerrado?', default=False)
 
     class Meta:
         ordering = ('created_on',)

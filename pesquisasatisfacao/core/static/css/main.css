@@ -39,6 +39,11 @@ table th, table td {
     padding: 15px 0!important;
 }
 
+
+.page-footer{
+	margin-top: 0 !important;
+}
+
 /*.chk_box input[type='checkbox'] {
 position: static!important;
 left: 0px!important;

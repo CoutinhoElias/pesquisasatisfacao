@@ -3,11 +3,10 @@
 <html>
 
 <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     {% block css %}
-        <!-- Compiled and minified CSS -->
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection"/>
 
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -16,6 +15,7 @@
         {% include 'material/includes/material_css.html' %}
 
         <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" />
+
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
 
     {% endblock %}
@@ -24,9 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>PESQUISA</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
-
-
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/icon_alterdata.png' %}"/>
 </head>
 
 <body>
@@ -108,16 +106,90 @@
         <li><a class="black-text darken-4" class="waves-effect" href="#!">Third Link With Waves</a></li>
     </ul>
 
+    <div class="section section-daily-stats center">
+
+        <!--BLOCO SECTION   -->
+        {% block section %}
+
+        {% endblock section %}
+    </div>
+
     <div class="container">
 
         <!--BLOCO CONTAINER   -->
         {% block container %}
-            <p>Use this document as a way to quick start any new project.</p>
-            {% include "dashboard.html" %}
+
         {% endblock container %}
+    </div>
+
+    <!-- FOOTER -->
+    <!-- style="position:fixed;bottom:0;left:0;width:100%;" -->
+    <footer class="section #fafafa grey lighten-5 black-text center">
+        <p>Alterdata Copyright &copy; 2018</p>
+    </footer>
 
 
-    </div> <!-- /container -->
+    <!-- FAB -->
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+          <i class="material-icons">add</i>
+        </a>
+        <ul>
+          <li>
+            <a href="#modal-announcment" class="modal-trigger btn-floating yellow darken-3">
+              <i class="material-icons">mode_edit</i>
+            </a>
+          </li>
+        </ul>
+    </div>
+
+
+    <!-- ANNOUCNMENT MODAL -->
+    <div id="modal-announcment" class="modal">
+    <div class="modal-content">
+      <h4>Add Announcment</h4>
+      <form>
+        <div class="input-field">
+          <input type="text" id="title">
+          <label for="title">Title</label>
+        </div>
+        <div class="input-field">
+          <select>
+            <option value="" selected disabled>Select Option</option>
+            <option value="1">General announcment</option>
+            <option value="2">News</option>
+            <option value="3">Promotions</option>
+            <option value="4">Other</option>
+          </select>
+          <label>Category</label>
+        </div>
+        <div class="input-field">
+          <textarea name="body" id="body" class="materialize-textarea"></textarea>
+          <label for="body"></label>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close btn yellow darken-3 black-text">Submit</a>
+      </div>
+    </div>
+    </div>
+
+
+
+    <!-- PRELOADER -->
+    <div class="loader preloader-wrapper big active">
+    <div class="spinner-layer spinner-red only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div>
+      <div class="gap-patch">
+        <div class="circle"></div>
+      </div>
+      <div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+    </div>
 
     {% block js %}
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -249,14 +321,29 @@
         </script>
 
         <script>
+            jQuery.datetimepicker.setLocale('pt-BR');
 
-            $('.section').hide();
+            jQuery('#datetimepicker1').datetimepicker({
+             i18n:{
+              de:{
+               months:[
+                'Janeiro','Fevereiro','Março','Abril',
+                'Maio','Junho','Julho','Agosto',
+                'Setembro','Outubro','Novembro','Dezembro',
+               ],
+               dayOfWeek:[
+                "Dom.", "Seg", "Ter", "Qua",
+                "Qui", "Sex", "Sab",
+               ]
+              }
+             },
+             timepicker:false,
+             format:'d.m.Y'
+            });
+        </script>
 
-            setTimeout(function(){
-
+        <script>
                 $(document).ready(function(){
-                    //SHOW SECTIONS
-                    $('.section').fadeIn();
 
                     //MATERIALIZE
                     $('.count').each(function(){
@@ -293,7 +380,7 @@
                                     weekdaysAbbrev: ["D","S", "T", "Q", "Q", "S", "S"]
                                 }
                             }
-                        );
+                        ).setLocale('pt-BR');
 
                     // JQUERY MTZ.MONTHPICKER
                     //https://www.jqueryscript.net/time-clock/jQuery-Plugin-For-jQuery-UI-Month-Year-Picker-mtz-monthpicker.html
@@ -305,8 +392,6 @@
                         monthNames: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
                     });
                 });
-
-            }, 1000);
 
 
         </script>
