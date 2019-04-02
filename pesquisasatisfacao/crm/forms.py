@@ -1,5 +1,4 @@
 from django import forms
-
 from material import *
 
 from pesquisasatisfacao.core.models import SalesItem, Sales

@@ -1,9 +1,8 @@
 from django import forms
+from django.forms import inlineformset_factory
 from material import *
 
-from pesquisasatisfacao.core.models import Client, Question, Search, SearchItem, Product
-from django.forms import inlineformset_factory
-
+from pesquisasatisfacao.core.models import Client, Question, Search, SearchItem
 
 SYSTEM_CHOICES = (
     ('0', 'Pack'),

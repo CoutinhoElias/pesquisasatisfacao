@@ -1,8 +1,8 @@
+import json
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import json
-import json
 from django.db import transaction
 from django.db.models import Count, Q
 from django.http import HttpResponseRedirect
@@ -12,7 +12,6 @@ from pesquisasatisfacao.core.forms import (QuestionForm,
                                            ClientForm,
                                            SearchForm,
                                            SearchItemFormSet, RepresentativeForm)
-
 from pesquisasatisfacao.core.models import Search, Question, Client, SearchItem
 from pesquisasatisfacao.crm.models import Atendimento
 

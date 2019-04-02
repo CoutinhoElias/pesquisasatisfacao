@@ -1,10 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import inlineformset_factory
-
-from pesquisasatisfacao.accounts.models import UserInfo, Horario, WorkSchedule, WorkScheduleItem
 from material import *
 
+from pesquisasatisfacao.accounts.models import UserInfo, Horario, WorkSchedule, WorkScheduleItem
 from pesquisasatisfacao.core.models import Client
 
 
@@ -53,7 +52,7 @@ class WorkScheduleForm(forms.ModelForm):
 
     class Meta:
         model = WorkSchedule
-        fields = '__all__'
+        fields = ('period', 'user')
         exclude = ('user',)
 
     layout = Layout(

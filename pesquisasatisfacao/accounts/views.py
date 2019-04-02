@@ -3,13 +3,12 @@ import datetime
 import random
 
 import weasyprint
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.conf import settings
-
 # Create your views here.
 from django.template.loader import render_to_string, get_template
 from django.views import View
@@ -18,7 +17,6 @@ from pesquisasatisfacao.accounts.forms import (RegistrationForm,
                                                ScheduleForm,
                                                WorkScheduleForm,
                                                WorkScheduleItemFormSet)
-
 from pesquisasatisfacao.accounts.models import WorkSchedule, WorkScheduleItem, Feriado, Compensacao
 from pesquisasatisfacao.utils import render_to_pdf
 
@@ -159,23 +157,25 @@ def work_schedule_create(request):
         form = WorkScheduleForm(request.POST)
 
         if form.is_valid():
-            print('<<<<==== FORM VALIDO ====>>>>')
-            new = form.save(commit=False)
-            new.user = request.user
-            new.save()
-            # form.save_m2m()
-            # a, b, c, my_id, e, f = new.get_absolute_url().split('/')
-            # print('period: ', new.period, ', key: ', new.id, ', feriado_user: ', request.user)
-            add_work_schedule_item(period=new.period, key=new.id, feriado_user=request.user)
-            return HttpResponseRedirect('/accounts/ficha/' + str(new.id) + '/editar/')
+            try:
+                work_schedule = WorkSchedule.objects.get(period=form.cleaned_data['period'], user=request.user)
+                return HttpResponseRedirect('/accounts/ficha/' + str(work_schedule.id) + '/editar/')
+
+            except WorkSchedule.DoesNotExist:
+                print('<<<<==== FORM VALIDO ====>>>>')
+                new = form.save(commit=False)
+                new.user = request.user
+                new.save()
+
+                add_work_schedule_item(period=new.period, key=new.id, feriado_user=request.user)
+                return HttpResponseRedirect('/accounts/ficha/' + str(new.id) + '/editar/')
         else:
             print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
             return render(request, 'work_schedule_create.html', {'form': form})
     else:
         from datetime import date
         context = {'form': WorkScheduleForm(initial={'user': request.user,
-                                                     'period': date.today().strftime('%m/%Y')})}        # Caso precise preencher mais de um campo no form.
-        # context = {'form': SearchForm(initial={'person': pessoa_id, 'search_key': '11-2018'})}
+                                                     'period': date.today().strftime('%m/%Y')})}  # Caso precise preencher mais de um campo no form.
 
         # Exclui variável da session
         del request.session['person_id']
