@@ -127,11 +127,7 @@ def add_work_schedule_item(period, key, feriado_user):
             for f in feriado:
                 WorkScheduleItem.objects.get_or_create(day=strdate,
                                                        week_day=f.kind,
-                                                       workschedule=work_schedule,
-                                                       entrance=value_en,
-                                                       lunch_entrance=value_ea,
-                                                       lunch_out=value_va,
-                                                       exit=value_out)
+                                                       workschedule=work_schedule,)
         else:
             if my_date not in (5, 6, 7):
                 WorkScheduleItem.objects.get_or_create(day=strdate,
