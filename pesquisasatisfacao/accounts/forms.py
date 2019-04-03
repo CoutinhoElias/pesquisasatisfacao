@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.forms import inlineformset_factory
 from material import *
 
@@ -49,15 +50,18 @@ class ScheduleForm(forms.ModelForm):
 
 
 class WorkScheduleForm(forms.ModelForm):
+    user = forms.ModelChoiceField(label='Analista',
+                                  widget=forms.Select(attrs={'class': 'browser-default #000000 black-text', 'disabled': 'disabled'}),
+                                  required=True, queryset=UserInfo.objects.select_related().all())
 
     class Meta:
         model = WorkSchedule
         fields = ('period', 'user')
-        exclude = ('user',)
+        # exclude = ('user',)
 
     layout = Layout(
         Fieldset("Preencha com o Período",
-                 Row('period'),),)
+                 Row(Span3('period'), Span9('user')),),)
 
 
 WorkScheduleItemFormSet = inlineformset_factory(WorkSchedule, WorkScheduleItem,

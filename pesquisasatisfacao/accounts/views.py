@@ -190,9 +190,13 @@ def work_schedule_update(request, id):
         form = WorkScheduleForm(request.POST, instance=work_schedule)
         formset = WorkScheduleItemFormSet(request.POST, instance=work_schedule)
 
+        # Retira toda validação do campo
+        form.errors.pop('user')
+
         # Valida os formulários MESTRE(WorkScheduleForm) e DETALHE(WorkScheduleItemFormSet)
         if form.is_valid() and formset.is_valid():
             with transaction.atomic():
+                form.user = request.user
                 form.save()
                 formset.save()
             return redirect('/accounts/ficha/listar/')
