@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
+from django.utils.datetime_safe import date
+
 from pesquisasatisfacao.core.models import Client
 from pesquisasatisfacao.crm.forms import AtendimentoForm
 from pesquisasatisfacao.crm.models import Atendimento
@@ -22,6 +24,9 @@ def atendimento_create(request, pk):
             print('<<<<==== FORM VALIDO ====>>>>')
             new = form.save(commit=False)
             new.person = client
+            ffeedback = form.cleaned_data['feedback_field'] + '\n' + ('-' * 46) + '\n' + new.feedback
+            print(ffeedback)
+
             new.feedback = form.cleaned_data['feedback_field'] + '\n' + ('-' * 195) + '\n' + new.feedback
             new.save()
             #form.save_m2m()
@@ -52,7 +57,17 @@ def atendimento_update(request, id):
             print('<<<<==== FORM VALIDO ====>>>>')
             new = form.save(commit=False)
             new.person = pk
-            new.feedback = form.cleaned_data['feedback_field'] + '\n' + ('-' * 195) + '\n' + new.feedback
+
+            feedback_from = 'Parecer dado no dia ' + date.today().strftime('%d/%m/%Y') + '\n' + \
+                            'De: ' + str(request.user)
+
+            feedback_to = 'Para: ' + str(form.cleaned_data['user']) + '\n' + \
+                          'Com o conteúdo abaixo:' + '\n' + ('-' * 93) + '\n'
+            feedback_text = form.cleaned_data['feedback_field'] + '\n' + '\n' + ('*' * 60) + '\n' + new.feedback + '\n'
+            feedback = feedback_from + '\n' + feedback_to + '\n' + feedback_text
+
+
+            new.feedback = feedback
             new.save()
             form.save_m2m()
 
