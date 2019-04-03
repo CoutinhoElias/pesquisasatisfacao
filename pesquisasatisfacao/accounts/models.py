@@ -25,6 +25,8 @@ class UserInfo(User):
     horario = models.ForeignKey('accounts.horario', null=False, blank=False, related_name="horario",
                                 on_delete=models.CASCADE, verbose_name="Escolha seu Horário")
     funcao = models.CharField('Função', max_length=50, null=False, blank=False)
+    ctps = models.CharField('Carteira de Trabalho', max_length=20, null=False, blank=False)
+    serie = models.CharField('Série', max_length=10, null=False, blank=False)
 
     class Meta:
         verbose_name = 'Perfil de Usuário'

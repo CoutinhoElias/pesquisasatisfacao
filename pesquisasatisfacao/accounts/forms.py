@@ -20,6 +20,8 @@ class RegistrationForm(forms.Form, UserCreationForm):
             'base',
             'horario',
             'funcao',
+            'ctps',
+            'serie',
         )
 
     layout = Layout(
@@ -27,8 +29,8 @@ class RegistrationForm(forms.Form, UserCreationForm):
                  Row('password1', 'password2')),
         Fieldset('Dados Pessoais', 'nomecompleto',
                  Row(Span12('base'),),
-                 Row(Span12('horario'), ),
-                 Row(Span12('funcao'), ),
+                 Row(Span6('funcao'), Span6('horario'),),
+                 Row(Span4('ctps'), Span8('serie'), ),
                  ))
 
 
