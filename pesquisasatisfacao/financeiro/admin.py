@@ -9,10 +9,13 @@ from pesquisasatisfacao.financeiro.models import (PagamentoPago,
                                                   ContaReceber)
 
 
+# import locale
+# locale.setlocale(locale.LC_ALL, '')
 @admin.register(Historico)
 class AdminHistorico(admin.ModelAdmin):
     # valor_total vem de models.py na classe HistoricoManager
-    list_display = ('descricao', 'valor_total',)
+    list_display = ('descricao', 'totais')
+    readonly_fields = ['totais', ]
 
 
 @admin.register(Conta)

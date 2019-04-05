@@ -3,29 +3,36 @@ from django.db.models import Sum
 from django.urls import reverse
 
 
-class HistoricoManager(models.Manager):
+# class HistoricoManager(models.Manager):
+#
+#     # Criando meu Manager personalizado
+#     def get_queryset(self):
+#         queryset = super(HistoricoManager, self).get_queryset()
+#
+#         return queryset.extra(
+#             select={
+#                 '_valor_total': """select sum(valor) from financeiro_conta
+#                                   where financeiro_conta.historico_id = financeiro_historico.id""",
+#                 }
+#             )
 
-    # Criando meu Manager personalizado
-    def get_queryset(self):
-        queryset = super(HistoricoManager, self).get_queryset()
 
-        return queryset.extra(
-            select={
-                '_valor_total': """select sum(valor) from financeiro_conta
-                                  where financeiro_conta.historico_id = financeiro_historico.id""",
-                }
-            )
-
-
+import locale
+locale.setlocale(locale.LC_ALL, '')
 class Historico(models.Model):
+    @property
+    def totais(self):
+        return self.conta.filter(historico_id=self.id).aggregate(Sum('valor'))[
+            'valor__sum']
+
     class Meta:
         ordering = ('descricao',)
     descricao = models.CharField(max_length=50)
 
-    objects = HistoricoManager()
+    # objects = HistoricoManager()
 
-    def valor_total(self):
-        return self._valor_total or 0.0
+    # def valor_total(self):
+    #     return self._valor_total or 0.0
 
     def __str__(self):
         return self.descricao
@@ -47,7 +54,7 @@ class Conta(models.Model):
         ordering = ('-data_vencimento', 'valor')
 
     pessoa = models.ForeignKey('core.client', on_delete=models.CASCADE)
-    historico = models.ForeignKey('Historico', on_delete=models.CASCADE)
+    historico = models.ForeignKey('Historico', on_delete=models.CASCADE, related_name='conta')
     data_vencimento = models.DateField()
     data_pagamento = models.DateField(null=True, blank=True)
     valor = models.DecimalField(max_digits=15, decimal_places=2)
