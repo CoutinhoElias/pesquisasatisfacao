@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'pesquisasatisfacao.core',
     'pesquisasatisfacao.accounts',
     'pesquisasatisfacao.crm',
+    'pesquisasatisfacao.financeiro',
 ]
 
 MIDDLEWARE = [

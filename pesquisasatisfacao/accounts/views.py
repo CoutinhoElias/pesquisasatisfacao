@@ -152,6 +152,9 @@ def work_schedule_create(request):
     if request.method == 'POST':
         form = WorkScheduleForm(request.POST)
 
+        # Retira toda validação do campo
+        form.errors.pop('user')
+
         if form.is_valid():
             try:
                 work_schedule = WorkSchedule.objects.get(period=form.cleaned_data['period'], user=request.user)

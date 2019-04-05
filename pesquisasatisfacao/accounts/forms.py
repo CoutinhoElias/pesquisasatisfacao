@@ -52,8 +52,11 @@ class ScheduleForm(forms.ModelForm):
 
 
 class WorkScheduleForm(forms.ModelForm):
+    # autofocus
+    # period = forms.CharField(label='Período', widget=forms.TextInput(attrs={'tabindex':"-1"}), required=True)
     user = forms.ModelChoiceField(label='Analista',
-                                  widget=forms.Select(attrs={'class': 'browser-default #000000 black-text', 'disabled': 'disabled'}),
+                                  widget=forms.Select(attrs={'class': 'browser-default #000000 black-text',
+                                                             'disabled': 'disabled'}),
                                   required=True, queryset=UserInfo.objects.select_related().all())
 
     class Meta:
