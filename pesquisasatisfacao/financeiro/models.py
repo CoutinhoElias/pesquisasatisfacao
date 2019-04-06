@@ -17,13 +17,23 @@ from django.urls import reverse
 #             )
 
 
-import locale
-locale.setlocale(locale.LC_ALL, '')
+# import locale
+# locale.setlocale(locale.LC_ALL, '')
 class Historico(models.Model):
+
     @property
     def totais(self):
         return self.conta.filter(historico_id=self.id).aggregate(Sum('valor'))[
             'valor__sum']
+
+    @property
+    def valor_pago(self):
+        return PagamentoPago.objects.select_related('conta', 'pagamentopago', 'historico').filter(
+            conta_historico_id=self.id).aggregate(Sum('valor'))[
+            'valor__sum']
+
+    # Vai buscarna tabelao valor para somar e os parametros nas tebelas precedentes a ela.
+    # PagamentoPago.objects.select_related().filter(conta__historico_id=2).aggregate(Sum('valor'))['valor__sum']
 
     class Meta:
         ordering = ('descricao',)
@@ -74,8 +84,8 @@ class Conta(models.Model):
 
     def __unicode__(self):
         data_vencto = self.data_vencimento.strftime('%d/%m/%Y')
-        valor = '%0.02f'%self.valor
-        return '%s - %s (%s)'%(valor, self.pessoa.nome, data_vencto)
+        valor = '%0.02f' % self.valor
+        return '%s - %s (%s)' % (valor, self.pessoa.nome, data_vencto)
 
 
 class ContaPagar(Conta):
@@ -84,7 +94,7 @@ class ContaPagar(Conta):
         super(ContaPagar, self).save(*args, **kwargs)
 
     class Meta:
-        verbose_name_plural= 'Contas a Pagar'
+        verbose_name_plural = 'Contas a Pagar'
         verbose_name = 'Conta a Pagar'
 
     def get_absolute_url(self):
@@ -97,7 +107,7 @@ class ContaReceber(Conta):
         super(ContaReceber, self).save(*args, **kwargs)
 
     class Meta:
-        verbose_name_plural= 'Contas a Receber'
+        verbose_name_plural = 'Contas a Receber'
         verbose_name = 'Conta a Receber'
 
     def get_absolute_url(self):
@@ -113,7 +123,8 @@ class Pagamento(models.Model):
 
 
 class PagamentoPago(Pagamento):
-    conta = models.ForeignKey('ContaPagar', on_delete=models.CASCADE)
+    conta = models.ForeignKey('ContaPagar', on_delete=models.CASCADE, related_name="pagamentopago",)
+
 
 
 class PagamentoRecebido(Pagamento):

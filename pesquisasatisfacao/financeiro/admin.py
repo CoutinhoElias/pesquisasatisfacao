@@ -14,8 +14,14 @@ from pesquisasatisfacao.financeiro.models import (PagamentoPago,
 @admin.register(Historico)
 class AdminHistorico(admin.ModelAdmin):
     # valor_total vem de models.py na classe HistoricoManager
-    list_display = ('descricao', 'totais')
-    readonly_fields = ['totais', ]
+    list_display = ('descricao', 'totais', 'valor_pago')
+    readonly_fields = ['totais', 'valor_pago']
+
+    # def totais(self, obj):
+    #     if not obj.totais:
+    #         return obj.totais
+    #     else:
+    #         return '%.2f' % obj.totais
 
 
 @admin.register(Conta)
