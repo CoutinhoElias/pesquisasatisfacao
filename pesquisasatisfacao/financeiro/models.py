@@ -29,7 +29,7 @@ class Historico(models.Model):
     @property
     def valor_pago(self):
         return PagamentoPago.objects.select_related('conta', 'pagamentopago', 'historico').filter(
-            conta_historico_id=self.id).aggregate(Sum('valor'))[
+            conta__historico_id=self.id).aggregate(Sum('valor'))[
             'valor__sum']
 
     # Vai buscarna tabelao valor para somar e os parametros nas tebelas precedentes a ela.
