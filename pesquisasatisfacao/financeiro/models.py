@@ -27,8 +27,14 @@ class Historico(models.Model):
             'valor__sum']
 
     @property
-    def valor_pago(self):
+    def pagar_valor_pago(self):
         return PagamentoPago.objects.select_related('conta', 'pagamentopago', 'historico').filter(
+            conta__historico_id=self.id).aggregate(Sum('valor'))[
+            'valor__sum']
+
+    @property
+    def receber_valor_pago(self):
+        return PagamentoRecebido.objects.select_related('conta', 'pagamentorecebido', 'historico').filter(
             conta__historico_id=self.id).aggregate(Sum('valor'))[
             'valor__sum']
 
@@ -126,6 +132,5 @@ class PagamentoPago(Pagamento):
     conta = models.ForeignKey('ContaPagar', on_delete=models.CASCADE, related_name="pagamentopago",)
 
 
-
 class PagamentoRecebido(Pagamento):
-    conta = models.ForeignKey('ContaReceber', on_delete=models.CASCADE)
+    conta = models.ForeignKey('ContaReceber', on_delete=models.CASCADE, related_name="pagamentorecebido",)
