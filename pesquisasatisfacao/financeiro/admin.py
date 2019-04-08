@@ -28,7 +28,15 @@ class InlinePagamento(TabularInline):
 
 @admin.register(Conta)
 class AdminConta(admin.ModelAdmin):
-    list_display = ('pessoa', 'historico', 'data_vencimento', 'data_pagamento', 'valor', 'operacao', 'status', 'descricao')
+    list_display = ('pessoa',
+                    'historico',
+                    'data_vencimento',
+                    'data_pagamento',
+                    'valor_vendido',
+                    'operacao',
+                    'status',
+                    'descricao')
+
     search_fields = ('descricao',)
     # list_filter = ('data_vencimento', 'status', 'operacao', 'historico', 'pessoa',)
     inlines = [InlinePagamento, ]

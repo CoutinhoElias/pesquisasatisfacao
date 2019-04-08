@@ -64,7 +64,6 @@ def financeiro_update(request, id):
     conta = get_object_or_404(Conta, id=id)
 
     if request.method == 'POST':
-        # Os formulários FinanceiroForm receberá o request.POST com os campos em branco
         form = FinanceiroForm(request.POST, instance=conta)
         formset = PagamentoFormSet(request.POST, instance=conta)
 
@@ -75,20 +74,10 @@ def financeiro_update(request, id):
                 formset.save()
             return redirect('/financeiro/listar/')
     else:
-        # Caso não seja POST ele trará o formulário com as informações preenchidas do parâmetro conta
-        # que pegamos da URL quando passamos o request de id na entrada da função acima.
 
         form = FinanceiroForm(instance=conta)
-        # Recupera a instancia de form e chama a função add_conta_item
-        # para popular o detalhe com os dias do mês e o usuário poderá editar.
-        # add_conta_item(period=conta.period, key=conta.id)
-
         formset = PagamentoFormSet(instance=conta)
-    # Passamos os dois forms para uma variável com um nome qualquer (Neste caso usamos o nome "forms" afim de dar
-    # a idéia
-    # de mais de um formulário conforme abaixo:
-    # Na linha context passamos também os dois contextos e
-    # por fim na linha final passamos o retorno da função onde chamamos o template com o context.
+
     forms = [formset.empty_form] + formset.forms
     context = {'form': form, 'formset': formset, 'forms': forms}
     return render(request, 'financial_update.html', context)

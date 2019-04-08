@@ -43,7 +43,7 @@
                         <a href="{% url 'person_client_update' pk=conta.pessoa.id %}">{{ conta.pessoa|linebreaks }}</a>
                     </td>
                     <td class="right-align">
-                        <a href="#">{{ conta.valor|floatformat:"2" }}</a>
+                        <a href="#">{{ conta.valor_vendido|floatformat:"2" }}</a>
                     </td>
                     <td class="center-align">
                         {{ conta.data_vencimento | date:"d/m/Y" }}

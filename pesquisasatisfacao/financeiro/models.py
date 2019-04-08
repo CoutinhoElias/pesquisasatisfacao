@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum, Count
+from django.db.models import Sum
 
 CONTA_OPERACAO_CHOICES = (
     ('d', 'Debito'),
@@ -22,13 +22,13 @@ class Historico(models.Model):
     )
 
     def totais(self):
-        return Conta.objects.filter(historico_id=self.id).aggregate(Sum('valor'))[
-            'valor__sum']
+        return Conta.objects.filter(historico_id=self.id).aggregate(Sum('valor_vendido'))[
+            'valor_vendido__sum']
 
     def baixado(self):
         return Pagamento.objects.select_related('conta', 'historico').filter(
             conta__historico_id=self.id).aggregate(Sum('valor_pago'))[
-            'valor__sum']
+            'valor_pago__sum']
 
     def restam(self):
         return (self.totais() or 0) - (self.baixado() or 0)
@@ -45,13 +45,13 @@ class Historico(models.Model):
 
 class Conta(models.Model):
     class Meta:
-        ordering = ('-data_vencimento', 'valor')
+        ordering = ('-data_vencimento', 'valor_vendido')
 
     pessoa = models.ForeignKey('core.client', on_delete=models.CASCADE, related_name='client_conta')
     historico = models.ForeignKey('Historico', on_delete=models.CASCADE, related_name='historico_conta')
     data_vencimento = models.DateField()
     data_pagamento = models.DateField(null=True, blank=True)
-    valor = models.DecimalField(max_digits=15, decimal_places=2)
+    valor_vendido = models.DecimalField(max_digits=15, decimal_places=2)
     operacao = models.CharField(
         max_length=1,
         default='d',

@@ -6,7 +6,7 @@ from pesquisasatisfacao.financeiro.models import Conta, Pagamento
 
 
 class FinanceiroForm(forms.ModelForm):
-    valor = forms.CharField(label='Valor do Titulo', widget=forms.NumberInput(), required=True)
+    # valor = forms.CharField(label='Valor do Titulo', widget=forms.NumberInput(), required=True)
 
     class Meta:
         model = Conta
@@ -14,7 +14,7 @@ class FinanceiroForm(forms.ModelForm):
                   'historico',
                   'data_vencimento',
                   'data_pagamento',
-                  'valor',
+                  'valor_vendido',
                   'operacao',
                   'status',
                   'descricao')
@@ -24,7 +24,7 @@ class FinanceiroForm(forms.ModelForm):
     layout = Layout(
         Fieldset("Titulo Financeiro",
                  Row(Span12('pessoa')),
-                 Row(Span3('valor'), Span2('data_vencimento'), Span2('data_pagamento'), Span5('historico')),
+                 Row(Span3('valor_vendido'), Span2('data_vencimento'), Span2('data_pagamento'), Span5('historico')),
                  Row(Span2('operacao'), Span2('status'), Span8('descricao')),
                  ),)
 
