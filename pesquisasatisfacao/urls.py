@@ -20,5 +20,6 @@ urlpatterns = [
     path('', include('pesquisasatisfacao.core.urls')),
     path('', include('pesquisasatisfacao.accounts.urls')),
     path('', include('pesquisasatisfacao.crm.urls')),
+    path('', include('pesquisasatisfacao.financeiro.urls')),
     path('admin/', admin.site.urls),
 ]

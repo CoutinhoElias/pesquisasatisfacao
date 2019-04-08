@@ -70,6 +70,7 @@ class Client(models.Model):
         verbose_name_plural = 'Clientes'
 
     def save(self, *args, **kwargs):
+        self.name = self.name.upper()
         self.email = self.email.lower()
         self.logradouro = self.logradouro.upper()
         self.bairro = self.bairro.upper()

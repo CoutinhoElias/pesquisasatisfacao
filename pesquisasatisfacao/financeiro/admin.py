@@ -11,7 +11,7 @@ from pesquisasatisfacao.financeiro.models import (Historico,
 @admin.register(Historico)
 class AdminHistorico(admin.ModelAdmin):
     # valor_total vem de models.py na classe HistoricoManager
-    list_display = ('descricao', 'operacao', 'totais', 'baixado', 'resta')
+    list_display = ('descricao', 'operacao', 'totais', 'baixado', 'restam')
     # list_display = ('descricao', 'totais', 'pagar_baixado', 'receber_baixado', 'saldo')
     # readonly_fields = ['totais', 'pagar_baixado', 'receber_baixado']
 

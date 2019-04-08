@@ -39,6 +39,13 @@
       <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
     </ul>
 
+    <ul id="drp_financeiro" class="dropdown-content">
+      <li><a class="black-text darken-4" href="{% url 'financeiro_create' %}"><i class="material-icons">monetization_on</i>Novo Titulo</a></li>
+      <li><a class="black-text darken-4"  href="{% url 'financeirot_list' %}"><i class="material-icons">attach_money</i>Lista Titulos</a></li>
+      <li class="divider"></li>
+      <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
+    </ul>
+
     <ul id="drp_questions" class="dropdown-content">
       <li><a class="black-text darken-4"  href="{% url 'question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
       <li><a class="black-text darken-4"  href="{% url 'question_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de Perguntas</a></li>
@@ -69,6 +76,7 @@
 <!--        <a href="" class="brand-logo">Alterdata Filiais</a>-->
             <ul class="right hide-on-med-and-down ">
                 <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_clientes">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_financeiro">Financeiro<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_questions">Pesquisa<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_representative">Representantes<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a class="dropdown-trigger black-text darken-4" href="#!" data-target="drp_crm">CRM<i class="material-icons right">arrow_drop_down</i></a></li>

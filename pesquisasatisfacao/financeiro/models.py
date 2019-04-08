@@ -27,11 +27,11 @@ class Historico(models.Model):
 
     def baixado(self):
         return Pagamento.objects.select_related('conta', 'historico').filter(
-            conta__historico_id=self.id).aggregate(Sum('valor'))[
+            conta__historico_id=self.id).aggregate(Sum('valor_pago'))[
             'valor__sum']
 
-    def resta(self):
-        return self.totais() - self.baixado()
+    def restam(self):
+        return (self.totais() or 0) - (self.baixado() or 0)
 
     # Vai buscarna tabela o valor para somar e os parametros nas tebelas precedentes a ela.
     # PagamentoPago.objects.select_related().filter(conta__historico_id=2).aggregate(Sum('valor'))['valor__sum']
@@ -40,7 +40,7 @@ class Historico(models.Model):
         ordering = ('descricao',)
 
     def __str__(self):
-        return self.descricao
+        return self.descricao or 0
 
 
 class Conta(models.Model):
@@ -67,19 +67,17 @@ class Conta(models.Model):
     descricao = models.TextField(blank=True)
 
     def __str__(self):
-        data_vencto = self.data_vencimento.strftime('%d/%m/%Y')
-        valor = '%0.02f' % self.valor
-        return '%s - %s (%s)' % (valor, self.pessoa.name, data_vencto)
+        return self.pessoa.name
 
 
 class Pagamento(models.Model):
     conta = models.ForeignKey('Conta', on_delete=models.CASCADE, related_name='conta_pagamento')
     data_pagamento = models.DateField()
-    valor = models.DecimalField(max_digits=15, decimal_places=2)
+    valor_pago = models.DecimalField(max_digits=15, decimal_places=2)
 
     class Meta:
         verbose_name = 'Venda Detalhe'
         verbose_name_plural = 'Vendas Detalhe'
 
     def __str__(self):
-        return '%s - %s (%s)' % (self.conta, self.conta.pessoa, self.data_pagamento)
+        return self.conta.pessoa
