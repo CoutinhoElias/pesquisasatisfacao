@@ -51,7 +51,7 @@ class Conta(models.Model):
     historico = models.ForeignKey('Historico', on_delete=models.CASCADE, related_name='historico_conta')
     data_vencimento = models.DateField()
     data_pagamento = models.DateField(null=True, blank=True)
-    valor_vendido = models.DecimalField(max_digits=15, decimal_places=2)
+    valor_vendido = models.DecimalField('Valor Vendido', max_digits=15, decimal_places=2)
     operacao = models.CharField(
         max_length=1,
         default='d',

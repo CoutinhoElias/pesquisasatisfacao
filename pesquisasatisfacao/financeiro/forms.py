@@ -6,7 +6,7 @@ from pesquisasatisfacao.financeiro.models import Conta, Pagamento
 
 
 class FinanceiroForm(forms.ModelForm):
-    # valor = forms.CharField(label='Valor do Titulo', widget=forms.NumberInput(), required=True)
+    valor_vendido = forms.CharField(label='Valor do Titulo', widget=forms.TextInput(), required=True)
 
     class Meta:
         model = Conta
