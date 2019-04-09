@@ -19,7 +19,7 @@ def financeirot_list(request):
         contas = Conta.objects.filter(Q(pessoa__is_representative=False),
                                       Q(pessoa__name__icontains=q) |
                                       Q(pessoa__cdalterdata__icontains=q) |
-                                      Q(valor__icontains=q) |
+                                      Q(valor_vendido__icontains=q) |
                                       Q(historico__descricao__icontains=q))
     else:
         contas = Conta.objects.filter(pessoa__is_representative=False)
@@ -72,7 +72,11 @@ def financeiro_update(request, id):
             with transaction.atomic():
                 form.save()
                 formset.save()
-            return redirect('/financeiro/listar/')
+            if 'btn_submit_1' in request.POST:
+                return redirect('/financeiro/' + str(id) + '/editar')
+            else:
+                return redirect('/financeiro/listar/')
+
     else:
 
         form = FinanceiroForm(instance=conta)

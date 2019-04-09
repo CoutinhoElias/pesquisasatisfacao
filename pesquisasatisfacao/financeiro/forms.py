@@ -7,7 +7,7 @@ from pesquisasatisfacao.financeiro.models import Conta, Pagamento
 
 class FinanceiroForm(forms.ModelForm):
     # valor_vendido = forms.CharField(label='Valor do Titulo', widget=forms.TextInput(), required=True)
-    valor_vendido = forms.DecimalField(max_digits=8, decimal_places=2, localize=True)
+    valor_vendido = forms.DecimalField(max_digits=8, decimal_places=2, localize=True, required=True)
 
     # def __init__(self, *args, **kwargs):
     #     super(FinanceiroForm, self).__init__(*args, **kwargs)
