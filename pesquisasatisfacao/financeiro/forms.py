@@ -39,4 +39,4 @@ PagamentoFormSet = inlineformset_factory(Conta, Pagamento,
                                          exclude=('id',),
                                          can_delete=True,
                                          fields=('data_pagamento', 'valor_pago'),
-                                         extra=0)
+                                         extra=1)

@@ -464,7 +464,6 @@ def question_level_view2(request):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
-@login_required
 def add_search_item(search):
     questions = Question.objects.all()
 
@@ -474,44 +473,43 @@ def add_search_item(search):
 
 @login_required
 def seach_create(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
 
-        if request.method == 'POST':
-            form = SearchForm(request.POST)
+        if form.is_valid():
+            print('<<<<==== FORM VALIDO ====>>>>')
+            new = form.save(commit=False)
+            new.save()
+            # form.save_m2m()
 
-            if form.is_valid():
-                print('<<<<==== FORM VALIDO ====>>>>')
-                new = form.save(commit=False)
-                new.save()
-                # form.save_m2m()
+            search = Search.objects.get(id=new.id)
+            print(search, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+            add_search_item(search)
 
-                search = Search.objects.get(id=new.id)
-                print(id, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
-                add_search_item(search)
-
-                # return HttpResponseRedirect('/pesquisa/listar')
-                return HttpResponseRedirect(new.get_absolute_url())
-                # return redirect(Search.get_absolute_url())
-            else:
-                print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
-                # person_instance = Person.objects.get(pk=request.session["person_id"])
-                return render(request, 'seach_create.html', {'form': form})
+            # return HttpResponseRedirect('/pesquisa/listar')
+            return HttpResponseRedirect(new.get_absolute_url())
+            # return redirect(Search.get_absolute_url())
         else:
-            if 'person_id' in request.session:
-                # Recupera variável da session
-                pessoa_id = request.session['person_id']
-                from datetime import date
-                context = {'form': SearchForm(initial={'person': pessoa_id,
-                                                       'search_key': date.today().strftime('%m-%Y')})}
-                # Caso precise preencher mais de um campo no form.
-                # context = {'form': SearchForm(initial={'person': pessoa_id, 'search_key': '11-2018'})}
+            print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
+            # person_instance = Person.objects.get(pk=request.session["person_id"])
+            return render(request, 'seach_create.html', {'form': form})
+    else:
+        if 'person_id' in request.session:
+            # Recupera variável da session
+            pessoa_id = request.session['person_id']
+            from datetime import date
+            context = {'form': SearchForm(initial={'person': pessoa_id,
+                                                   'search_key': date.today().strftime('%m-%Y')})}
+            # Caso precise preencher mais de um campo no form.
+            # context = {'form': SearchForm(initial={'person': pessoa_id, 'search_key': '11-2018'})}
 
-                # Exclui variável da session
-                del request.session['person_id']
+            # Exclui variável da session
+            del request.session['person_id']
 
-                return render(request, 'seach_create.html', context)
-            else:
-                # Caso person_id não exista na session ele redireciona para lista de clientes pesquisados.
-                return HttpResponseRedirect('/cliente/listar')
+            return render(request, 'seach_create.html', context)
+        else:
+            # Caso person_id não exista na session ele redireciona para lista de clientes pesquisados.
+            return HttpResponseRedirect('/cliente/listar')
 
 
 @login_required
@@ -581,7 +579,7 @@ def pesquisa_create(request):
 
     else:
         form = SearchForm()
-        # initial={'author': request.user}
+
         formset = SearchItemFormSet()
 
     forms = [formset.empty_form] + formset.forms
