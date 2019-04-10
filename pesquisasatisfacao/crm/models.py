@@ -2,6 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
+DEPARTMENT_CHOICES = (
+    ('0', 'Folha'),
+    ('1', 'Contábil'),
+    ('2', 'Fiscal'),
+    ('3', 'Financeiro'),
+)
+
 
 class Typeofservice(models.Model):
     name = models.CharField('Tipo de Atendimento', max_length=50)
@@ -23,6 +30,7 @@ class Atendimento(models.Model):
     )
     type = models.ForeignKey('crm.typeofservice', related_name='TipoDeAtendimento', verbose_name='Tipo de atendimento',
                              on_delete=models.CASCADE)
+    department = models.CharField('Departamento', max_length=15, choices=DEPARTMENT_CHOICES, default='3')
     person = models.ForeignKey('core.client', related_name='AtendimentoClient', on_delete=models.CASCADE)
     product = models.ForeignKey('core.salesitem', related_name='Produtos', null=True, blank=True, verbose_name='Produto',
                                 on_delete=models.CASCADE)
