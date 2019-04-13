@@ -1,0 +1,36 @@
+<p dir="ltr">Leandro como falei anteriormente, use staticfiles + django-storages-redux [1]</p>
+<p dir="ltr">[1] <a href="https://github.com/jschneier/django-storages">https</a><a href="https://github.com/jschneier/django-storages">://</a><a href="https://github.com/jschneier/django-storages">github.com</a><a href="https://github.com/jschneier/django-storages">/</a><a href="https://github.com/jschneier/django-storages">jschneier</a><a href="https://github.com/jschneier/django-storages">/</a><a href="https://github.com/jschneier/django-storages">django-storages</a></p>
+<p dir="ltr">Lembrando que o nome do pacote é django-storages-redux e não django-storages (este último é o projeto original, que não tem atualizações faz muito tempo e nem tem suporte a Python 3)</p>
+<div class="gmail_quote">Em 02/01/2016 22:03, &quot;Leandro Silva&quot; &lt;<a href="mailto:ldfsilva@gmail.com">ldfsilva@gmail.com</a>&gt; escreveu:<br type="attribution"><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir="ltr">Pessoal,<div><br></div><div>Pelo o que eu entendi do diagrama de sequencia apresentado pelo Henrique no M2A04 nós podemos substituir o fornecimento dos arquivos estaticos do djstatic por um outro http server qualquer, como http.server do proprio python, amazon s3 ou whatever.</div><div><br></div><div>Até então tudo tranquilo, realizei a criação do bucket s3 na amazon e realizei o upload dos arquivos para lá manualmente.</div><div>Após a alteração do STATIC_URL para a nova url do bucket s3 do amazon o ambiente de dev carregou normalmente assim como quando realizei os testes com o módulo http.server do python.</div><div><br></div><div>A dúvida que ficou no entanto é a seguinte:</div><div><br></div><div>Toda vez que o designer enviar novos arquivos ou hover alterações eu teria que realizar o collect static e então fazer upload dos arquivos para o bucket s3 da amazon manualmente ? Vejo esta como uma opção, mas se tratando de python e django acredito que não seja a melhor.</div><div><br></div><div>Então penso.. há algum módulo no django que interaja com o bucket s3 utilizando as credenciais da amazon para realizar alterações no bucket sempre que necessário e assim isso ficaria automatizado toda fez que for feito deploy da aplicação ? Qual seria este cara ?</div><div><br></div><div>Obrigado pelo auxilio.</div><div><br></div><div><br></div><div>Abraços,</div><div><br></div><div>Leandro</div><div><br></div><div><br></div></div><div class="gmail_extra"><br><div class="gmail_quote">2015-12-23 7:46 GMT-06:00 Marcus Gabaldo <span dir="ltr">&lt;<a href="mailto:gabaldo@gmail.com" target="_blank">gabaldo@gmail.com</a>&gt;</span>:<br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir="ltr">Bacana. É necessário fazer alguma configuração na amazon também?</div>
+
+<p></p>
+
+-- <br>
+Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<span><br>
+Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015+unsubscribe@googlegroups.com" target="_blank">wttd-2015+unsubscribe@googlegroups.com</a>.<br></span><span>
+Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com" target="_blank">wttd-2015@googlegroups.com</a>.<br>
+Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015" target="_blank">https://groups.google.com/group/wttd-2015</a>.<br></span>
+Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/e3ecf6fb-2801-4f62-beea-4eb458770976%40googlegroups.com?utm_medium=email&amp;utm_source=footer" target="_blank">https://groups.google.com/d/msgid/wttd-2015/e3ecf6fb-2801-4f62-beea-4eb458770976%40googlegroups.com</a>.<br>
+Para mais opções, acesse <a href="https://groups.google.com/d/optout" target="_blank">https://groups.google.com/d/optout</a>.<br>
+</blockquote></div><br></div>
+
+<p></p>
+
+-- <br>
+Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br>
+Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015+unsubscribe@googlegroups.com" target="_blank">wttd-2015+unsubscribe@googlegroups.com</a>.<br>
+Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com" target="_blank">wttd-2015@googlegroups.com</a>.<br>
+Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015" target="_blank">https://groups.google.com/group/wttd-2015</a>.<br>
+Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/CAGKHKHLmP1x%3DXb13W9KnOKOUZEnh3v26iNT2Rwo8foLkeEKEzw%40mail.gmail.com?utm_medium=email&amp;utm_source=footer" target="_blank">https://groups.google.com/d/msgid/wttd-2015/CAGKHKHLmP1x%3DXb13W9KnOKOUZEnh3v26iNT2Rwo8foLkeEKEzw%40mail.gmail.com</a>.<br>
+Para mais opções, acesse <a href="https://groups.google.com/d/optout" target="_blank">https://groups.google.com/d/optout</a>.<br>
+</blockquote></div>
+
+<p></p>
+
+-- <br />
+Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br />
+Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015+unsubscribe@googlegroups.com">wttd-2015+unsubscribe@googlegroups.com</a>.<br />
+Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com">wttd-2015@googlegroups.com</a>.<br />
+Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015">https://groups.google.com/group/wttd-2015</a>.<br />
+Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/CAPVjvMa86MUkgfoJTnMLj0baS1TV8fZMNRZnjYmvFBMrAHo72g%40mail.gmail.com?utm_medium=email&utm_source=footer">https://groups.google.com/d/msgid/wttd-2015/CAPVjvMa86MUkgfoJTnMLj0baS1TV8fZMNRZnjYmvFBMrAHo72g%40mail.gmail.com</a>.<br />
+Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br />

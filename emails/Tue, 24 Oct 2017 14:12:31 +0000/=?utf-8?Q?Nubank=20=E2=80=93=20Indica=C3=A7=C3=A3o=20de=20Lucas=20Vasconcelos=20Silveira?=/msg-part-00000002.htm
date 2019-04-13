@@ -1,0 +1,763 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+      /* Paste style here */
+      /* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/ */
+
+#outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
+.ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 120%;} /* Force Hotmail to display normal line spacing */
+body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
+table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
+img{-ms-interpolation-mode:bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
+
+/* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */
+
+body{margin:0; padding:0;}
+img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+table{border-collapse:collapse !important;}
+body, #bodyTable, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;}
+
+/* /\/\/\/\/\/\/\/\/ TEMPLATE STYLES /\/\/\/\/\/\/\/\/ */
+
+/* ========== Structure ========== */
+
+#bodyCell{
+	padding:40px;
+}
+
+#templateContainer{
+	width:600px;
+	background-color: #FFFFFF;
+}
+
+body, #bodyTable{
+	background-color:#F7F7F7;
+}
+
+#templateContainer{
+	border: 1px solid #D9D9D9;
+	box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
+}
+
+#templatePreheader{
+	background-color:#FFFFFF;
+}
+
+#templateHeader{
+	background-color:#FFFFFF;
+	border-top:1px solid #FFFFFF;
+	border-bottom:1px solid #FFFFFF;
+}
+
+#headerImage{
+	height:auto;
+	max-width:600px;
+}
+
+#templateBody{
+	background-color:#FFFFFF;
+}
+
+#templateFooter{
+	background-color:#FFFFFF;
+}
+
+/* ========== Elements ========== */
+
+h1,h2,h3,h4{
+	display:block;
+	font-family: Helvetica, Arial, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+	line-height:100%;
+	letter-spacing:normal;
+	margin-top:0;
+	margin-right:0;
+	margin-bottom:0;
+	margin-left:0;
+	text-align:center;
+}
+
+h1{
+	color:#202020 !important;
+	font-size:26px;
+	font-weight:bold;
+}
+
+h2{
+	color:#404040 !important;
+	font-size:20px;
+	font-weight:bold;
+}
+
+h3{
+	color:#606060 !important;
+	font-size:16px;
+	font-style:italic;
+}
+
+h4{
+	color:#808080 !important;
+	font-size:14px;
+	font-style:italic;
+}
+
+p{
+	margin: 0;
+}
+
+td{
+	font-family: Helvetica, Arial, sans-serif;
+	line-height: 160%;
+}
+
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul li{
+	text-align: left;
+	padding-bottom: 8px;
+}
+
+/* ========== Global ========== */
+
+.subtitle{
+	color: #8D3DC8 !important;
+	text-transform: uppercase;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 140%;
+}
+
+.calltoaction{
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 16px;
+	border: 1px solid #8D3DC8;
+	border-radius: 5px;
+	color: #8D3DC8;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	width: 80%;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.calltoaction.small{
+	font-size: 10px;
+	padding: 8px;
+}
+
+.feature-icon{
+	padding-bottom: 16px;
+}
+
+.sub{
+	font-size: 13px;
+	color: #555;
+}
+
+.huge-txt{
+	font-size: 28px;
+}
+
+.highlight {
+	color: #8D3DC8 !important;
+	font-weight: 600 !important;
+}
+
+.txt-block{
+	width: 130px;
+	display: inline-block;
+	font-size: 12px;
+	text-transform: uppercase;
+	padding: 10px;
+	border: 1px solid #8D3DC8;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+.superHighlight {
+	color: #8D3DC8 !important;
+	font-weight: 400 !important;
+	font-size: 22px;
+}
+
+.greenHighlight{
+	color: #76BF26 !important;
+	font-weight: 600 !important;
+}
+
+.purple{
+	color: #8D3DC8 !important;
+}
+
+.green{
+	color: #76BF26 !important;
+}
+
+.blue{
+	color: #00BCC9 !important;
+}
+
+.red{
+	color: #E5615C !important;
+}
+
+.warning {
+	color: #C93648;
+}
+
+.shortDivider {
+	margin-right: auto;
+	margin-left: auto;
+	width: 30px;
+	border: 0;
+	border-top: 1px solid #DDD;
+}
+
+.sectionDivider {
+	width: 80%;
+	border: 0;
+	border-top: 1px solid #DDD;
+}
+
+.spaceS{
+	padding-bottom: 8px !important;
+}
+
+.spaceM{
+	padding-bottom: 16px !important;
+}
+
+.spaceL{
+	padding-bottom: 24px !important;
+}
+
+.spaceXL{
+	padding-bottom: 40px !important;
+}
+
+.closing{
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+.obs {
+  font-size: 14px;
+  color: #999;
+}
+
+
+
+/* ========== Header ========== */
+
+.preheaderContent{
+	color:#808080;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size:10px;
+	line-height:125%;
+	text-align:left;
+}
+
+.preheaderContent a:link, .preheaderContent a:visited, /* Yahoo! Mail Override */ .preheaderContent a .yshortcuts /* Yahoo! Mail Override */{
+	color:#8D3DC8;
+	font-weight: bold;
+	text-decoration:none;
+}
+
+.headerContent{
+	color:#505050;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	line-height:100%;
+	padding-top:0;
+	padding-right:0;
+	padding-bottom:0;
+	padding-left:0;
+	text-align:left;
+	vertical-align:middle;
+}
+
+.headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */{
+	color:#8D3DC8;
+	font-weight:normal;
+	text-decoration:none;
+}
+
+.nuHeader{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background: #FFF;
+}
+
+.nuHeader img{
+	max-width: 80px;
+	width: 80px;
+}
+
+/* ========== Body ========== */
+
+.bodyContent{
+	color:#404040;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size:16px;
+	line-height:160%;
+	padding-top:64px;
+	padding-bottom:40px;
+	padding-right:72px;
+	padding-left:72px;
+	background: #FFFFFF;
+}
+
+.hidden {
+	color: #FFFFFF;
+	font-size: 0;
+	height: 0;
+}
+
+.bodyContent td{
+	padding-bottom: 32px;
+	text-align: center;
+}
+
+.bodyContent a:link, .bodyContent a:visited, /* Yahoo! Mail Override */ .bodyContent a .yshortcuts /* Yahoo! Mail Override */{
+	color: #8D3DC8;
+	font-weight: bold;
+}
+
+.bodyContent img{
+	display:inline;
+	height:auto;
+	max-width:560px;
+}
+
+/* ========== Footer ========== */
+
+.footerContent{
+	background: #FFFFFF;
+}
+
+.footerContent td{
+	padding-bottom: 16px;
+	text-align: center;
+}
+
+.footerContent td p{
+	color:#666;
+	font-size:13px;
+}
+
+.footerContent .contact{
+	margin-top: 32px;
+	padding-left: 12%;
+	padding-right: 12%;
+}
+
+.footerContent .contact a:link{
+	text-decoration:underline;
+}
+
+.footerContent td.shortDivider{
+	padding-bottom: 8px;
+}
+
+.footerContent a:link, .footerContent a:visited, /* Yahoo! Mail Override */ .footerContent a .yshortcuts, .footerContent a span /* Yahoo! Mail Override */{
+	color: #8D3DC8;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* ========== Social ========== */
+
+.footerContent .social {
+	background: #82269E;
+	padding: 24px 0 18px;
+}
+
+/* ========== Ouvidoria ========== */
+
+.ouvidoria {
+	padding: 32px 12%;
+}
+
+.ouvidoria {
+	color: #666;
+	font-size: 13px;
+	text-align: center;
+}
+
+.ouvidoria a:link{
+	color: #8D3DC8;
+	font-weight: bold;
+	text-decoration:underline;
+}
+
+/* ========== Specifics ========== */
+
+
+.sectionHowto td{
+	padding-bottom: 40px;
+}
+
+.sectionFeatures td{
+	padding-left: 8%;
+	padding-right: 8%;
+}
+
+.sectionExtra{
+	font-size: 13px !important;
+}
+
+.sectionExtra td{
+	text-align: left;
+}
+
+.sectionExtra ul{
+	list-style: disc outside;
+	margin-left: 16px;
+}
+
+.inviteCode{
+	font-size: 38px;
+	font-family: "Monaco", "Inconsolata", "Consolas", monospace;
+	color: #8D3DC8;
+}
+
+.subtitle.address{
+	text-transform: capitalize;
+}
+
+.realTable{
+	margin: 0 auto;
+}
+
+.realTable tr{
+	border: 1px solid #DDD;
+}
+
+.realTable td{
+	padding: 14px;
+	text-align: left;
+}
+
+.realTable td.right{
+	text-align: right !important;
+}
+
+.realTable + .sub{
+	margin-top: 8px;
+}
+
+.left-aligned, .left-aligned th, .left-aligned td {
+	text-align: left !important;
+}
+
+.link-list {
+	list-style-type: disc;
+	margin-left: 16px;
+}
+
+/* /\/\/\/\/\/\/\/\/ MOBILE STYLES /\/\/\/\/\/\/\/\/ */
+
+@media only screen and (max-width: 480px){
+
+	/* /\/\/\/\/\/\/ CLIENT-SPECIFIC MOBILE STYLES /\/\/\/\/\/\/ */
+
+	body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;} /* Prevent Webkit platforms from changing default text sizes */
+  body{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail from adding padding to the body */
+
+	/* /\/\/\/\/\/\/ MOBILE RESET STYLES /\/\/\/\/\/\/ */
+
+	#bodyCell{padding: 0 !important;}
+
+	/* /\/\/\/\/\/\/ MOBILE TEMPLATE STYLES /\/\/\/\/\/\/ */
+
+	/* ======== Structure ======== */
+
+	#templateContainer{
+		max-width:600px !important;
+		width:100% !important;
+		border: none;
+		box-shadow: none;
+	}
+
+	#templatePreheader{
+		display:none !important;
+	}
+
+	#headerImage{
+		height:auto !important;
+		max-width:600px !important;
+		width:100% !important;
+	}
+
+	/* ======== Elements ======== */
+
+	h1{
+		font-size:26px !important;
+		line-height:120% !important;
+	}
+
+	h2{
+		font-size:22px !important;
+		line-height:120% !important;
+	}
+
+	h3{
+		font-size:18px !important;
+		line-height:140% !important;
+	}
+
+	h4{
+		font-size:16px !important;
+		line-height:120% !important;
+	}
+
+	/* ======== Global ======== */
+
+	.sectionDivider {
+		width: 90%;
+	}
+
+	/* ======== Header ======== */
+
+	.headerContent{
+		font-size:20px !important;
+		line-height:125% !important;
+	}
+
+	.nuHeader{
+		padding-top: 32px;
+		padding-bottom: 32px;
+	}
+
+	.nuHeader img{
+		max-width: 60px;
+	}
+
+	/* ======== Body ======== */
+
+	.bodyContent{
+		font-size:18px !important;
+		line-height:125% !important;
+		padding-top: 48px !important;
+		padding-bottom: 32px !important;
+		padding-left: 24px !important;
+		padding-right: 24px !important;
+	}
+
+	/* ======== Footer ======== */
+
+	.footerContent{
+		font-size: 14px !important;
+		line-height: 115% !important;
+	}
+
+	/* ======== Specifics ======== */
+
+	.sectionFeatures td{
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+}
+
+td.sectionHint {
+	background-color: #f6eff6;
+	padding:1.5rem;
+}
+
+    </style>
+  </head>
+  <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;padding:0;height:100% ;width:100% ;background-color:#F7F7F7;">
+    <center>
+      <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse ;height:100% ;margin:0;padding:0;width:100% ;background-color:#F7F7F7;">
+          <tr>
+            <td align="center" valign="top" id="bodyCell" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;height:100% ;margin:0;padding:40px;width:100% ;font-family:Helvetica, Arial, sans-serif;line-height:160%;">
+              <!-- BEGIN TEMPLATE // -->
+              <table border="0" cellpadding="0" cellspacing="0" id="templateContainer" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse ;width:600px;background-color:#FFFFFF;border:1px solid #D9D9D9;box-shadow:0px 0px 30px 0px rgba(0,0,0,0.10);">
+                <tr>
+                  <td align="center" valign="top" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;">
+                    <!-- BEGIN NUHEADER // -->
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse ;">
+                        <tr>
+                          <td align="center" style="background-color:#FFFFFF;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-top:40px;padding-bottom:40px;background:#FFF;" class="nuHeader">
+                            <img src="https://images.nubank.com.br/nubank.png" alt="Nubank" id="nuLogo" width="80" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;max-width:80px;width:80px;">
+                          </td>
+                        </tr>
+                    </table>
+                    <!-- // END NUHEADER -->
+                  </td>
+                </tr>
+                  <tr>
+                    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;">
+                      <!-- BEGIN HEADER // -->
+                      
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse ;background-color:#FFFFFF;border-top:1px solid #FFFFFF;border-bottom:1px solid #FFFFFF;">
+  <tr>
+    <td valign="top" class="headerContent" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:100%;color:#505050;font-size:20px;font-weight:bold;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;text-align:left;vertical-align:middle;">
+      <img src="https://images.nubank.com.br/header_mgm.png" alt="Você foi indicado para o Nubank" style="max-width:600px;-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;" id="headerImage">
+    </td>
+  </tr>
+</table>
+
+                      <!-- // END HEADER -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="bodyContent" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;color:#404040;font-size:16px;padding-top:64px;padding-bottom:40px;padding-right:72px;padding-left:72px;background:#FFFFFF;">
+                      
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse ;background-color:#FFFFFF;">
+  <tr>
+    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;">
+      <h2 style="display:block;font-family:Helvetica, Arial, sans-serif;font-style:normal;font-weight:bold;line-height:100%;letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;text-align:center;color:#404040 ;font-size:20px;">Olá!</h2>
+    </td>
+  </tr>
+  <tr>
+    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;">
+      <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;"><strong class="highlight" style="color:#8D3DC8 ;font-weight:600 ;">Lucas Vasconcelos Silveira</strong> te indicou para experimentar o Nubank!</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;">
+      <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;"><i>Nubank- Silveira Betel</i></p>
+    </td>
+  </tr>
+  <tr>
+    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;">
+      <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;">Com esta indicação, você tem mais chances de ser aprovado na nossa análise!</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;">
+      <a class="calltoaction" href="http://clicks.nubank.com.br/track/click/30052082/nubank.com.br?p=eyJzIjoiU043d3VCdzhBbVhPMjFoLUhocG50aE9kTERjIiwidiI6MSwicCI6IntcInVcIjozMDA1MjA4MixcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL251YmFuay5jb20uYnJcXFwvaW5kaWNhY2FvXFxcLz9pZD1YUUlENXlVeFh2MEFBQUZmVHJwRWJBXCIsXCJpZFwiOlwiYTQ0M2U0OWEzMWY1NGY1Y2IxYTBlY2M0MDg4NmRmYmVcIixcInVybF9pZHNcIjpbXCJlMmE1NjVjZDg1MzBlZmRkNGJkNjEwNzM4OTQ0NGMzZDQyMDAxYzhhXCJdfSJ9" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;text-transform:uppercase;font-size:14px;padding:16px;border:1px solid #8D3DC8;border-radius:5px;color:#8D3DC8;text-decoration:none;text-align:center;display:block;margin:0 auto;width:80%;font-family:Helvetica, Arial, sans-serif;font-weight:bold;">Peça já seu convite</a>
+    </td>
+  </tr>
+  <tr>
+    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;">
+      <hr class="shortDivider" style="margin-right:auto;margin-left:auto;width:30px;border:0;border-top:1px solid #DDD;">
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="closing sectionFeatures" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;margin-bottom:0 ;padding-bottom:0 ;text-align:center;">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="closing" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse ;margin-bottom:0 ;padding-bottom:0 ;">
+        <tr>
+          <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;padding-left:8%;padding-right:8%;">
+            <img src="https://images.nubank.com.br/icn_info.png" width="70" class="feature-icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;padding-bottom:16px;display:inline;max-width:560px;">
+            <h3 class="subtitle" style="display:block;font-family:Helvetica, Arial, sans-serif;font-style:normal;font-weight:400;line-height:140%;letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;text-align:center;color:#8D3DC8 ;font-size:16px;text-transform:uppercase;">Mais Transparência</h3>
+            <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;">Veja em detalhes o que você está pagando.</p>
+            <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;">IOF, taxa de câmbio e parcelamentos.</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;padding-left:8%;padding-right:8%;">
+            <img src="https://images.nubank.com.br/icn_zero.png" width="70" class="feature-icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;padding-bottom:16px;display:inline;max-width:560px;">
+            <h3 class="subtitle" style="display:block;font-family:Helvetica, Arial, sans-serif;font-style:normal;font-weight:400;line-height:140%;letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;text-align:center;color:#8D3DC8 ;font-size:16px;text-transform:uppercase;">Custo Zero</h3>
+            <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;">Nenhuma tarifa ou anuidade. De verdade.</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;padding-left:8%;padding-right:8%;">
+            <img src="https://images.nubank.com.br/icn_realtime.png" width="70" class="feature-icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;padding-bottom:16px;display:inline;max-width:560px;">
+            <h3 class="subtitle" style="display:block;font-family:Helvetica, Arial, sans-serif;font-style:normal;font-weight:400;line-height:140%;letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;text-align:center;color:#8D3DC8 ;font-size:16px;text-transform:uppercase;">Controle em Tempo Real</h3>
+            <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;">Seus gastos exibidos no app. Na hora.</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;padding-left:8%;padding-right:8%;">
+            <img src="https://images.nubank.com.br/icn_support.png" width="70" class="feature-icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;padding-bottom:16px;display:inline;max-width:560px;">
+            <h3 class="subtitle" style="display:block;font-family:Helvetica, Arial, sans-serif;font-style:normal;font-weight:400;line-height:140%;letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;text-align:center;color:#8D3DC8 ;font-size:16px;text-transform:uppercase;">Atendimento de Verdade</h3>
+            <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;">Sempre à disposição pra você via chat, email ou telefone. Como preferir.</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:32px;text-align:center;">
+      <hr class="shortDivider" style="margin-right:auto;margin-left:auto;width:30px;border:0;border-top:1px solid #DDD;">
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="closing" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;margin-bottom:0 ;padding-bottom:0 ;text-align:center;">
+      <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;">Acesse <a href="http://clicks.nubank.com.br/track/click/30052082/nubank.com.br?p=eyJzIjoiN29sZTMyVmF0d01YNlBpdFdpd1NXREh5ODdNIiwidiI6MSwicCI6IntcInVcIjozMDA1MjA4MixcInZcIjoxLFwidXJsXCI6XCJodHRwOlxcXC9cXFwvbnViYW5rLmNvbS5iclwiLFwiaWRcIjpcImE0NDNlNDlhMzFmNTRmNWNiMWEwZWNjNDA4ODZkZmJlXCIsXCJ1cmxfaWRzXCI6W1wiMzcwZmE0NjMwMDk0OTNlNzM5OTkwZWQ0ZDlkNDFhYTVhN2FkODEwYlwiXX0ifQ" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#8D3DC8;font-weight:bold;">nubank.com.br</a> e confira tudo com mais detalhes.</p>
+    </td>
+  </tr>
+</table>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="footerContent" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;background:#FFFFFF;">
+                      <!-- BEGIN FOOTER // -->
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateFooter" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse ;background-color:#FFFFFF;">
+                        <tr>
+                          <td class="social" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:16px;text-align:center;background:#82269E;padding:24px 0 18px;">
+                            <a href="http://clicks.nubank.com.br/track/click/30052082/www.facebook.com?p=eyJzIjoiUWJaUm13OUNPMEZEOFhIaUlkMkE5WUpJYkFjIiwidiI6MSwicCI6IntcInVcIjozMDA1MjA4MixcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL3d3dy5mYWNlYm9vay5jb21cXFwvbnViYW5rYnJhc2lsXCIsXCJpZFwiOlwiYTQ0M2U0OWEzMWY1NGY1Y2IxYTBlY2M0MDg4NmRmYmVcIixcInVybF9pZHNcIjpbXCJiODlmOGUyYTY2NDIyYjg2YmFhNzRkMmQzNWU3MmQ1OGEzYTBjZTZhXCJdfSJ9" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#8D3DC8;font-weight:bold;text-decoration:none;">
+                              <img alt="Facebook" src="https://images.nubank.com.br/ico-facebook-purple.png" width="32" class="icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;">
+                            </a>
+                            &nbsp;&nbsp;
+                            <a href="http://clicks.nubank.com.br/track/click/30052082/twitter.com?p=eyJzIjoiLXV5WnRZczVRcThmZFVUWjF2R3J0WTg3NVZ3IiwidiI6MSwicCI6IntcInVcIjozMDA1MjA4MixcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL3R3aXR0ZXIuY29tXFxcL251YmFua2JyYXNpbFwiLFwiaWRcIjpcImE0NDNlNDlhMzFmNTRmNWNiMWEwZWNjNDA4ODZkZmJlXCIsXCJ1cmxfaWRzXCI6W1wiODU2ODk2MGQwZGFkNzRhZmVhYmQ2ZjFiYjJmYWU4NGNlM2I5ZjhiYlwiXX0ifQ" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#8D3DC8;font-weight:bold;text-decoration:none;">
+                              <img alt="Twitter" src="https://images.nubank.com.br/ico-twitter-purple.png" width="32" class="icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;">
+                            </a>
+                            &nbsp;&nbsp;
+                            <a href="http://clicks.nubank.com.br/track/click/30052082/www.youtube.com?p=eyJzIjoibXEzQzk0RXVWZ2dzWGRycTBocWRHTDlad2V3IiwidiI6MSwicCI6IntcInVcIjozMDA1MjA4MixcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL3d3dy55b3V0dWJlLmNvbVxcXC9jaGFubmVsXFxcL1VDZ3NEWDNoVHdpUGR0R0hKak1GZkR4Z1wiLFwiaWRcIjpcImE0NDNlNDlhMzFmNTRmNWNiMWEwZWNjNDA4ODZkZmJlXCIsXCJ1cmxfaWRzXCI6W1wiZmM0YzcyMzZiNTY1NjkxMzg5N2QzODc4ZWFhMTQ1ZDYyYTU5ZmRjYlwiXX0ifQ" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#8D3DC8;font-weight:bold;text-decoration:none;">
+                              <img alt="YouTube" src="https://images.nubank.com.br/ico-youtube-purple.png" width="32" class="icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;">
+                            </a>
+                            &nbsp;&nbsp;
+                            <a href="http://clicks.nubank.com.br/track/click/30052082/www.instagram.com?p=eyJzIjoicklGbGZSQVpXb2x1Q3lZZG04WC11OENyYlpjIiwidiI6MSwicCI6IntcInVcIjozMDA1MjA4MixcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL3d3dy5pbnN0YWdyYW0uY29tXFxcL251YmFua2JyYXNpbFxcXC9cIixcImlkXCI6XCJhNDQzZTQ5YTMxZjU0ZjVjYjFhMGVjYzQwODg2ZGZiZVwiLFwidXJsX2lkc1wiOltcImVhZGNhNGFhYmZjYzcyY2M0YWNmZjc2NTVmM2FhODA2Yjc5OTdjODlcIl19In0" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#8D3DC8;font-weight:bold;text-decoration:none;">
+                              <img alt="Instagram" src="https://images.nubank.com.br/ico-instagram-purple.png" width="32" class="icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;">
+                            </a>
+                            &nbsp;&nbsp;
+                            <a href="http://clicks.nubank.com.br/track/click/30052082/www.linkedin.com?p=eyJzIjoieFAzdHYxWUJ5Y2J2aWhNS3RneEVva01OWFFRIiwidiI6MSwicCI6IntcInVcIjozMDA1MjA4MixcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL3d3dy5saW5rZWRpbi5jb21cXFwvY29tcGFueVxcXC9udWJhbmstYnJhc2lsXCIsXCJpZFwiOlwiYTQ0M2U0OWEzMWY1NGY1Y2IxYTBlY2M0MDg4NmRmYmVcIixcInVybF9pZHNcIjpbXCI5MjUwM2Q4YzZlNmY0YWIwYjU2MGQ5MTRmNDIxZTBlMmYzNTFlODI2XCJdfSJ9" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#8D3DC8;font-weight:bold;text-decoration:none;">
+                              <img alt="Twitter" src="https://images.nubank.com.br/ico-linkedin-purple.png" width="32" class="icon" style="-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;">
+                            </a>
+                          </td>
+                        </tr>
+                        <tr><td class="spaceL" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:24px ;text-align:center;"></td></tr>
+                        <tr>
+                            <td class="contact" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:16px;text-align:center;margin-top:32px;padding-left:12%;padding-right:12%;">
+                              <p style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;color:#666;font-size:13px;">
+                                Em caso de qualquer dúvida, fique à vontade para responder esse email ou nos contatar no
+                              <a href="mailto:meajuda@nubank.com.br" class="footer-link" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;text-decoration:underline;color:#8D3DC8;font-weight:bold;">meajuda@nubank.com.br</a>.
+                              </p>
+                            </td>
+                        </tr>
+                        <tr>
+                          <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding-bottom:16px;text-align:center;">
+                            <p class="spaceM" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;padding-bottom:16px ;color:#666;font-size:13px;">Nubank 2017</p>
+                            <span class="hidden" style="color:#FFFFFF;font-size:0;height:0;"></span>
+                          </td>
+                        </tr>
+                      </table>
+                      <!-- // END FOOTER -->
+                    </td>
+                  </tr>
+                </table>
+                
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="ouvidoria" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse ;">
+                  <tr>
+                    <td class="ouvidoria" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-family:Helvetica, Arial, sans-serif;line-height:160%;padding:32px 12%;color:#666;font-size:13px;text-align:center;">
+                      <p class="spaceS" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;padding-bottom:8px ;">Para urgências ligue para 0800 591 2117. Atendimento 24 horas, todos os dias.</p>
+                      <p class="spaceS" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;padding-bottom:8px ;">Se você já entrou em contato com o nosso time e não ficou satisfeito com a solução, entre em contato com <a href="mailto:ouvidoria@nubank.com.br" class="footer-link" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#8D3DC8;font-weight:bold;text-decoration:underline;">ouvidoria@nubank.com.br</a>, ou no 0800 887 0463. Das 9h às 18h - Horário de São Paulo/SP. Em dias úteis, exceto nos feriados nacionais.</p>
+                    </td>
+                  </tr>
+                </table>
+                
+                <!-- // END TEMPLATE -->
+            </td>
+          </tr>
+        </table>
+    </center>
+  <img src="http://clicks.nubank.com.br/track/open.php?u=30052082&id=a443e49a31f54f5cb1a0ecc40886dfbe" height="1" width="1"></body>
+</html>

@@ -1,0 +1,124 @@
+<p dir="ltr"><br>
+On Feb 9, 2016 9:12 AM, &quot;Paulo Romano&quot; &lt;<a href="mailto:pauloromanocarvalho@gmail.com">pauloromanocarvalho@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Ha! Verdade.<br>
+&gt;<br>
+&gt; Pela instancia.</p>
+<p dir="ltr">Não é bom fazemos os dois, ou o valor se torna irrelevante?</p>
+<p dir="ltr">Acredito que dependeria do contexto, se for fazer algum cálculo com a data a validação da instância somente não seria um bom teste.</p>
+<p dir="ltr">Por exemplo, se você subtrair uma hora da data, para validar se esse processo está ok terá que testar o valor.<br>
+&gt;<br>
+&gt; Em ter, 9 de fev de 2016 às 11:39, Régis Silva &lt;<a href="mailto:regis.santos.100@gmail.com">regis.santos.100@gmail.com</a>&gt; escreveu:<br>
+&gt;&gt;<br>
+&gt;&gt; Blz, agora quem vai responder esta pergunta?<br>
+&gt;&gt;<br>
+&gt;&gt; EVENTEX <br>
+&gt;&gt;<br>
+&gt;&gt; Regis da Silva<br>
+&gt;&gt; Web Developer<br>
+&gt;&gt; <a href="http://grandeportal.github.io">grandeportal.github.io</a> <br>
+&gt;&gt;<br>
+&gt;&gt;    <br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Em 9 de fevereiro de 2016 09:01, Adriano Regis &lt;<a href="mailto:adbrum@outlook.com">adbrum@outlook.com</a>&gt; escreveu:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Regis<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; E nós já obtivemos 80 respostas. Força que é vc que comanda esse negócio.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Abraço.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; On 09-02-2016 02:55, Régis Silva wrote:<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; #regisfeelings já fez 80 perguntas!!!<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; EVENTEX <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Regis da Silva<br>
+&gt;&gt;&gt;&gt; Web Developer<br>
+&gt;&gt;&gt;&gt; <a href="http://grandeportal.github.io">grandeportal.github.io</a> <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;    <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; 2016-02-09 0:52 GMT-02:00 Régis Silva &lt;<a href="mailto:regis.santos.100@gmail.com">regis.santos.100@gmail.com</a>&gt;:<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; Qual a melhor forma de testar DateTimeField?<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; Com valor? Ou pela instância?<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; # models.py<br>
+&gt;&gt;&gt;&gt;&gt; birthday = models.DateTimeField(&#39;nascimento&#39;, null=True, blank=True)<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; # value<br>
+&gt;&gt;&gt;&gt;&gt; &#39;birthday&#39;: &#39;1985-12-01 02:42:30+00:00&#39;,<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; # tests.py<br>
+&gt;&gt;&gt;&gt;&gt; def test_birthday(self):<br>
+&gt;&gt;&gt;&gt;&gt;     self.assertIsInstance(self.obj.birthday, datetime)<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; EVENTEX <br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; Regis da Silva<br>
+&gt;&gt;&gt;&gt;&gt; Web Developer<br>
+&gt;&gt;&gt;&gt;&gt; <a href="http://grandeportal.github.io">grandeportal.github.io</a> <br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;    <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; -- <br>
+&gt;&gt;&gt;&gt; Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br>
+&gt;&gt;&gt;&gt; Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015%2Bunsubscribe@googlegroups.com">wttd-2015+unsubscribe@googlegroups.com</a>.<br>
+&gt;&gt;&gt;&gt; Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com">wttd-2015@googlegroups.com</a>.<br>
+&gt;&gt;&gt;&gt; Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015">https://groups.google.com/group/wttd-2015</a>.<br>
+&gt;&gt;&gt;&gt; Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/CA%2BDznZO_%2B4FyZXdhqgOP1hk7kBhEBewuGdjoS%3DsuXyoN7V1A3A%40mail.gmail.com">https://groups.google.com/d/msgid/wttd-2015/CA%2BDznZO_%2B4FyZXdhqgOP1hk7kBhEBewuGdjoS%3DsuXyoN7V1A3A%40mail.gmail.com</a>.<br>
+&gt;&gt;&gt;&gt; Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; -- <br>
+&gt;&gt;&gt; Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br>
+&gt;&gt;&gt; Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015%2Bunsubscribe@googlegroups.com">wttd-2015+unsubscribe@googlegroups.com</a>.<br>
+&gt;&gt;&gt; Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com">wttd-2015@googlegroups.com</a>.<br>
+&gt;&gt;&gt; Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015">https://groups.google.com/group/wttd-2015</a>.<br>
+&gt;&gt;&gt; Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/BLU436-SMTP760DB872A81C3BBE16CA86D1D60%40phx.gbl">https://groups.google.com/d/msgid/wttd-2015/BLU436-SMTP760DB872A81C3BBE16CA86D1D60%40phx.gbl</a>.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; -- <br>
+&gt;&gt; Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br>
+&gt;&gt; Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015%2Bunsubscribe@googlegroups.com">wttd-2015+unsubscribe@googlegroups.com</a>.<br>
+&gt;&gt; Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com">wttd-2015@googlegroups.com</a>.<br>
+&gt;&gt; Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015">https://groups.google.com/group/wttd-2015</a>.<br>
+&gt;&gt; Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/CA%2BDznZOxmbOhWY%2B78Z_%3D9LogYY3xzN39-p3dtTBoYDDiCu6xzg%40mail.gmail.com">https://groups.google.com/d/msgid/wttd-2015/CA%2BDznZOxmbOhWY%2B78Z_%3D9LogYY3xzN39-p3dtTBoYDDiCu6xzg%40mail.gmail.com</a>.<br>
+&gt;&gt; Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br>
+&gt;<br>
+&gt; -- <br>
+&gt; Paulo Romano<br>
+&gt;<br>
+&gt; -- <br>
+&gt; Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br>
+&gt; Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015%2Bunsubscribe@googlegroups.com">wttd-2015+unsubscribe@googlegroups.com</a>.<br>
+&gt; Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com">wttd-2015@googlegroups.com</a>.<br>
+&gt; Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015">https://groups.google.com/group/wttd-2015</a>.<br>
+&gt; Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/CAKGtEZbtKg_FFu%2BwyJodL0kvv7Lr6gKZ5Li4HCuXOG8hKEK6jw%40mail.gmail.com">https://groups.google.com/d/msgid/wttd-2015/CAKGtEZbtKg_FFu%2BwyJodL0kvv7Lr6gKZ5Li4HCuXOG8hKEK6jw%40mail.gmail.com</a>.<br>
+&gt;<br>
+&gt; Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br>
+</p>
+
+<p></p>
+
+-- <br />
+Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br />
+Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015+unsubscribe@googlegroups.com">wttd-2015+unsubscribe@googlegroups.com</a>.<br />
+Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com">wttd-2015@googlegroups.com</a>.<br />
+Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015">https://groups.google.com/group/wttd-2015</a>.<br />
+Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/CAGKHKH%2BKaLwTkDV2A%3DzmiY_MgXvcuuiChACG1bvGF94WCKPTrA%40mail.gmail.com?utm_medium=email&utm_source=footer">https://groups.google.com/d/msgid/wttd-2015/CAGKHKH%2BKaLwTkDV2A%3DzmiY_MgXvcuuiChACG1bvGF94WCKPTrA%40mail.gmail.com</a>.<br />
+Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br />

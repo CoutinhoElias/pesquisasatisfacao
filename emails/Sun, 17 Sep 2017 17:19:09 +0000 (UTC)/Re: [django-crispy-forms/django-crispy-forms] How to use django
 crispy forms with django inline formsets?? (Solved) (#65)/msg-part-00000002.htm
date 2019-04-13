@@ -1,0 +1,22 @@
+<p>Had been struggling with the same issue after adopting crispy forms and found an insanely easy fix:</p>
+
+           {% crispy form %}
+<pre><code>       {{ formset.management_form|crispy }}
+       {% for form in formset %}
+            &lt;div class="form-inline"&gt;
+                     {% crispy form %}
+            &lt;/div&gt;
+</code></pre>
+
+<p>That's it.  I set the helper attributes and layout at the form level.  Did get rid of self.helper.form_class in the attributes.  Did not set any individual field attributes to inline.  Setting the div class around the form did the trick.</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you commented.<br />Reply to this email directly, <a href="https://github.com/django-crispy-forms/django-crispy-forms/issues/65#issuecomment-330063622">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/ALdMpe-9YH_bPQtsWQ6BklJlVB1GpHgyks5sjVSNgaJpZM4ADpX8">mute the thread</a>.<img alt="" height="1" src="https://github.com/notifications/beacon/ALdMpWT9VGUcPyDTiTp-b6m5Nr-8tMB3ks5sjVSNgaJpZM4ADpX8.gif" width="1" /></p>
+<div itemscope itemtype="http://schema.org/EmailMessage">
+<div itemprop="action" itemscope itemtype="http://schema.org/ViewAction">
+  <link itemprop="url" href="https://github.com/django-crispy-forms/django-crispy-forms/issues/65#issuecomment-330063622"></link>
+  <meta itemprop="name" content="View Issue"></meta>
+</div>
+<meta itemprop="description" content="View this Issue on GitHub"></meta>
+</div>
+
+<script type="application/json" data-scope="inboxmarkup">{"api_version":"1.0","publisher":{"api_key":"05dde50f1d1a384dd78767c55493e4bb","name":"GitHub"},"entity":{"external_key":"github/django-crispy-forms/django-crispy-forms","title":"django-crispy-forms/django-crispy-forms","subtitle":"GitHub repository","main_image_url":"https://cloud.githubusercontent.com/assets/143418/17495839/a5054eac-5d88-11e6-95fc-7290892c7bb5.png","avatar_image_url":"https://cloud.githubusercontent.com/assets/143418/15842166/7c72db34-2c0b-11e6-9aed-b52498112777.png","action":{"name":"Open in GitHub","url":"https://github.com/django-crispy-forms/django-crispy-forms"}},"updates":{"snippets":[{"icon":"PERSON","message":"@asm154 in #65: Had been struggling with the same issue after adopting crispy forms and found an insanely easy fix:\r\n\r\n\u003cform method=\"post\" action=\"\" class=\"\"\u003e\r\n           {% crispy form %}\r\n           \r\n           {{ formset.management_form|crispy }}\r\n           {% for form in formset %}\r\n                \u003cdiv class=\"form-inline\"\u003e\r\n                         {% crispy form %}\r\n                \u003c/div\u003e\r\n\u003c/form\u003e\r\n\r\nThat's it.  I set the helper attributes and layout at the form level.  Did get rid of self.helper.form_class in the attributes.  Did not set any individual field attributes to inline.  Setting the div class around the form did the trick."}],"action":{"name":"View Issue","url":"https://github.com/django-crispy-forms/django-crispy-forms/issues/65#issuecomment-330063622"}}}</script>

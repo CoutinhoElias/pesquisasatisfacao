@@ -1,0 +1,48 @@
+Return-Path: <coutinho.elias@gmail.com>
+Received: from sec37.secrel.com.br (unknown [192.168.3.37])
+	by sec122.secrel.com.br (Postfix) with ESMTP id 0621D4BB43
+	for <jorge@leacontabeis.cnt.br>; Tue, 12 Feb 2019 16:37:45 -0300 (BRT)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	by sec37.secrel.com.br (Postfix) with ESMTP id 278DF9EB7C
+	for <jorge@leacontabeis.cnt.br>; Tue, 12 Feb 2019 16:37:40 -0300 (BRT)
+X-DKIM: OpenDKIM Filter v2.3.2 sec37.secrel.com.br 278DF9EB7C
+Authentication-Results: sec37.secrel.com.br; dkim=pass (2048-bit key)
+	header.i=@gmail.com header.b=qKsktQy+; dkim-adsp=pass
+Received: by mail-wm1-f41.google.com with SMTP id r17so4289907wmh.5
+        for <jorge@leacontabeis.cnt.br>; Tue, 12 Feb 2019 11:37:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=bWXBqIv/GKurUyPs3C++IBtzGv4jLURxNLyOLCyow6I=;
+        b=qKsktQy+IwHuqhqEs6qnqHijofqqVHXNlxVbC2YwwzOOH8ZiLKpFeysheXETrcsYZA
+         wTMg7yUrtaxstR+TXbG9SR0XjSy7Df/llo2W0Cpwv+PoObT32uZOhvJRD2ktchkq4ZgC
+         52C7uAi3Xv4TMEl7/S7XmDH46m9oMnUYIjziFtCpxiZN51aDcbb3mpqWNTStz/F5gopx
+         iCz3bs8IshkAiW1PsHEOhUWCfagC9JoFLjAtibitfpHCpSwVoJqSS5hreFose8uSV+cm
+         kyMqxawNrfXZ9RFH9tM9bZfbmcnApyowdlT/oxxDXNbjocISlDW2vThnXGrSFa70W5IB
+         GGyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=bWXBqIv/GKurUyPs3C++IBtzGv4jLURxNLyOLCyow6I=;
+        b=MGLXAjV/cRkRhL3MB6mERvpJZh0MlzHEL39GXKH1XUOLJZjpl4ju4Z8IomTKpFozyJ
+         GpE3iO2M447KgLquoO6+pCejKzRHEuKxWEXXGYqZlbNzrEI8LroGz61XV91Wp4NueNtV
+         diPTmiSrcc/WuCKkJ/iyfGOdMnEkvCVcpc7l1F3FhqNfnsaH94Y6kRdlKGL7EvfkfWzk
+         XDuZEyyds4JIXWKMHARG2rSYYsC8PGEq7V1A9pgqJpzHVE9l1KUadbFd+tjbp271JXl9
+         AYP3+LdbE8L8c8TNUPGjNsU/S5wO7xCdoDIL8NCsKo+suMlpJ4jNY5kkmVytunGmslYq
+         7Tug==
+X-Gm-Message-State: AHQUAubB9rMaQrXDvFmRpETtfR1/CE1HaNexycQdB4Ccv3J7HNph4Bvs
+	okrNdW8vRwuTsXhQByXtGlQ0npx+oy9RzhMju4krrA==
+X-Google-Smtp-Source: AHgI3IYI2zibfLRYXvKrJK8n2zYcTJySwscD0ppGAYUn2FmGqeMatUo4IQWRQNM3nC7IEimgwcPgO5eCe9T/DGtA/UY=
+X-Received: by 2002:a1c:8086:: with SMTP id b128mr366413wmd.117.1550000256432;
+ Tue, 12 Feb 2019 11:37:36 -0800 (PST)
+MIME-Version: 1.0
+References: <!&!AAAAAAAAAAAYAAAAAAAAACqnZ3flIidHunz+13+7Or3CgAAAEAAAAARMlB1wbuBNq0qrX9vxUaQBAAAAAA==@leacontabeis.cnt.br>
+In-Reply-To: <!&!AAAAAAAAAAAYAAAAAAAAACqnZ3flIidHunz+13+7Or3CgAAAEAAAAARMlB1wbuBNq0qrX9vxUaQBAAAAAA==@leacontabeis.cnt.br>
+From: Elias Coutinho <coutinho.elias@gmail.com>
+Date: Tue, 12 Feb 2019 19:37:25 -0800
+Message-ID: <CALgom8pCrYwR3gBL_j9YLKB8QQLKTXxUVskx0ZPsSomTbsWJsA@mail.gmail.com>
+Subject: Re: Acesso Remoto Alterdata D&G
+To: Jorge <jorge@leacontabeis.cnt.br>, 
+	Marcus Venicius <coordenadorlog@dccautomotive.com.br>
+Content-Type: multipart/mixed; boundary="000000000000b2967f0581b78e5e"

@@ -135,9 +135,6 @@ class Search(models.Model):
     def get_absolute_url(self):
         return reverse('pesquisa_update', args=[str(self.pk)])
 
-    # def get_absolute_url(self):
-    #     return reverse('catalog:category_list', kwargs={'slug': self.slug})
-
     def __str__(self):
         return self.search_key
 

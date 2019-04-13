@@ -104,7 +104,7 @@ def person_representative_update(request, pk):
     else:
         form = RepresentativeForm(instance=client)
     context = {'form': form}
-    return render(request, 'person_create.html', context)
+    return render(request, 'person_update.html', context)
 
 
 @login_required
@@ -131,74 +131,70 @@ def person_client_update(request, pk):
     else:
         form = ClientForm(instance=client)
     context = {'form': form}
-    return render(request, 'person_create.html', context)
+    return render(request, 'person_update.html', context)
 
 
 @login_required
 def person_client_home(request, pk):
     # Pega a chave da URL acima com (request, pk)
     client = get_object_or_404(Client, pk=pk)
-    form = ClientForm(instance=client)
-
-    atendimentos = Atendimento.objects.filter(person_id=pk).order_by("-priority", "id", "type")
-# --------------------------------------------------------------------------------------------------------------------
-    searchs = Search.objects.select_related().filter(person_id=pk).values('id', 'search_key', 'researched', 'person')
-# --------------------------------------------------------------------------------------------------------------------
-    dataset = SearchItem.objects.select_related().filter(search__person_id=pk).values('question__level').annotate(
-        true_count=Count('question__level', filter=Q(response=True)), false_count=Count('question__level',
-                                                                                        filter=Q(response=False))
-    ).order_by('question__level')
-
-    categories = list()
-    true_series_data = list()
-    false_series_data = list()
-
-    for entry in dataset:
-        if entry['question__level'] == '0':
-            qlevel = 'Dependência'
-        elif entry['question__level'] == '1':
-            qlevel = 'Confiança'
-        elif entry['question__level'] == '2':
-            qlevel = 'Compromentimento'
-        else:
-            qlevel = 'Preditiva'
-
-        categories.append(qlevel)
-        true_series_data.append(entry['true_count'])
-        false_series_data.append(entry['false_count'])
-
-    true_series = {
-        'name': 'Resposta Sim',
-        'data': true_series_data,
-        'color': 'green'
-    }
-
-    false_series = {
-        'name': 'Resposta Não',
-        'data': false_series_data,
-        'color': 'red'
-    }
-
-    chart = {
-        'chart': {'type': 'column'},
-        'title': {'text': 'Pesquisa Alterdata Todos os Períodos'},
-        'xAxis': {'categories': categories},
-        'series': [true_series, false_series]
-    }
-
-    dump = json.dumps(chart)
-# --------------------------------------------------------------------------------------------------------------------
-    # Cria variável na session
-    request.session['person_id'] = pk
-
+#     form = ClientForm(instance=client)
+#
+#     atendimentos = Atendimento.objects.filter(person_id=pk).order_by("-priority", "id", "type")
+# # --------------------------------------------------------------------------------------------------------------------
+#     searchs = Search.objects.select_related().filter(person_id=pk).values('id', 'search_key', 'researched', 'person')
+# # --------------------------------------------------------------------------------------------------------------------
+#     dataset = SearchItem.objects.select_related().filter(search__person_id=pk).values('question__level').annotate(
+#         true_count=Count('question__level', filter=Q(response=True)), false_count=Count('question__level',
+#                                                                                         filter=Q(response=False))
+#     ).order_by('question__level')
+#
+#     categories = list()
+#     true_series_data = list()
+#     false_series_data = list()
+#
+#     for entry in dataset:
+#         if entry['question__level'] == '0':
+#             qlevel = 'Dependência'
+#         elif entry['question__level'] == '1':
+#             qlevel = 'Confiança'
+#         elif entry['question__level'] == '2':
+#             qlevel = 'Compromentimento'
+#         else:
+#             qlevel = 'Preditiva'
+#
+#         categories.append(qlevel)
+#         true_series_data.append(entry['true_count'])
+#         false_series_data.append(entry['false_count'])
+#
+#     true_series = {
+#         'name': 'Resposta Sim',
+#         'data': true_series_data,
+#         'color': 'green'
+#     }
+#
+#     false_series = {
+#         'name': 'Resposta Não',
+#         'data': false_series_data,
+#         'color': 'red'
+#     }
+#
+#     chart = {
+#         'chart': {'type': 'column'},
+#         'title': {'text': 'Pesquisa Alterdata Todos os Períodos'},
+#         'xAxis': {'categories': categories},
+#         'series': [true_series, false_series]
+#     }
+#
+#     dump = json.dumps(chart)
+# # --------------------------------------------------------------------------------------------------------------------
+#     # Cria variável na session
+#     request.session['person_id'] = pk
+#
     context = {
-        'form': form,
         'client': client,
-        'searchs': searchs,
-        'atendimentos': atendimentos,
-        'chart': dump
     }
-
+    # return render(request, 'person_home.html', context)
     return render(request, 'person_home.html', context)
 
 
@@ -472,7 +468,9 @@ def add_search_item(search):
 
 
 @login_required
-def seach_create(request):
+def seach_create(request, pk):
+    client = get_object_or_404(Client, pk=pk)
+
     if request.method == 'POST':
         form = SearchForm(request.POST)
 
@@ -483,7 +481,6 @@ def seach_create(request):
             # form.save_m2m()
 
             search = Search.objects.get(id=new.id)
-            print(search, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
             add_search_item(search)
 
             # return HttpResponseRedirect('/pesquisa/listar')
@@ -494,22 +491,13 @@ def seach_create(request):
             # person_instance = Person.objects.get(pk=request.session["person_id"])
             return render(request, 'seach_create.html', {'form': form})
     else:
-        if 'person_id' in request.session:
-            # Recupera variável da session
-            pessoa_id = request.session['person_id']
-            from datetime import date
-            context = {'form': SearchForm(initial={'person': pessoa_id,
-                                                   'search_key': date.today().strftime('%m-%Y')})}
-            # Caso precise preencher mais de um campo no form.
-            # context = {'form': SearchForm(initial={'person': pessoa_id, 'search_key': '11-2018'})}
+        from datetime import date
+        context = {'form': SearchForm(initial={'person': client.id,
+                                               'search_key': date.today().strftime('%m-%Y')})}
+        # # Exclui variável da session
+        # del request.session['person_id']
 
-            # Exclui variável da session
-            del request.session['person_id']
-
-            return render(request, 'seach_create.html', context)
-        else:
-            # Caso person_id não exista na session ele redireciona para lista de clientes pesquisados.
-            return HttpResponseRedirect('/cliente/listar')
+        return render(request, 'seach_create.html', context)
 
 
 @login_required

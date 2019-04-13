@@ -38,7 +38,7 @@ class ClientForm(forms.ModelForm):
         exclude = ('is_representative', 'priority',)
 
     layout = Layout(
-        Fieldset("Cadastro de Cliente",
+        Fieldset("Cliente",
                  Row(Span3('cdalterdata'), Span9('name'), ),
                  Row(Span12('representative'), ),
                  Row(Span4('phone'), Span8('cpf_cnpj')),
@@ -70,7 +70,7 @@ class RepresentativeForm(forms.ModelForm):
         exclude = ('representative', 'is_representative', 'last_search', 'priority',)
 
     layout = Layout(
-        Fieldset("Cadastro de Filial ou Representação",
+        Fieldset("Filial ou Representação",
                  Row(Span3('cdalterdata'), Span9('name'), ),
                  Row(Span4('phone'), Span8('cpf_cnpj')),
                  Row(Span12('email'), ),

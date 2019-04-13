@@ -1,0 +1,11 @@
+<div dir="ltr"><div>A um tempo atrás estava fazendo uns &quot;estudos&quot; de django, e, para facilitar minha vida, criei o seguinte &quot;script&quot; que coloquei no ~/.bash_aliases</div><div><br></div><div>deploy () {</div><div>  heroku maintenance:on;</div><div>  git push heroku master;</div><div>  heroku run python manage.py migrate;</div><div>  heroku maintenance:off;</div><div>}</div><div><br></div><div>ele põe o heroku em modo manutenção antes de realizar o push. Desta forma, qualquer pessoa que tentar acessar o site enquanto o sistema está sendo atualizado vai receber uma mensagem de manutenção (não verá o site).</div><div>Isso é útil no caso das migrações, quando é &quot;perigoso&quot; deixar o sistema rodando antes de aplicar elas.</div><div><br></div><div>Compartilhando caso seja útil para alguém.</div></div>
+
+<p></p>
+
+-- <br />
+Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br />
+Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015+unsubscribe@googlegroups.com">wttd-2015+unsubscribe@googlegroups.com</a>.<br />
+Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com">wttd-2015@googlegroups.com</a>.<br />
+Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015">https://groups.google.com/group/wttd-2015</a>.<br />
+Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/9e61c844-f593-4947-9d34-54677d0314de%40googlegroups.com?utm_medium=email&utm_source=footer">https://groups.google.com/d/msgid/wttd-2015/9e61c844-f593-4947-9d34-54677d0314de%40googlegroups.com</a>.<br />
+Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br />

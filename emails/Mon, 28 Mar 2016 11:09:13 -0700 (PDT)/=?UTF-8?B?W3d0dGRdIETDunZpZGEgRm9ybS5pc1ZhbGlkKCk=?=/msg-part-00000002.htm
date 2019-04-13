@@ -1,0 +1,11 @@
+<div dir="ltr">Estou com o seguinte problema alguém tem uma luz?<br><div><br></div><div>Model Exemplo:</div><div>classs People(models.Model):</div><div>    ativo = models.BooleanField(blank=False, null=False)</div><div><br></div><div><br></div><div>Form Exemplo</div><div>class FormPeople(forms.ModelForm, forms.Form):</div><div>    ativo = forms.BooleanField(required=True, initial=False)</div><div><br></div><div>    class Meta:</div><div>        model = People</div><div>        fields = [&#39;ativo&#39;]</div><div><br></div><div>Template Exemplo</div><div>&lt;td&gt;Ativo&lt;/td&gt;</div><div>&lt;td&gt;{{ form.ativo }}&lt;/td&gt; {{ form.ativo.errors }}</div><div><br></div><div><br></div><div>Erro no form.isValid()</div><div>&lt;ul class=&quot;errorlist&quot;&gt;&lt;li&gt;ativo&lt;ul class=&quot;errorlist&quot;&gt;&lt;li&gt;Este campo é obrigatório.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;<br></div><div><br></div><div>Esse erro é apresentado no caso de eu não dar o checked no checkbox deixando o mesmo false</div><div><br></div><div><br></div></div>
+
+<p></p>
+
+-- <br />
+Você recebeu essa mensagem porque está inscrito no grupo &quot;Welcome to the Django 2015&quot; dos Grupos do Google.<br />
+Para cancelar inscrição nesse grupo e parar de receber e-mails dele, envie um e-mail para <a href="mailto:wttd-2015+unsubscribe@googlegroups.com">wttd-2015+unsubscribe@googlegroups.com</a>.<br />
+Para postar nesse grupo, envie um e-mail para <a href="mailto:wttd-2015@googlegroups.com">wttd-2015@googlegroups.com</a>.<br />
+Acesse esse grupo em <a href="https://groups.google.com/group/wttd-2015">https://groups.google.com/group/wttd-2015</a>.<br />
+Para ver essa discussão na Web, acesse <a href="https://groups.google.com/d/msgid/wttd-2015/ac3f2b2f-a832-4e5c-b1ec-1f2f2271f770%40googlegroups.com?utm_medium=email&utm_source=footer">https://groups.google.com/d/msgid/wttd-2015/ac3f2b2f-a832-4e5c-b1ec-1f2f2271f770%40googlegroups.com</a>.<br />
+Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br />

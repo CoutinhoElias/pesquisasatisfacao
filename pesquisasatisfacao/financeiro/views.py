@@ -28,6 +28,22 @@ def financeirot_list(request):
 
 
 @login_required
+def financeirot_client_list(request, pk):
+    q = request.GET.get('searchInput')
+    print(request.GET)
+    if q:
+        contas = Conta.objects.filter(Q(pessoa__is_representative=False,
+                                        pessoa__id=pk),
+                                      Q(valor_vendido__icontains=q, ) |
+                                      Q(historico__descricao__icontains=q))
+    else:
+        contas = Conta.objects.filter(pessoa__is_representative=False,
+                                      pessoa__id=pk)
+    context = {'contas': contas}
+    return render(request, 'financeiro_conta_list.html', context)
+
+
+@login_required
 def financeiro_create(request):
     # Cria variável na session
     request.session['person_id'] = 1

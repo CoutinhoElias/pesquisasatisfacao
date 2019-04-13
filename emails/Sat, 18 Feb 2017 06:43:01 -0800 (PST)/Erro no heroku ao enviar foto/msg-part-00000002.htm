@@ -1,0 +1,29 @@
+<div dir="ltr"><p style="margin-top:0;border:0">Bom dia pessoal,</p><p style="margin-top:0;border:0"><br></p>
+
+<p style="margin-top:0;border:0">Estou com uma aplicação que local 
+funciona como deveria mas ao executar no heroku apresenta mensagem de 
+erro pedindo para eu ver o log.</p>
+
+<p style="margin-top:0;border:0">Ocorre da seguinte maneira:</p><p style="margin-top:0;border:0"><br></p>
+
+<p style="margin-top:0;border:0">1 - Efetuo um cadastro seja de usuario ou qualquer registro que eu precise enviar uma foto. Vamos focar no usuário.</p><p style="margin-top:0;border:0"><br></p>
+
+<p style="margin-top:0;border:0">2 - Ao salvar o sistema pelo computador não apresenta erro aparente mas não salva a foto.</p><p style="margin-top:0;border:0">3 - Ao salvar pelo celular ele apresenta uma página do heroku solicitando que eu leia os logs e também não salva a imagem.</p><p style="margin-top:0;border:0"><br></p>
+
+<p style="margin-top:0;border:0">Obs.: Raramente o erro não ocorre e consequentemente ele salva a imagem, mas isso é muito raro.</p>
+
+<p style="margin-top:0;border:0">Abaixo estão os logs do heroku:</p><p style="margin-top:0;border:0"><br></p>
+
+<p style="margin-top:0;border:0">2017-02-18T14:09:09.333959+00:<wbr>00 heroku[router]: at=info method=GET path=&quot;/static/materialize/img/<wbr>joao.png&quot; host=<a href="http://vitrinebela.herokuapp.com" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=pt-BR&amp;q=http://vitrinebela.herokuapp.com&amp;source=gmail&amp;ust=1487515233375000&amp;usg=AFQjCNG_P2zYugDpKEEJFOA41x9Vu9SwsA">vitrinebela.herokuapp.com</a> request_id=c2252b44-ab21-4567-<wbr>b1cb-621811e937e0 fwd=&quot;179.179.160.128,66.249.<wbr>85.29&quot; dyno=web.1 connect=0ms service=2ms status=304 bytes=110<br>2017-02-18T14:09:16.363491+00:<wbr>00 heroku[router]: at=info method=GET path=&quot;/conta/registro/&quot; host=<a href="http://vitrinebela.herokuapp.com" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=pt-BR&amp;q=http://vitrinebela.herokuapp.com&amp;source=gmail&amp;ust=1487515233375000&amp;usg=AFQjCNG_P2zYugDpKEEJFOA41x9Vu9SwsA">vitrinebela.herokuapp.com</a> request_id=6c1037f2-988b-424d-<wbr>8dca-2a360c9bd091 fwd=&quot;179.179.160.128,66.249.<wbr>85.31&quot; dyno=web.1 connect=1ms service=60ms status=200 bytes=14292<br>2017-02-18T14:14:11.615658+00:<wbr>00 app[web.1]: [2017-02-18 14:14:11 +0000] [4] [CRITICAL] WORKER TIMEOUT (pid:12)<br>2017-02-18T14:14:11.616511+00:<wbr>00 app[web.1]: [2017-02-18 14:14:11 +0000] [12] [INFO] Worker exiting (pid: 12)<br>2017-02-18T14:14:11.723664+00:<wbr>00 app[web.1]: [2017-02-18 14:14:11 +0000] [16] [INFO] Booting worker with pid: 16<br>2017-02-18T14:14:13.886173+00:<wbr>00 heroku[router]: at=error code=H13 desc=&quot;Connection closed without response&quot; method=POST path=&quot;/conta/registro/&quot; host=<a href="http://vitrinebela.herokuapp.com" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=pt-BR&amp;q=http://vitrinebela.herokuapp.com&amp;source=gmail&amp;ust=1487515233375000&amp;usg=AFQjCNG_P2zYugDpKEEJFOA41x9Vu9SwsA">vitrinebela.herokuapp.com</a> request_id=68bad24c-21be-4e39-<wbr>b893-bd4e489cb5b6 fwd=&quot;179.179.160.128&quot; dyno=web.1 connect=0ms service=32529ms status=503 bytes=0</p><p style="margin-top:0;border:0"><br></p>
+
+<p style="margin-top:0;border:0">Tenho todos os requisitos para negociar
+ um projeto pequeno, será o meu primeiro após aprender python e django mas com este problema
+ me sinto com medo.</p></div>
+
+<p></p>
+
+-- <br />
+Você recebeu essa mensagem porque está inscrito em um tópico no grupo &quot;Django Brasil&quot; dos Grupos do Google.<br />
+Para cancelar inscrição nesse tópico, acesse <a href="https://groups.google.com/d/topic/django-brasil/GKix3MnO4_g/unsubscribe">https://groups.google.com/d/topic/django-brasil/GKix3MnO4_g/unsubscribe</a>.<br />
+Para cancelar inscrição nesse grupo e todos os seus tópicos, envie um e-mail para <a href="mailto:django-brasil+unsubscribe@googlegroups.com">django-brasil+unsubscribe@googlegroups.com</a>.<br />
+Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br />

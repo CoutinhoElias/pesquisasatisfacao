@@ -1,0 +1,11 @@
+<div dir="ltr"><p>Boa tarde amigos.<br></p><p><br></p><p>Accounts ao rodar makemigrations ocorre o erro abaixo:</p><p><br></p><p><strong>  File &quot;/home/eliaspai/vitrinebela/venv/lib/python3.5/site-packages/django/contrib/admin/models.py&quot;, line 37, in &lt;module&gt;<br>    class LogEntry(models.Model):<br>  File &quot;/home/eliaspai/vitrinebela/venv/lib/python3.5/site-packages/django/contrib/admin/models.py&quot;, line 46, in LogEntry<br>    verbose_name=_(&#39;user&#39;),<br>  File &quot;/home/eliaspai/vitrinebela/venv/lib/python3.5/site-packages/django/db/models/fields/related.py&quot;, line 748, in __init__<br>    RECURSIVE_RELATIONSHIP_CONSTANT,<br>AssertionError:
+ ForeignKey((&#39;vitrinebela.accounts.User&#39;,)) is invalid. First parameter 
+to ForeignKey must be either a model, a model name, or the string &#39;self&#39;</strong></p><strong>​<br></strong><p><strong><br></strong></p><p><strong>​​</strong></p><p><strong>Abaixo está o models.py:</strong><br></p><p><a href="https://github.com/CoutinhoElias/vitrinebela/blob/master/vitrinebela/accounts/models.py#L1-L45​​">https://github.com/CoutinhoElias/vitrinebela/blob/master/vitrinebela/accounts/models.py#L1-L45​​</a></p><p><a href="https://github.com/CoutinhoElias/vitrinebela/blob/master/vitrinebela/accounts/models.py#L1-L45​​"></a><br></p><p><strong>e o settings.py:<br></strong></p><p><a href="https://github.com/CoutinhoElias/vitrinebela/blob/master/vitrinebela/settings.py#L50-L154​​">https://github.com/CoutinhoElias/vitrinebela/blob/master/vitrinebela/settings.py#L50-L154​​</a></p><p><br></p><p><br></p><p>O que pode ser feito?<br><br></p></div>
+
+<p></p>
+
+-- <br />
+Você recebeu essa mensagem porque está inscrito em um tópico no grupo &quot;Django Brasil&quot; dos Grupos do Google.<br />
+Para cancelar inscrição nesse tópico, acesse <a href="https://groups.google.com/d/topic/django-brasil/46fNMukErwk/unsubscribe">https://groups.google.com/d/topic/django-brasil/46fNMukErwk/unsubscribe</a>.<br />
+Para cancelar inscrição nesse grupo e todos os seus tópicos, envie um e-mail para <a href="mailto:django-brasil+unsubscribe@googlegroups.com">django-brasil+unsubscribe@googlegroups.com</a>.<br />
+Para mais opções, acesse <a href="https://groups.google.com/d/optout">https://groups.google.com/d/optout</a>.<br />
