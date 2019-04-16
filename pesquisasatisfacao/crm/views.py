@@ -1,5 +1,6 @@
 import os
 
+from decouple import config
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -101,8 +102,8 @@ def atendimento_list(request):
 
 
 def emails_list(request):
-    username = 'coutinho.elias.dev@gmail.com'
-    password = '597629dev'
+    EMAIL = config('EMAIL')
+    PASSWORD = config('PASSWORD')
 
     mail = imaplib.IMAP4_SSL("imap.gmail.com")  # https:/www.google.com/settings/security/lessecureapps
     mail.login(username, password)
@@ -180,8 +181,9 @@ def email_list_true(request):
     import email
     import imaplib
 
-    EMAIL = 'coutinho.elias.dev@gmail.com'
-    PASSWORD = '597629dev'
+    EMAIL = config('EMAIL')
+    PASSWORD = config('PASSWORD')
+
     SERVER = 'imap.gmail.com'
 
     # abriremos uma conexão com SSL com o servidor de emails
