@@ -101,8 +101,8 @@ def atendimento_list(request):
 
 
 def emails_list(request):
-    username = 'myemail@gmail.com'
-    password = 'mypassword'
+    username = 'coutinho.elias.dev@gmail.com'
+    password = '597629dev'
 
     mail = imaplib.IMAP4_SSL("imap.gmail.com")  # https:/www.google.com/settings/security/lessecureapps
     mail.login(username, password)
@@ -180,8 +180,8 @@ def email_list_true(request):
     import email
     import imaplib
 
-    EMAIL = 'myemail@gmail.com'
-    PASSWORD = 'mypassword'
+    EMAIL = 'coutinho.elias.dev@gmail.com'
+    PASSWORD = '597629dev'
     SERVER = 'imap.gmail.com'
 
     # abriremos uma conexão com SSL com o servidor de emails
