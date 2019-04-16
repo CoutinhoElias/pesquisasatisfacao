@@ -12,6 +12,7 @@ DEPARTMENT_CHOICES = (
 
 class Typeofservice(models.Model):
     name = models.CharField('Tipo de Atendimento', max_length=50)
+    user_destination = models.ForeignKey(User, verbose_name="Usuário destino CRM", on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('name',)
