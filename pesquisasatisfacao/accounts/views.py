@@ -5,6 +5,7 @@ import random
 import weasyprint
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
@@ -284,3 +285,9 @@ def work_schedule_list(request):
         work_schedules = WorkSchedule.objects.filter(Q(user=request.user))
     context = {'work_schedules': work_schedules}
     return render(request, 'schedule_list.html', context)
+
+
+def user_detail(request):
+    user_detalhe = User.objects.filter(user=request.user)
+    context = {'user_detail': user_detalhe}
+    return render(context)
