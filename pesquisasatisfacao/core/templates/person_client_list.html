@@ -52,6 +52,36 @@
                 <div class="card-panel #424242 grey darken-3 center" id="empty-panel">NENHUM REGISTRO ENCONTRADO!</div>
             {% endfor %}
         </table>
+
+        {% if clients.has_other_pages %}
+          <ul class="pagination">
+
+
+            {% if clients.has_previous %}
+              <li><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            {% else %}
+              <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            {% endif %}
+
+
+            {% for i in clients.paginator.page_range %}
+              {% if clients.number == i %}
+                <li class="active"><a href="#!">{{ i }}</a></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+
+
+            {% if clients.has_next %}
+
+              <li><a href="?page={{ clients.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+            {% else %}
+              <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
     </div>
 
 {% endblock %}

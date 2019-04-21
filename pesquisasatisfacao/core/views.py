@@ -14,6 +14,8 @@ from pesquisasatisfacao.core.forms import (QuestionForm,
 from pesquisasatisfacao.core.models import Search, Question, Client, SearchItem
 from pesquisasatisfacao.crm.models import Atendimento
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def home(request):
     # dataset = Atendimento.objects.filter(deadline__lte=datetime.now()).values('closed').annotate(
@@ -217,15 +219,27 @@ def person_populate(request):
 @login_required
 def person_client_list(request):
     q = request.GET.get('searchInput')
-    print(request.GET)
+    # print(request.GET)
     if q:
         clients = Client.objects.filter(Q(is_representative=False),
                                         Q(name__icontains=q) |
                                         Q(cdalterdata__icontains=q) |
                                         Q(last_search__icontains=q)
                                         )
+
     else:
         clients = Client.objects.filter(is_representative=False)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(clients, 13)
+
+    try:
+        clients = paginator.page(page)
+    except PageNotAnInteger:
+        clients = paginator.page(1)
+    except EmptyPage:
+        clients = paginator.page(paginator.num_pages)
+
     context = {'clients': clients}
     return render(request, 'person_client_list.html', context)
 
