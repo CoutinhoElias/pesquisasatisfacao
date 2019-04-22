@@ -26,7 +26,7 @@
                     <ul class="right hide-on-med-and-down ">
                         <li><a class="dropdown-trigger white-text darken-4" href="#!" data-target="drp_clientes">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
                         <li><a class="dropdown-trigger white-text darken-4" href="#!" data-target="drp_crm">CRM<i class="material-icons right">arrow_drop_down</i></a></li>
-
+                        <li><a class="white-text darken-4" href="/">Inicio</a></li>
                         {% if user.is_authenticated %}
                             <li><a class="white-text darken-4" href="{% url 'accounts:logout' %}">Logout</a></li>
                         {% else %}
@@ -57,18 +57,18 @@
                 </li>
 
 <!--            Problema é que não consigo enviar client.id em pk=client.id, após criar o contexto client na view deu certo -->
+                <li><a class="black white-text darken-4" class="subheader">CLIENTE:</a></li>
                 <li><a class="black white-text darken-4" href="{% url 'person_client_create' %}"><i class="material-icons">person_add</i>Novo Cliente</a></li>
-                <li><a class="black white-text darken-4" href="{% url 'person_client_update' pk=client.id  %}"><i class="material-icons">perm_identity</i>Editar Cliente</a></li>
+                <li><a class="black white-text darken-4" href="{% url 'person_client_update' pk=client.id  %}"><i class="material-icons">perm_identity</i>Editar este Cliente</a></li>
                 <li><a class="black white-text darken-4" href="{% url 'person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
-                <li><a class="black white-text darken-4" href="#!">Em breve...</a></li>
-                <li><div class="black divider"></div></li>
+                <li><div class="divider"></div></li>
 
-                <li><a class="black white-text darken-4" class="subheader">CRM</a></li>
+                <li><a class="black white-text darken-4" class="subheader">CRM:</a></li>
                 <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'atendimento_create' pk=client.id %}"><i class="material-icons">recent_actors</i>Novo Atendimento</a></li>
                 <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'seach_create' pk=client.id %}"><i class="material-icons">record_voice_over</i>Nova Pesquisa</a></li>
                 <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'person_client_detail' pk=client.id %}"><i class="material-icons">list</i>Lista de Pesquisas</a></li>
                 <li><div class="black divider"></div></li>
 
-                <li><a class="black white-text darken-4" class="subheader">FINANCEIRO</a></li>
+                <li><a class="black white-text darken-4" class="subheader">FINANCEIRO:</a></li>
                 <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'financeirot_client_list' pk=client.id %}"><i class="material-icons">attach_money</i>Financeiro</a></li>
             </ul>
