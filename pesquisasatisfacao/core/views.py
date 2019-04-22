@@ -132,7 +132,8 @@ def person_client_update(request, pk):
             return render(request, 'person_create.html', {'form': form})
     else:
         form = ClientForm(instance=client)
-    context = {'form': form}
+    context = {'form': form,
+               'client': client}
     return render(request, 'person_update.html', context)
 
 

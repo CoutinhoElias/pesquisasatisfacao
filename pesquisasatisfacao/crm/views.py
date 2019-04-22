@@ -25,7 +25,7 @@ import mimetypes
 def atendimento_create(request, pk):
     client = get_object_or_404(Client, pk=pk)
     if request.method == 'POST':
-        print(request.POST, '<<<<<<<<<<<<<<<<<<<<<<<')
+
         form = AtendimentoForm(pk, request.POST)
 
         # Retira toda validação do campo

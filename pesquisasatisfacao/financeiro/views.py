@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 from django.utils.datetime_safe import date
 
+from pesquisasatisfacao.core.models import Client
 from pesquisasatisfacao.financeiro.forms import FinanceiroForm, PagamentoFormSet
 from pesquisasatisfacao.financeiro.models import Conta
 
@@ -24,11 +25,13 @@ def financeirot_list(request):
     else:
         contas = Conta.objects.filter(pessoa__is_representative=False)
     context = {'contas': contas}
-    return render(request, 'financeiro_conta_list.html', context)
+    return render(request, 'financeiro_list.html', context)
 
 
 @login_required
 def financeirot_client_list(request, pk):
+    client = get_object_or_404(Client, pk=pk)
+
     q = request.GET.get('searchInput')
     print(request.GET)
     if q:
@@ -39,7 +42,8 @@ def financeirot_client_list(request, pk):
     else:
         contas = Conta.objects.filter(pessoa__is_representative=False,
                                       pessoa__id=pk)
-    context = {'contas': contas}
+    context = {'contas': contas,
+               'client': client}
     return render(request, 'financeiro_conta_list.html', context)
 
 

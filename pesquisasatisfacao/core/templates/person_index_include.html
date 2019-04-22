@@ -56,6 +56,7 @@
                     </div>
                 </li>
 
+<!--            Problema é que não consigo enviar client.id em pk=client.id, após criar o contexto client na view deu certo -->
                 <li><a class="black white-text darken-4" href="{% url 'person_client_create' %}"><i class="material-icons">person_add</i>Novo Cliente</a></li>
                 <li><a class="black white-text darken-4" href="{% url 'person_client_update' pk=client.id  %}"><i class="material-icons">perm_identity</i>Editar Cliente</a></li>
                 <li><a class="black white-text darken-4" href="{% url 'person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
