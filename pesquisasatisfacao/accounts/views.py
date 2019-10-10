@@ -237,6 +237,28 @@ def admin_receipt_pdf(request, id=id):
         'work_schedule_itens': work_schedule_itens
     }
 
+    html = render_to_string('schedule_report.html', context)
+    response = HttpResponse(content_type='recibo/pdf')
+    response['Content-Disposition'] = 'filename="recibo_{}.pdf"'.format(work_schedule.id)
+    weasyprint.HTML(string=html,
+                    base_url=request.build_absolute_uri()).write_pdf(response,
+                                                                     stylesheets=[weasyprint.CSS(settings.STATIC_ROOT +
+                                                                                                 '/css/pdf.css')])
+    return response
+
+@login_required
+def admin_receipt_pdf_preenchido(request, id=id):
+    work_schedule = WorkSchedule.objects.select_related('user__userinfo').get(id=id)
+    work_schedule_itens = WorkScheduleItem.objects.select_related('workschedule').filter(workschedule_id=id)\
+        .order_by('day')
+
+    print(work_schedule_itens.query)
+
+    context = {
+        'work_schedule': work_schedule,
+        'work_schedule_itens': work_schedule_itens
+    }
+
     html = render_to_string('schedule_report_preenchido.html', context)
     response = HttpResponse(content_type='recibo/pdf')
     response['Content-Disposition'] = 'filename="recibo_{}.pdf"'.format(work_schedule.id)

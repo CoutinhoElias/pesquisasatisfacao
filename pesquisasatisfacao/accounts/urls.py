@@ -26,6 +26,7 @@ urlpatterns = [
 
     path('<int:id>/', GeneratePDF.as_view(), name='generatepdf'),
     path('<int:id>/pdf/', views.admin_receipt_pdf, name='admin_receipt_pdf'),
+    path('<int:id>/pdf/preenchido', views.admin_receipt_pdf_preenchido, name='admin_receipt_pdf_preenchido'),
 
 
 

@@ -18,10 +18,11 @@
         <table class="highlight">
             <thead class="#cfd8dc blue-grey lighten-4">
                 <tr>
-                    <th class="left-align">Id</th>
+                    <th class="center-align">Id</th>
                     <th class="left-align">Período</th>
                     <th class="left-align">Usuário</th>
-                    <th></th>
+                    <th class="center-align">Em Branco</th>
+                    <th class="center-align">Preenchido</th>
                 </tr>
             </thead>
             {% for work_schedule in work_schedules %}
@@ -29,13 +30,14 @@
                     <td class="center-align">
                         <a>{{ work_schedule.id|linebreaks }}</a>
                     </td>
-                    <td class="center-align">
+                    <td class="left-align">
                         <a href="{% url 'accounts:work_schedule_update' id=work_schedule.id %}">{{ work_schedule.period|linebreaks }}</a>
                     </td>
                     <td>
                         {{ work_schedule.user|linebreaks }}
                     </td>
-                    <td><a href="{% url 'accounts:admin_receipt_pdf' id=work_schedule.id %}"><i class="small material-icons">local_printshop</i></a></td>
+                    <td class="center-align"><a href="{% url 'accounts:admin_receipt_pdf' id=work_schedule.id %}"><i class="small material-icons">local_printshop</i></a></td>
+                    <td class="center-align"><a href="{% url 'accounts:admin_receipt_pdf_preenchido' id=work_schedule.id %}"><i class="small material-icons">receipt</i></a></td>
 
                 </tr>
             {% empty %}
