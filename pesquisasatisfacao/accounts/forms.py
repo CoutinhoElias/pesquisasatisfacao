@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+
 from django.forms import inlineformset_factory
 from material import *
 
@@ -70,7 +70,24 @@ class WorkScheduleForm(forms.ModelForm):
 
 
 WorkScheduleItemFormSet = inlineformset_factory(WorkSchedule, WorkScheduleItem,
+                                                # widgets={'week_day': forms.TextInput(attrs={'class': 'personal-font'}),
+                                                #          'entrance': forms.TextInput(attrs={'class': 'personal-font'}),
+                                                #          'lunch_entrance': forms.TextInput(
+                                                #              attrs={'class': 'personal-font'}),
+                                                #          'lunch_out': forms.TextInput(
+                                                #              attrs={'class': 'personal-font'}),
+                                                #          'lunch_exit': forms.TextInput(
+                                                #              attrs={'class': 'personal-font'}),
+                                                #          'exit': forms.TextInput(
+                                                #              attrs={'class': 'personal-font'}),
+                                                #          },
+                                                
                                                 exclude=('id',),
                                                 can_delete=True,
-                                                fields=('day', 'week_day', 'entrance', 'lunch_entrance', 'lunch_out', 'exit'),
+                                                fields=('day',
+                                                        'week_day',
+                                                        'entrance',
+                                                        'lunch_entrance',
+                                                        'lunch_out',
+                                                        'exit'),
                                                 extra=0)

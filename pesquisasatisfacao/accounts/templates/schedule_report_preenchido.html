@@ -2,13 +2,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="{% static 'core/css/css.css' %}"/>
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'core/css/css.css' %}"/>-->
+    <link rel="stylesheet" href="{% static 'css/pdf.css' %}" type="text/css" />
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
 	<form class="container clearfix">
-
+        <br/>
+        <br/>
 		<h1>HORÁRIO DE TRABALHO EXTERNO<br/>FICHA INDIVIDUAL</h1>
         <img class="img-topo" src="{% static 'img/logo.png' %}">
 		<div class="text_justificado">
@@ -72,54 +74,54 @@
                     </table>
 
                     <table>
-                        <thead class="cabecalho-tabela">
+                        <thead>
                             <tr>
-                                <th rowspan="2">Dia</th>
-                                <th rowspan="2">Entrada</th>
+                                <th rowspan="2" class="col_center">Dia</th>
+                                <th rowspan="2" class="col_center">Entrada</th>
 
-                                <th colspan="2">Almoço</th>
+                                <th colspan="2" class="col_center">Almoço</th>
 
-                                <th rowspan="2">Saída</th>
-                                <th colspan="2">Visto do fiscal</th>
+                                <th rowspan="2" class="col_center">Saída</th>
+                                <th colspan="2" class="col_center">Visto do fiscal</th>
 
                             </tr>
 
                             <tr>
 
-                                <th>Entrada</th>
+                                <th class="col_center">Entrada</th>
 
-                                <th>Saída</th>
+                                <th class="col_center">Saída</th>
 
-                                <th>Data</th>
-                                <th>Assinatura</th>
+                                <th class="col_center">Data</th>
+                                <th class="col_center">Assinatura</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             {% for work_schedule_item in work_schedule_itens %}
                                 {% if work_schedule_item.week_day == '5' %}
-                                    <tr>
+                                    <tr class="folga">
                                         <td>{{ work_schedule_item.day|date:"d" }}</td>
                                         <th colspan="4">Sábado</th>
                                         <td></td>
                                         <td></td>
                                     </tr>
                                 {% elif work_schedule_item.week_day == '6' %}
-                                    <tr>
+                                    <tr class="folga">
                                         <td>{{ work_schedule_item.day|date:"d" }}</td>
                                         <th colspan="4">Domingo</th>
                                         <td></td>
                                         <td></td>
                                     </tr>
                                 {% elif work_schedule_item.week_day == '7' %}
-                                    <tr>
+                                    <tr class="folga">
                                         <td>{{ work_schedule_item.day|date:"d" }}</td>
                                         <th colspan="4">Feriado</th>
                                         <td></td>
                                         <td></td>
                                     </tr>
                                 {% elif work_schedule_item.week_day == '8' %}
-                                    <tr>
+                                    <tr class="folga">
                                         <td>{{ work_schedule_item.day|date:"d" }}</td>
                                         <th colspan="4">Faltou</th>
                                         <td></td>
@@ -129,10 +131,10 @@
                                     <tr>
                                         <td>{{ work_schedule_item.day|date:"d" }}</td>
                                         <!--<td>{{ work_schedule_item.day|date:"l" }}</td>-->
-                                        <td>{{ work_schedule_item.entrance }}</td>
-                                        <td>{{ work_schedule_item.lunch_entrance }}</td>
-                                        <td>{{ work_schedule_item.lunch_out }}</td>
-                                        <td>{{ work_schedule_item.exit }}</td>
+                                        <td class="personal-font">{{ work_schedule_item.entrance }}</td>
+                                        <td class="personal-font">{{ work_schedule_item.lunch_entrance }}</td>
+                                        <td class="personal-font">{{ work_schedule_item.lunch_out }}</td>
+                                        <td class="personal-font">{{ work_schedule_item.exit }}</td>
                                         <td></td>
                                         <td></td>
                                     </tr>

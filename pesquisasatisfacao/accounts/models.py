@@ -129,7 +129,10 @@ class WorkSchedule(models.Model):
 
 
 class WorkScheduleItem(models.Model):
-    workschedule = models.ForeignKey("accounts.workschedule", null=False, blank=False, related_name="children",
+    workschedule = models.ForeignKey("accounts.workschedule",
+                                     null=False,
+                                     blank=False,
+                                     related_name="children",
                                      on_delete=models.CASCADE,
                                      verbose_name="Ficha")
     day = models.DateField('Dt. Agenda', )

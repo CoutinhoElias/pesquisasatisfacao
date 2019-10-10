@@ -159,7 +159,7 @@ class Search(models.Model):
 #         SearchItem.objects.bulk_create(lista)
 #
 #
-# models.signals.post_save.connect(
+# models.signals.post_save.connect
 #     post_save_search, sender=Search, dispatch_uid='post_save_search'
 # )
 

@@ -21,7 +21,7 @@ body {
     width: 120%;
 }
 
-table th, table td {
+table th{
     padding: 0px 0px;
     display: table-cell;
     text-align: left;
@@ -51,4 +51,17 @@ opacity: 1!important;
 visibility: visible!important;
 pointer-events: all!important;
 }*/
+
+
+/*DEFININDO FONTE DA FICHA*/
+
+@font-face {
+    font-family: 'DjangoITC';
+    src: url("/static/fonts/VarianeScript/Variane Script.ttf");
+}
+
+.personal-font{
+    font-family: DjangoITC, fantasy;
+}
+
 

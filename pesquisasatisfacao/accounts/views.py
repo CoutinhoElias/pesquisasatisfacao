@@ -237,7 +237,7 @@ def admin_receipt_pdf(request, id=id):
         'work_schedule_itens': work_schedule_itens
     }
 
-    html = render_to_string('schedule_report.html', context)
+    html = render_to_string('schedule_report_preenchido.html', context)
     response = HttpResponse(content_type='recibo/pdf')
     response['Content-Disposition'] = 'filename="recibo_{}.pdf"'.format(work_schedule.id)
     weasyprint.HTML(string=html,

@@ -56,6 +56,7 @@ def atendimento_create(request, pk):
 def atendimento_update(request, id):
     # Pega a chave da URL acima com (request, pk)
     # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro
+    client = get_object_or_404(Client, id=id)
 
     atendimento = get_object_or_404(Atendimento, id=id)
 
@@ -77,7 +78,6 @@ def atendimento_update(request, id):
             feedback_text = form.cleaned_data['feedback_field'] + '\n' + '\n' + ('*' * 60) + '\n' + new.feedback + '\n'
             feedback = feedback_from + '\n' + feedback_to + '\n' + feedback_text
 
-
             new.feedback = feedback
             new.save()
             form.save_m2m()
@@ -85,10 +85,9 @@ def atendimento_update(request, id):
             return HttpResponseRedirect('/atendimento/listar/')
         else:
             print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
-            return render(request, 'atendimento_create.html', {'form': form})
+            return render(request, 'atendimento_create.html', {'form': form, 'client': client,})
     else:
         form = AtendimentoForm(pk=atendimento.person, instance=atendimento)
-        client = get_object_or_404(Client, id=atendimento.person_id)
 
     context = {'form': form,
                'client': client}

@@ -7,7 +7,8 @@
         <table class="highlight">
             <thead class="#cfd8dc blue-grey lighten-4">
                 <tr>
-                    <th class="center-align">Tipo.</th>
+                    <th class="center-align">Departamento</th>
+                    <th class="center-align">Tipo</th>
                     <th>Pessoa</th>
                     <th>Produto</th>
                     <th>Prioridade</th>
@@ -29,6 +30,9 @@
 
                     <td class="center-align">
                        <a href="{{ atendimento.get_absolute_url }}">{{ atendimento.type|linebreaks }}</a>
+                    </td>
+                    <td class="center-align">
+                       <a href="{{ atendimento.get_absolute_url }}">{{ atendimento.get_department_display }}</a>
                     </td>
                     <td>{{ atendimento.person|linebreaks }}</td>
                     <td>{{ atendimento.product }}</td>
