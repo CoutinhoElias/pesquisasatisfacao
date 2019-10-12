@@ -26,32 +26,72 @@ def random_time():
     entra = random.randint(8, 9)
     almoco = random.randint(entra + 3, 13)
 
+    # ENTRADA NA EMPRESA
     if entra == 8:
-        value_en = str(entra).zfill(2) + ':' + str(random.randint(45, 59)).zfill(2)
+        vl_en_hour = str(entra).zfill(2)
+        vl_en_minute = str(random.randint(45, 59)).zfill(2)
     else:
-        value_en = str(entra).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
+        vl_en_hour = str(entra).zfill(2)
+        vl_en_minute = str(random.randint(0, 14)).zfill(2)
+
+    value_en = vl_en_hour + ':' + vl_en_minute
     # -------------------------------------------------------------------------------------
 
-    if almoco == 11:
-        value_ea = str(almoco).zfill(2) + ':' + str(random.randint(45, 59)).zfill(2)
-    elif almoco != 11:
-        value_ea = str(almoco).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
+    # if almoco == 11:
+    #     value_ea = str(almoco).zfill(2) + ':' + str(random.randint(45, 59)).zfill(2)
+    # elif almoco != 11:
+    #     value_ea = str(almoco).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
+
+    # ENTRADA NO ALMOÇO
+    if entra == 8:
+        vl_ea_hour = (entra + 3)
+        vl_ea_minute = random.randint(45, 59)
+    else:
+        vl_ea_hour = (entra + 3)
+        vl_ea_minute = random.randint(0, 14)
+
+    value_ea = str(vl_ea_hour).zfill(2) + ':' + str(vl_ea_minute).zfill(2)
 
     # -------------------------------------------------------------------------------------
 
-    if value_ea == 11:
-        value_va = str(almoco + 1).zfill(2) + ':' + str(random.randint(45, 59)).zfill(2)
-    elif value_ea != 12:
-        value_va = str(almoco + 1).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
+    # if value_ea == 11:
+    #     value_va = str(almoco + 1).zfill(2) + ':' + str(random.randint(45, 59)).zfill(2)
+    # elif value_ea != 12:
+    #     value_va = str(almoco + 1).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
+
+    # VOLTA DO ALMOÇO
+    if vl_ea_hour == 11:
+        vl_va_hour = vl_ea_hour + 1
+        vl_va_minute = random.randint(45, 59)
+
+    elif vl_ea_hour == 12:
+        vl_va_hour = vl_ea_hour + 1
+        vl_va_minute = random.randint(0, 14)
+
+    value_va = str(vl_va_hour).zfill(2) + ':' + str(vl_va_minute).zfill(2)
 
     # -------------------------------------------------------------------------------------
+    # VOLTA PARA CASA
+    if vl_va_hour == 11:
+        vl_sa_hour = vl_va_hour + 7
 
-    if almoco == 11:
-        value_out = str(almoco + 7).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
-    elif almoco == 12:
-        value_out = str(almoco + 6).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
-    elif almoco == 13:
-        value_out = str(almoco + 5).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
+    elif vl_va_hour == 12:
+        vl_sa_hour = vl_va_hour + random.randint(5, 6)
+
+        if vl_sa_hour == 5:
+            vl_sa_minute = random.randint(45, 59)
+        else:
+            vl_sa_minute = random.randint(0, 10)
+
+        # value_out = str(vl_va_hour + 4).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
+    elif vl_va_hour == 13:
+        vl_sa_hour = vl_va_hour + 5
+        vl_sa_minute = random.randint(0, 14)
+
+        # value_out = str(vl_va_hour + 5).zfill(2) + ':' + str(random.randint(0, 14)).zfill(2)
+
+    value_out = str(vl_sa_hour).zfill(2) + ':' + str(vl_sa_minute).zfill(2)
+    print(value_en, ' - ', value_ea, ' - ', value_va, ' - ', value_out)
 
     return value_en, value_ea, value_va, value_out
 
