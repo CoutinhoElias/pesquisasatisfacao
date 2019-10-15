@@ -78,7 +78,7 @@ def random_time():
     elif vl_va_hour == 12:
         vl_sa_hour = vl_va_hour + random.randint(5, 6)
 
-        if vl_sa_hour == 5:
+        if vl_sa_hour == 17:
             vl_sa_minute = random.randint(45, 59)
         else:
             vl_sa_minute = random.randint(0, 10)
@@ -96,6 +96,8 @@ def random_time():
     return value_en, value_ea, value_va, value_out
 
 
+# let alinhamentos = ['right', 'left', 'center'];
+# let rand = alinhamentos[Math.floor(Math.random() * alinhamentos.length)];
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -286,6 +288,7 @@ def admin_receipt_pdf(request, id=id):
                                                                                                  '/css/pdf.css')])
     return response
 
+
 @login_required
 def admin_receipt_pdf_preenchido(request, id=id):
     work_schedule = WorkSchedule.objects.select_related('user__userinfo').get(id=id)
@@ -295,6 +298,7 @@ def admin_receipt_pdf_preenchido(request, id=id):
     print(work_schedule_itens.query)
 
     context = {
+        "list_value": ["center-align", "left-align", "right-align"],
         'work_schedule': work_schedule,
         'work_schedule_itens': work_schedule_itens
     }

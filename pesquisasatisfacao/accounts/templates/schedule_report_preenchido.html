@@ -128,10 +128,10 @@
                                         <td></td>
                                     </tr>
                                 {% else %}
-                                    <tr>
+                                    <tr class={{ list_value|random }}>
                                         <td>{{ work_schedule_item.day|date:"d" }}</td>
                                         <!--<td>{{ work_schedule_item.day|date:"l" }}</td>-->
-                                        <td class="personal-font">{{ work_schedule_item.entrance }}</td>
+                                        <td class="personal-font right-align">{{ work_schedule_item.entrance }}</td>
                                         <td class="personal-font">{{ work_schedule_item.lunch_entrance }}</td>
                                         <td class="personal-font">{{ work_schedule_item.lunch_out }}</td>
                                         <td class="personal-font">{{ work_schedule_item.exit }}</td>
@@ -141,6 +141,7 @@
                                 {% endif %}
                             {% empty %}
                                 <li>
+                                    {{ list_value|random }}
                                     Sem registros
                                 </li>
                             {% endfor %}
