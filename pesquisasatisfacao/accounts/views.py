@@ -298,14 +298,14 @@ def admin_receipt_pdf_preenchido(request, id=id):
     print(work_schedule_itens.query)
 
     context = {
-        "list_value": ["center-align", "left-align", "right-align"],
+        "list_value": ["col_center", "col_left", "col_right"],
         'work_schedule': work_schedule,
         'work_schedule_itens': work_schedule_itens
     }
 
     html = render_to_string('schedule_report_preenchido.html', context)
-    response = HttpResponse(content_type='recibo/pdf')
-    response['Content-Disposition'] = 'filename="recibo_{}.pdf"'.format(work_schedule.id)
+    response = HttpResponse(content_type='ficha/pdf')
+    response['Content-Disposition'] = 'filename="ficha_{}.pdf"'.format(work_schedule.id)
     weasyprint.HTML(string=html,
                     base_url=request.build_absolute_uri()).write_pdf(response,
                                                                      stylesheets=[weasyprint.CSS(settings.STATIC_ROOT +

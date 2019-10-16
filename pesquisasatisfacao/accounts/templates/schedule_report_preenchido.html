@@ -128,13 +128,14 @@
                                         <td></td>
                                     </tr>
                                 {% else %}
-                                    <tr class={{ list_value|random }}>
+                                    <tr>
                                         <td>{{ work_schedule_item.day|date:"d" }}</td>
                                         <!--<td>{{ work_schedule_item.day|date:"l" }}</td>-->
-                                        <td class="personal-font {{ list_value|random }}">{{ work_schedule_item.entrance }}</td>
-                                        <td class="personal-font">{{ work_schedule_item.lunch_entrance }}</td>
-                                        <td class="personal-font">{{ work_schedule_item.lunch_out }}</td>
-                                        <td class="personal-font">{{ work_schedule_item.exit }}</td>
+<!--                                        <td class="personal-font {{ list_value|random }}">{{ work_schedule_item.entrance }}</td>-->
+                                        <td class="personal-font col_center">{{ work_schedule_item.entrance }}</td>
+                                        <td class="personal-font col_center">{{ work_schedule_item.lunch_entrance }}</td>
+                                        <td class="personal-font col_center">{{ work_schedule_item.lunch_out }}</td>
+                                        <td class="personal-font col_center">{{ work_schedule_item.exit }}</td>
                                         <td></td>
                                         <td></td>
                                     </tr>

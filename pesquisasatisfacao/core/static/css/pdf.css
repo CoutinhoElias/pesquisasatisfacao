@@ -18,7 +18,9 @@
 
 .personal-font{
     font-family: DjangoITC, fantasy;
+    font-size: 1.15rem;
     color: red
+
 }
 
 /* AJUSTES DO PDF */
