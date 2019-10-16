@@ -18,6 +18,7 @@
 
 .personal-font{
     font-family: DjangoITC, fantasy;
+    color: red
 }
 
 /* AJUSTES DO PDF */
@@ -63,8 +64,8 @@ thead th, tbody tr.total {
 }
 
 .folga {
-    background:#eeeeee;
-    color:#00000;
+    background:#757575;
+    color:#ffffff;
     font-weight:bold;
 }
 
