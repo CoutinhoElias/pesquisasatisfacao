@@ -35,16 +35,16 @@
             {% for conta in contas %}
                 <tr>
                     <td class="center-align">
-                        <a href="{% url 'person_client_home' pk=conta.pessoa.id %}"><i class="material-icons prefix">home</i></a>
+                        <a href="{% url 'core:person_client_home' pk=conta.pessoa.id %}"><i class="material-icons prefix">home</i></a>
                     </td>
                     <td class="center-align">
-                        <a href="{% url 'financeiro_update' id=conta.id %}">{{ conta.id|linebreaks }}</a>
+                        <a href="{% url 'financeiro:financeiro_update' id=conta.id %}">{{ conta.id|linebreaks }}</a>
                     </td>
                     <td class="center-align">
                         <a href="#">{{ conta.historico|linebreaks }}</a>
                     </td>
                     <td class="left-align">
-                        <a href="{% url 'person_client_update' pk=conta.pessoa.id %}">{{ conta.pessoa|linebreaks }}</a>
+                        <a href="{% url 'core:person_client_update' pk=conta.pessoa.id %}">{{ conta.pessoa|linebreaks }}</a>
                     </td>
                     <td class="right-align">
                         <a href="#">{{ conta.valor_vendido|floatformat:"2" }}</a>

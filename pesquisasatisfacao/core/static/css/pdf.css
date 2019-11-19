@@ -1,21 +1,11 @@
-
-
-/*.cl-3{*/
-	/*width: 27.5%;*/
-	/*float: left;*/
-/*}*/
-/*.cl-6{*/
-	/*width: 45%;*/
-	/*float: left;*/
-/*}*/
-
-/*DEFININDO FONTE DA FICHA*/
-
+/* DEFININDO FONTE DA FICHA */
 @font-face {
     font-family: 'DjangoITC';
     src: url("/static/fonts/VarianeScript/Variane Script.ttf");
 }
 
+
+/* CONTEÚDO DOS CAMPOS DA FICHA PREENCHIDA */
 .personal-font{
     font-family: DjangoITC, fantasy;
     font-size: 1.15rem;
@@ -24,7 +14,6 @@
 }
 
 /* AJUSTES DO PDF */
-
 body {
     padding: 0;
 	margin: 0;
@@ -56,7 +45,7 @@ table th, table td {
 }*/
 
 
-/* cabeçalho das colunas da tabela */
+/* CABEÇALHO DAS COLUNAS DA TABELA */
 thead th, tbody tr.total {
     background:#5993bb;
     color:#fff;

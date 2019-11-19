@@ -3,6 +3,8 @@ from material.frontend import urls as frontend_urls
 
 from . import views
 
+app_name = 'core'
+
 urlpatterns = [
     path('', views.home, name='home'),
     path('', include(frontend_urls)),

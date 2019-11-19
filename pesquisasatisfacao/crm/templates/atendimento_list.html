@@ -32,10 +32,10 @@
                             {% endif %}">
 
                     <td class="center-align">
-                       <a href="{{ atendimento.get_absolute_url }}">{{ atendimento.type|linebreaks }}</a>
+                       <a href="{% url 'crm:atendimento_update' id=atendimento.id cl=atendimento.person.id %}">{{ atendimento.type|linebreaks }}</a>
                     </td>
                     <td class="center-align">
-                       <a href="{{ atendimento.get_absolute_url }}">{{ atendimento.get_department_display }}</a>
+                       <a href="{% url 'crm:atendimento_update' id=atendimento.id cl=atendimento.person.id %}">{{ atendimento.get_department_display }}</a>
                     </td>
                     <td>{{ atendimento.person|linebreaks }}</td>
                     <td>{{ atendimento.product }}</td>

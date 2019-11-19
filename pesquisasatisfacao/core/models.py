@@ -83,7 +83,7 @@ class Client(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('person_client_detail', args=[str(self.pk)])
+        return reverse('core:person_client_detail', args=[str(self.pk)])
 
 
 class Question(models.Model):

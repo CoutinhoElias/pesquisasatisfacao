@@ -298,6 +298,8 @@ def admin_receipt_pdf_preenchido(request, id=id):
     print(work_schedule_itens.query)
 
     context = {
+        # list_value gera uma lista de dados para ser usada no template, essa usei para aplicar CSS do Google
+        # No template schedule_report_preenchido incluí essa classe <td class="personal-font {{ list_value|random }}"
         "list_value": ["col_center", "col_left", "col_right"],
         'work_schedule': work_schedule,
         'work_schedule_itens': work_schedule_itens

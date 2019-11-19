@@ -3,8 +3,8 @@
 
             <!-- Dropdown Structure -->
             <ul id="drp_clientes" class="dropdown-content">
-              <li><a class="black white-text darken-4" href="{% url 'person_client_create' %}"><i class="material-icons">person</i>Novo Cliente</a></li>
-              <li><a class="black white-text darken-4"  href="{% url 'person_client_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Clientes</a></li>
+              <li><a class="black white-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">person</i>Novo Cliente</a></li>
+              <li><a class="black white-text darken-4"  href="{% url 'core:person_client_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Clientes</a></li>
               <li class="divider"></li>
               <li><a class="black white-text darken-4"  href="#!">em breve...</a></li>
             </ul>
@@ -12,7 +12,7 @@
              <ul id="drp_crm" class="dropdown-content">
               <li><a class="black white-text darken-4"  href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">date_range</i>Cadastro Ficha</a></li>
               <li class="divider"></li>
-              <li><a class="black white-text darken-4"  href="{% url 'atendimento_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de atendimentos</a></li>
+              <li><a class="black white-text darken-4"  href="{% url 'crm:atendimento_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de atendimentos</a></li>
               <li><a class="black white-text darken-4"  href="{% url 'accounts:work_schedule_list' %}"><i class="material-icons">format_list_bulleted</i>Listar Fichas</a></li>
               <li><a class="black white-text darken-4"  href="#!">em breve...</a></li>
             </ul>
@@ -58,17 +58,17 @@
 
 <!--            Problema é que não consigo enviar client.id em pk=client.id, após criar o contexto client na view deu certo -->
                 <li><a class="black white-text darken-4" class="subheader">CLIENTE:</a></li>
-                <li><a class="black white-text darken-4" href="{% url 'person_client_create' %}"><i class="material-icons">person_add</i>Novo Cliente</a></li>
-                <li><a class="black white-text darken-4" href="{% url 'person_client_update' pk=client.id  %}"><i class="material-icons">perm_identity</i>Editar este Cliente</a></li>
-                <li><a class="black white-text darken-4" href="{% url 'person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
+                <li><a class="black white-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">person_add</i>Novo Cliente</a></li>
+                <li><a class="black white-text darken-4" href="{% url 'core:person_client_update' pk=client.id  %}"><i class="material-icons">perm_identity</i>Editar este Cliente</a></li>
+                <li><a class="black white-text darken-4" href="{% url 'core:person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
                 <li><div class="divider"></div></li>
 
                 <li><a class="black white-text darken-4" class="subheader">CRM:</a></li>
-                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'atendimento_create' pk=client.id %}"><i class="material-icons">recent_actors</i>Novo Atendimento</a></li>
-                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'seach_create' pk=client.id %}"><i class="material-icons">record_voice_over</i>Nova Pesquisa</a></li>
-                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'person_client_detail' pk=client.id %}"><i class="material-icons">list</i>Lista de Pesquisas</a></li>
+                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'crm:atendimento_create' pk=client.id %}"><i class="material-icons">recent_actors</i>Novo Atendimento</a></li>
+                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'core:seach_create' pk=client.id %}"><i class="material-icons">record_voice_over</i>Nova Pesquisa</a></li>
+                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'core:person_client_detail' pk=client.id %}"><i class="material-icons">list</i>Lista de Pesquisas</a></li>
                 <li><div class="black divider"></div></li>
 
                 <li><a class="black white-text darken-4" class="subheader">FINANCEIRO:</a></li>
-                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'financeirot_client_list' pk=client.id %}"><i class="material-icons">attach_money</i>Financeiro</a></li>
+                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'financeiro:financeirot_client_list' pk=client.id %}"><i class="material-icons">attach_money</i>Financeiro</a></li>
             </ul>

@@ -36,29 +36,29 @@
 
             <!-- Dropdown Structure -->
             <ul id="drp_clientes" class="dropdown-content">
-              <li><a class="black-text darken-4" href="{% url 'person_client_create' %}"><i class="material-icons">person</i>Novo Cliente</a></li>
-              <li><a class="black-text darken-4"  href="{% url 'person_client_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Clientes</a></li>
+              <li><a class="black-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">person</i>Novo Cliente</a></li>
+              <li><a class="black-text darken-4"  href="{% url 'core:person_client_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Clientes</a></li>
               <li class="divider"></li>
               <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
             </ul>
 
             <ul id="drp_financeiro" class="dropdown-content">
-              <li><a class="black-text darken-4" href="{% url 'financeiro_create' %}"><i class="material-icons">monetization_on</i>Novo Titulo</a></li>
-              <li><a class="black-text darken-4"  href="{% url 'financeirot_list' %}"><i class="material-icons">attach_money</i>Lista Titulos</a></li>
+              <li><a class="black-text darken-4" href="{% url 'financeiro:financeiro_create' %}"><i class="material-icons">monetization_on</i>Novo Titulo</a></li>
+              <li><a class="black-text darken-4"  href="{% url 'financeiro:financeirot_list' %}"><i class="material-icons">attach_money</i>Lista Titulos</a></li>
               <li class="divider"></li>
               <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
             </ul>
 
             <ul id="drp_questions" class="dropdown-content">
-              <li><a class="black-text darken-4"  href="{% url 'question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
-              <li><a class="black-text darken-4"  href="{% url 'question_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de Perguntas</a></li>
+              <li><a class="black-text darken-4"  href="{% url 'core:question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
+              <li><a class="black-text darken-4"  href="{% url 'core:question_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de Perguntas</a></li>
               <li class="divider"></li>
               <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
             </ul>
 
             <ul id="drp_representative" class="dropdown-content">
-              <li><a class="black-text darken-4"  href="{% url 'person_representative_create' %}"><i class="material-icons">person_pin</i>Novo Representante</a></li>
-              <li><a class="black-text darken-4"  href="{% url 'person_representative_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Representantes</a></li>
+              <li><a class="black-text darken-4"  href="{% url 'core:person_representative_create' %}"><i class="material-icons">person_pin</i>Novo Representante</a></li>
+              <li><a class="black-text darken-4"  href="{% url 'core:person_representative_list' %}"><i class="material-icons">format_list_bulleted</i>Lista Representantes</a></li>
               <li class="divider"></li>
               <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
             </ul>
@@ -66,7 +66,7 @@
             <ul id="drp_crm" class="dropdown-content">
               <li><a class="black-text darken-4"  href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">date_range</i>Cadastro Ficha</a></li>
               <li class="divider"></li>
-              <li><a class="black-text darken-4"  href="{% url 'atendimento_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de atendimentos</a></li>
+              <li><a class="black-text darken-4"  href="{% url 'crm:atendimento_list' %}"><i class="material-icons">format_list_bulleted</i>Lista de atendimentos</a></li>
               <li><a class="black-text darken-4"  href="{% url 'accounts:work_schedule_list' %}"><i class="material-icons">format_list_bulleted</i>Listar Fichas</a></li>
               <li><a class="black-text darken-4"  href="#!">em breve...</a></li>
             </ul>
@@ -108,10 +108,10 @@
                     </div>
                 </li>
 
-                <li><a class="black-text darken-4" href="{% url 'person_client_create' %}"><i class="material-icons">perm_identity</i>Cliente</a></li>
-                <li><a class="black-text darken-4" href="{% url 'person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
-                <li><a class="black-text darken-4" href="{% url 'question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
-                <li><a class="black-text darken-4" href="{% url 'question_list' %}"><i class="material-icons">question_answer</i>Lista de Perguntas</a></li>
+                <li><a class="black-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">perm_identity</i>Cliente</a></li>
+                <li><a class="black-text darken-4" href="{% url 'core:person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
+                <li><a class="black-text darken-4" href="{% url 'core:question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
+                <li><a class="black-text darken-4" href="{% url 'core:question_list' %}"><i class="material-icons">question_answer</i>Lista de Perguntas</a></li>
                 <li><a class="black-text darken-4" href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">date_range</i>Cadastro Ficha</a></li>
                 <li><a class="black-text darken-4" href="#!">Em breve...</a></li>
                 <li><div class="divider"></div></li>

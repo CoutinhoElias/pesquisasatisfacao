@@ -30,14 +30,13 @@
             {% for client in clients %}
                 <tr>
                     <td class="center-align">
-                        <a href="{% url 'person_representative_update' pk=client.id %}">{{ client.id|linebreaks }}</a>
+                        <a href="{% url 'core:person_representative_update' pk=client.id %}">{{ client.id|linebreaks }}</a>
                     </td>
                     <td class="center-align">
-                        <a href="{% url 'person_client_detail' pk=client.id %}">{{ client.cdalterdata|linebreaks }}</a>
+                        <a href="{% url 'core:person_client_detail' pk=client.id %}">{{ client.cdalterdata|linebreaks }}</a>
                     </td>
                     <td>
                         {{ client.name|linebreaks }}
-                        <!--<a href="{% url 'person_client_detail' pk=client.pk %}">{{ client.name|linebreaks }}</a>-->
                     </td>
 
                     <td class="center-align">{{ client.last_search }}</td>
