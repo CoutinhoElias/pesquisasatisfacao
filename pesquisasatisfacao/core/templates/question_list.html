@@ -27,7 +27,7 @@
                             {% endif %}">
 
                     <td class="center-align">
-                        <a href="{{ question.get_absolute_url }}">{{ question.id|linebreaks }}</a>
+                        <a href="{% url 'core:question_update' pk=client.id %}">{{ question.id|linebreaks }}</a>
                     </td>
                     <td>{{ question.question|linebreaks }}</td>
                     <td>{{ question.get_level_display }}</td>
