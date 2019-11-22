@@ -38,7 +38,7 @@
             </nav>
 
             <!--SIDENAV-->
-            <ul id="slide-out" class="sidenav">
+            <ul id="slide-out" class="sidenav black white-text darken-4">
                 <li>
                     <div class="user-view">
                         <div class="background">
@@ -57,18 +57,41 @@
                 </li>
 
 <!--            Problema é que não consigo enviar client.id em pk=client.id, após criar o contexto client na view deu certo -->
-                <li><a class="black white-text darken-4" class="subheader">CLIENTE:</a></li>
-                <li><a class="black white-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">person_add</i>Novo Cliente</a></li>
-                <li><a class="black white-text darken-4" href="{% url 'core:person_client_update' pk=client.id  %}"><i class="material-icons">perm_identity</i>Editar este Cliente</a></li>
-                <li><a class="black white-text darken-4" href="{% url 'core:person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
-                <li><div class="divider"></div></li>
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header black white-text darken-4"><i class="material-icons">person</i>Cliente</div>
+                        <div class="collapsible-body">
+                            <div class="collapsible-body" style="display: block;">
+                                <ul>
+                                    <li><a class="black white-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">person_add</i>Novo Cliente</a></li>
+                                    <li><a class="black white-text darken-4" href="{% url 'core:person_client_update' pk=client.id  %}"><i class="material-icons">perm_identity</i>Editar este Cliente</a></li>
+                                    <li><a class="black white-text darken-4" href="{% url 'core:person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
+                                    <li><div class="divider"></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
 
-                <li><a class="black white-text darken-4" class="subheader">CRM:</a></li>
-                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'crm:atendimento_create' pk=client.id %}"><i class="material-icons">recent_actors</i>Novo Atendimento</a></li>
-                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'core:seach_create' pk=client.id %}"><i class="material-icons">record_voice_over</i>Nova Pesquisa</a></li>
-                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'core:person_client_detail' pk=client.id %}"><i class="material-icons">list</i>Lista de Pesquisas</a></li>
-                <li><div class="black divider"></div></li>
+                    <li>
+                        <div class="collapsible-header black white-text darken-4"><i class="material-icons">recent_actors</i>CRM</div>
+                        <div class="collapsible-body">
+                        <ul>
+                            <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'crm:atendimento_create' pk=client.id %}"><i class="material-icons">recent_actors</i>Novo Atendimento</a></li>
+                            <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'core:seach_create' pk=client.id %}"><i class="material-icons">record_voice_over</i>Nova Pesquisa</a></li>
+                            <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'core:person_client_detail' pk=client.id %}"><i class="material-icons">list</i>Lista de Pesquisas</a></li>
+                            <li><div class="divider"></div></li>
+                        </ul>
+                        </div>
+                    </li>
 
-                <li><a class="black white-text darken-4" class="subheader">FINANCEIRO:</a></li>
-                <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'financeiro:financeirot_client_list' pk=client.id %}"><i class="material-icons">attach_money</i>Financeiro</a></li>
+                    <li>
+                        <div class="collapsible-header black white-text darken-4"><i class="material-icons">attach_money</i>Financeiro</div>
+                        <div class="collapsible-body">
+                        <ul>
+                            <li><a class="black white-text darken-4" class="waves-effect" href="{% url 'financeiro:financeirot_client_list' pk=client.id %}"><i class="material-icons">attach_money</i>Financeiro</a></li>
+                            <li><div class="divider"></div></li>
+                        </ul>
+                        </div>
+                    </li>
+                </ul>
             </ul>

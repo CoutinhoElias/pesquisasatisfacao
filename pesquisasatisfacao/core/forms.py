@@ -1,8 +1,8 @@
 from django import forms
 from django.forms import inlineformset_factory
-from material import *
+from material import Layout, Fieldset, Row, Span3, Span12, Span4, Span9, Span8, Span2, Span5
 
-from pesquisasatisfacao.core.models import Client, Question, Search, SearchItem
+from pesquisasatisfacao.core.models import Client, Question, Search, SearchItem, Sales, SalesItem
 
 SYSTEM_CHOICES = (
     ('0', 'Pack'),
@@ -137,3 +137,32 @@ SearchItemFormSet = inlineformset_factory(Search, SearchItem,
                                           exclude=('id',),
                                           can_delete=True,
                                           fields=('question', 'response'), extra=1)
+
+
+class SalesForm(forms.ModelForm):
+
+    class Meta:
+        model = Sales
+        fields = '__all__'
+        exclude = ()
+
+    layout = Layout(
+        Fieldset("Selecione o cliente.", Row('client'),))
+
+
+SalesItemFormSet = inlineformset_factory(Sales, SalesItem,
+                                         exclude=('id',),
+                                         can_delete=True,
+                                         fields=('product', 'unit_price',),
+                                         extra=0,
+                                         min_num=1)
+
+
+# SalesItemUpdateFormSet = modelformset_factory(SalesItem,
+#                                                 form=ItemForm,
+#                                                 min_num=1,
+#                                                 validate_min=True,
+#                                                 extra=0,
+#                                                 can_delete=True,
+#                                                 max_num=16,
+#                                                 validate_max=True)

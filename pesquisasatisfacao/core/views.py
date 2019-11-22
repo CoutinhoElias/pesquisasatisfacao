@@ -2,16 +2,19 @@ import json
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db import transaction
 from django.db.models import Count, Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import FormView, UpdateView
 
 from pesquisasatisfacao.core.forms import (QuestionForm,
                                            ClientForm,
                                            SearchForm,
-                                           SearchItemFormSet, RepresentativeForm)
-from pesquisasatisfacao.core.models import Search, Question, Client, SearchItem
+                                           SearchItemFormSet, RepresentativeForm, SalesForm, SalesItemFormSet)
+from pesquisasatisfacao.core.models import Search, Question, Client, SearchItem, Sales
 from pesquisasatisfacao.crm.models import Atendimento
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -469,49 +472,6 @@ def search_list(request):
     return render(request, 'search_list.html', {'seachs': seachs})
 
 
-# class SearchDetailWiew(TemplateView):
-#     template_name = 'search.html'
-#
-#     def get_formset(self, clear=False):
-#         questionsformset = modelformset_factory(
-#             Search, fields=('response',), can_delete=False, extra=0
-#         )
-#         # Soluçao alternativa
-#         client = Client.objects.last()
-#         if clear:
-#
-#             formset = questionsformset(
-#                 queryset=Search.objects.filter(search_key='11/2018', person=client)
-#             )
-#         else:
-#             formset = questionsformset(
-#                 queryset=Search.objects.filter(search_key='11/2018', person=client),
-#                 data=self.request.POST or None
-#             )
-#
-#         return formset
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(SearchDetailWiew, self).get_context_data(**kwargs)
-#         context['formset'] = self.get_formset()
-#         return context
-#
-#     def post(self, request, *args, **kwargs):
-#         formset = self.get_formset()
-#         context = self.get_context_data(**kwargs)
-#         if formset.is_valid():
-#             print('Formulário válido!')
-#             formset.save()
-#             print('Dados salvos!')
-#             context['formset'] = self.get_formset(clear=True)
-#         else:
-#             print(formset)
-#         return self.render_to_response(context)
-#
-#
-# search_list2 = SearchDetailWiew.as_view()
-
-
 @login_required
 def pesquisa_create(request):
     # success_message = 'The Search was edited correctly.'
@@ -577,3 +537,72 @@ def pesquisa_update(request, pk):
     context = {'form': form, 'formset': formset, 'forms': forms}
     return render(request, 'receipt_form.html', context)
 # ----------------------------------------------------------------------------------------------------------------------
+
+
+class InvoiceFormView(SuccessMessageMixin, FormView):
+    form_class = SalesForm
+    template_name = 'invoice.html'
+    success_url = reverse_lazy('core:invoice_add')
+    success_message = 'The invoice was created correctly.'
+
+    def get_context_data(self, **kwargs):
+        context = super(InvoiceFormView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['item_formset'] = SalesItemFormSet(self.request.POST, prefix='item')
+        else:
+            context['item_formset'] = SalesItemFormSet(prefix='item')
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        contact_formset = context['item_formset']
+        total = 0
+        if contact_formset.is_valid():
+            sale = form.save(commit=False)
+            sale.save()
+
+            contact_formset.instance = sale
+            contact_formset.save()
+
+            # for item_form in contact_formset.forms:
+            #     item = item_form.save(commit=False)
+            #     item.person = person
+            #     item.save()
+            #     total += item.quantity * item.unit_price
+            # person.total = total
+            # person.save()
+            return super(InvoiceFormView, self).form_valid(form)
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+
+
+class InvoiceUpdateView(SuccessMessageMixin, UpdateView):
+    model = Sales
+    form_class = SalesForm
+    template_name = 'invoice_edit.html'
+    success_url = reverse_lazy('invoicing:invoice_list')
+    success_message = 'The invoice was edited correctly.'
+
+    def get_context_data(self, **kwargs):
+        context = super(InvoiceUpdateView, self).get_context_data(**kwargs)
+        invoice = self.get_object()
+        productos = invoice.item_set.all()
+        if self.request.POST:
+            context['formset'] = SalesItemFormSet(self.request.POST, prefix='items')
+        else:
+            context['formset'] = SalesItemFormSet(queryset=productos, prefix='items')
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        formset = context['formset']
+        total = 0
+        if formset.is_valid():
+            invoice = form.save(commit=False)
+
+            formset.save()
+
+            invoice.save()
+            return super(InvoiceUpdateView, self).form_valid(form)
+        else:
+            return self.render_to_response(self.get_context_data(form=form))

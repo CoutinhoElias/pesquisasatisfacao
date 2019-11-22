@@ -21,6 +21,9 @@ urlpatterns = [
     path('cliente/listar/', views.person_client_list, name='person_client_list'),
     path('cliente/<int:pk>/pesquisas/', views.person_client_detail, name='person_client_detail'),
 
+    path('cliente/notas/nova/', views.InvoiceFormView.as_view(), name='invoice_add'),
+    path('cliente/notas/edita/<int:id>/', views.InvoiceUpdateView.as_view(), name='invoice_edit'),
+
 
     path('pergunta/nova/', views.question_create, name='question_create'),
     path('pergunta/<int:pk>/editar/', views.question_update, name='question_update'),

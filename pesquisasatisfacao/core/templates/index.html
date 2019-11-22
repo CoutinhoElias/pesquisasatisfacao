@@ -94,30 +94,84 @@
                 </div>
             </nav>
 
-            <!--SIDENAV-->
-            <ul id="slide-out" class="sidenav">
-                <li>
-                    <div class="user-view">
-                        <div class="background">
-                            <img src="{% static 'img/ocean.jpg' %}" alt=""/>
-                        </div>
-
-                        <img src="{% static 'img/homem.png' %}" alt="" class="circle"/>
-                        <a href="#name"><span class="black-text darken-4 name">John Doe</span></a>
-                        <a href="#email"><span class="black-text darken-4 email">jdandturk@gmail.com</span></a>
+        <!--SIDENAV-->
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{% static 'img/ocean.jpg' %}" alt=""/>
                     </div>
-                </li>
 
-                <li><a class="black-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">perm_identity</i>Cliente</a></li>
-                <li><a class="black-text darken-4" href="{% url 'core:person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
-                <li><a class="black-text darken-4" href="{% url 'core:question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
-                <li><a class="black-text darken-4" href="{% url 'core:question_list' %}"><i class="material-icons">question_answer</i>Lista de Perguntas</a></li>
-                <li><a class="black-text darken-4" href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">date_range</i>Cadastro Ficha</a></li>
-                <li><a class="black-text darken-4" href="#!">Em breve...</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="black-text darken-4" class="subheader">Subheader</a></li>
-                <li><a class="black-text darken-4" class="waves-effect" href="#!">Third Link With Waves</a></li>
-            </ul>
+                    <img src="{% static 'img/homem.png' %}" alt="" class="circle"/>
+                    <a href="#name"><span class="black-text darken-4 name">John Doe</span></a>
+                    <a href="#email"><span class="black-text darken-4 email">jdandturk@gmail.com</span></a>
+                </div>
+            </li>
+
+
+            <li class="no-padding">
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">add_circle</i>Cadastros</div>
+                        <div class="collapsible-body">
+                            <div class="collapsible-body" style="display: block;">
+                                <ul>
+                                    <li><a class="black-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">person</i>Novo Cliente</a></li>
+                                    <li><a class="black-text darken-4" href="/"><i class="material-icons">perm_contact_calendar</i>Novo Contato</a></li>
+                                    <li><a class="black-text darken-4" href="{% url 'core:person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
+
+                                    <li><div class="divider"></div></li>
+
+                                    <li><a class="black-text darken-4" href="{% url 'core:question_create' %}"><i class="material-icons">question_answer</i>Nova Pergunta</a></li>
+                                    <li><a class="black-text darken-4" href="{% url 'core:question_list' %}"><i class="material-icons">list</i>Lista Perguntas</a></li>
+                                    <li><div class="divider"></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">account_box</i>Usuário</div>
+                        <div class="collapsible-body">
+                        <ul>
+                            {% if user.is_authenticated %}
+                                <li><a class="black-text darken-4" href="{% url 'accounts:logout' %}"><i class="material-icons">lock_outline</i>Logout</a></li>
+                                <li><a class="black-text darken-4" href="{% url 'accounts:password_change' %}"><i class="material-icons">lock</i>Alterar Senha</a></li>
+                                <li><a class="black-text darken-4" href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">list</i>Ficha de Visita</a></li>
+                            {% else %}
+                                <li><a class="black-text darken-4" href="{% url 'accounts:register' %}"><i class="material-icons">account_circle</i>Cadastre-se</a></li>
+                                <li><a class="black-text darken-4" href="{% url 'accounts:login' %}"><i class="material-icons">lock_open</i>Login</a></li>
+                            {% endif %}
+                        </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">thumb_up</i>Pedidos</div>
+                        <div class="collapsible-body">
+                        <ul>
+                            <li><a class="black-text darken-4" href="{% url 'core:invoice_add' %}"><i class="material-icons">date_range</i>Novo Pedido</a></li>
+                            <li><a class="black-text darken-4" href="#!">Em breve...</a></li>
+                        </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">attach_money</i>Financeiro</div>
+                        <div class="collapsible-body">
+                        <ul>
+                          <li><a class="black-text darken-4" href="{% url 'financeiro:financeiro_create' %}"><i class="material-icons">monetization_on</i>Novo Titulo</a></li>
+                          <li><a class="black-text darken-4"  href="{% url 'financeiro:financeirot_list' %}"><i class="material-icons">list</i>Lista Titulos</a></li>
+                        </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li><div class="divider"></div></li>
+            <li><a class="black-text darken-4" class="subheader">Subheader</a></li>
+            <li><a class="black-text darken-4" class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
 
         {% endblock nav_menu %}
 
@@ -207,7 +261,7 @@
     </div>
     </div>
 
-    {% block js %}
+
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="{% static 'js/jquery.mtz.monthpicker.js' %}"></script>
@@ -382,22 +436,22 @@
                                                       constrainWidth: false,
                                                       coverTrigger: false });
                     $('.fixed-action-btn').floatingActionButton();
-                    $('.datepicker').datepicker(
-                        {
-                            showClearBtn:false,
-                            autoClose:true,
-                            setDefaultDate:true,
+                    // $('.datepicker').datepicker(
+                    //  {
+                    //      showClearBtn:false,
+                    //      autoClose:true,
+                    //      setDefaultDate:true,
                             //POSSO SETAR 01/mm/yyyy OU REMOVER ESSE CAMPO DO MODELO E PREENCHER COM SIGNALS
-                            format: 'dd/mm/yyyy',
-                                i18n: {
-                                    months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-                                    monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
-                                    weekdays: ["Domingo","Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
-                                    weekdaysShort: ["Dom","Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
-                                    weekdaysAbbrev: ["D","S", "T", "Q", "Q", "S", "S"]
-                                }
-                            }
-                        ).setLocale('pt-BR');
+                    //      format: 'dd/mm/yyyy',
+                    //          i18n: {
+                    //              months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                    //              monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+                    //              weekdays: ["Domingo","Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+                    //              weekdaysShort: ["Dom","Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+                    //              weekdaysAbbrev: ["D","S", "T", "Q", "Q", "S", "S"]
+                    //          }
+                    //      }
+                    //  ).setLocale('pt-BR');
 
                     // JQUERY MTZ.MONTHPICKER
                     //https://www.jqueryscript.net/time-clock/jQuery-Plugin-For-jQuery-UI-Month-Year-Picker-mtz-monthpicker.html
@@ -412,8 +466,9 @@
 
 
         </script>
-        <script src="{% static '/js/cep.js' %}"></script>
-    {% endblock %}
+        {% block js %}
+
+        {% endblock %}
 
 </body>
 

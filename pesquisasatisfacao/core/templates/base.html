@@ -8,8 +8,6 @@
 
     {% block css %}
         <!-- Compiled and minified CSS -->
-
-        <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
         <!--O PROBLEMA É O CSS MATERIAL ABAIXO QUE NÃO FUNCIONA COM JQUERY-->
@@ -84,30 +82,72 @@
         </div>
     </nav>
 
-    <!--SIDENAV-->
-    <ul id="slide-out" class="sidenav">
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    <img src="{% static 'img/ocean.jpg' %}" alt=""/>
+        <!--SIDENAV-->
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{% static 'img/ocean.jpg' %}" alt=""/>
+                    </div>
+
+                    <img src="{% static 'img/homem.png' %}" alt="" class="circle"/>
+                    <a href="#name"><span class="black-text darken-4 name">John Doe</span></a>
+                    <a href="#email"><span class="black-text darken-4 email">jdandturk@gmail.com</span></a>
                 </div>
+            </li>
 
-                <img src="{% static 'img/homem.png' %}" alt="" class="circle"/>
-                <a href="#name"><span class="black-text darken-4 name">John Doe</span></a>
-                <a href="#email"><span class="black-text darken-4 email">jdandturk@gmail.com</span></a>
-            </div>
-        </li>
 
-        <li><a class="black-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">perm_identity</i>Cliente</a></li>
-        <li><a class="black-text darken-4" href="{% url 'core:person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
-        <li><a class="black-text darken-4" href="{% url 'core:question_create' %}"><i class="material-icons">question_answer</i>Cadastrar nova Pergunta</a></li>
-        <li><a class="black-text darken-4" href="{% url 'core:question_list' %}"><i class="material-icons">question_answer</i>Lista de Perguntas</a></li>
-        <li><a class="black-text darken-4" href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">date_range</i>Cadastro Ficha</a></li>
-        <li><a class="black-text darken-4" href="#!">Em breve...</a></li>
-        <li><div class="divider"></div></li>
-        <li><a class="black-text darken-4" class="subheader">Subheader</a></li>
-        <li><a class="black-text darken-4" class="waves-effect" href="#!">Third Link With Waves</a></li>
-    </ul>
+            <li class="no-padding">
+              <ul class="collapsible collapsible-accordion">
+                <li class="bold active"><a class="collapsible-header" tabindex="0">CADASTROS</a>
+                  <div class="collapsible-body" style="display: block;">
+                    <ul>
+                      <li><a class="black-text darken-4" href="{% url 'core:person_client_create' %}"><i class="material-icons">person</i>Novo Cliente</a></li>
+                      <li><a class="black-text darken-4" href="/"><i class="material-icons">perm_contact_calendar</i>Novo Contato</a></li>
+                      <li><a class="black-text darken-4" href="{% url 'core:person_client_list' %}"><i class="material-icons">list</i>Lista Clientes</a></li>
+                      <li><div class="divider"></div></li>
+                      <li><a class="black-text darken-4" href="{% url 'core:question_create' %}"><i class="material-icons">list</i>Nova Pergunta</a></li>
+                      <li><a class="black-text darken-4" href="{% url 'core:question_list' %}"><i class="material-icons">list</i>Lista Perguntas</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="bold"><a class="collapsible-header" tabindex="0">USUARIO</a>
+                  <div class="collapsible-body">
+                    <ul>
+                    {% if user.is_authenticated %}
+                        <li><a class="black-text darken-4" href="{% url 'accounts:logout' %}"><i class="material-icons">lock_outline</i>Logout</a></li>
+                        <li><a class="black-text darken-4" href="{% url 'accounts:password_change' %}"><i class="material-icons">lock</i>Alterar Senha</a></li>
+                        <li><a class="black-text darken-4" href="{% url 'accounts:work_schedule_create' %}"><i class="material-icons">list</i>Ficha de Visita</a></li>
+                    {% else %}
+                        <li><a class="black-text darken-4" href="{% url 'accounts:register' %}"><i class="material-icons">account_circle</i>Cadastre-se</a></li>
+                        <li><a class="black-text darken-4" href="{% url 'accounts:login' %}"><i class="material-icons">lock_open</i>Login</a></li>
+                    {% endif %}
+                    </ul>
+                  </div>
+                </li>
+                <li class="bold"><a class="collapsible-header" tabindex="0">PEDIDOS</a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li><a class="black-text darken-4" href="{% url 'core:invoice_add' %}"><i class="material-icons">date_range</i>Novo Pedido</a></li>
+                      <li><a class="black-text darken-4" href="#!">Em breve...</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="bold"><a class="collapsible-header" tabindex="0">FINANCEIRO</a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li><a class="black-text darken-4" href="{% url 'financeiro:financeiro_create' %}"><i class="material-icons">monetization_on</i>Novo Titulo</a></li>
+                      <li><a class="black-text darken-4"  href="{% url 'financeiro:financeirot_list' %}"><i class="material-icons">attach_money</i>Lista Titulos</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li><div class="divider"></div></li>
+            <li><a class="black-text darken-4" class="subheader">Subheader</a></li>
+            <li><a class="black-text darken-4" class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
 
     <div class="container">
 
@@ -121,14 +161,14 @@
     </div> <!-- /container -->
 
     {% block js %}
-        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<!--        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>-->
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="{% static 'js/jquery.mtz.monthpicker.js' %}"></script>
         <script src="https://code.highcharts.com/highcharts.src.js"></script>
 
 
     <!-- Compiled and minified JQuery -->
-        <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>-->
 
         <!-- Compiled and minified JavaScript -->
@@ -201,6 +241,10 @@
 
         </script>
         <script src="{% static '/js/cep.js' %}"></script>
+    {% endblock %}
+
+    {% block js %}
+
     {% endblock %}
 
 </body>

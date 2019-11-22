@@ -2,31 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 
-class Sales(models.Model):
-    client = models.ForeignKey("core.client", related_name="client_sale",
-                               on_delete=models.CASCADE, verbose_name="Cliente")
-
-    class Meta:
-        verbose_name = 'Venda'
-        verbose_name_plural = 'Vendas'
-
-    def __str__(self):
-        return self.client.name
-
-
-class SalesItem(models.Model):
-    sales = models.ForeignKey("core.sales", related_name="sale_sale_item", on_delete=models.CASCADE, verbose_name="Venda")
-    product = models.ForeignKey("core.product", related_name="product_sale_item", on_delete=models.CASCADE,
-                                verbose_name="Produto")
-
-    class Meta:
-        verbose_name = 'Venda Detalhe'
-        verbose_name_plural = 'Vendas Detalhe'
-
-    def __str__(self):
-        return self.product.name
-
-
 class Product(models.Model):
     name = models.CharField('Nome', max_length=100)
 
@@ -84,6 +59,32 @@ class Client(models.Model):
 
     def get_absolute_url(self):
         return reverse('core:person_client_detail', args=[str(self.pk)])
+
+
+class Sales(models.Model):
+    client = models.ForeignKey("core.client", related_name="client_sale",
+                               on_delete=models.CASCADE, verbose_name="Cliente")
+
+    class Meta:
+        verbose_name = 'Venda'
+        verbose_name_plural = 'Vendas'
+
+    def __str__(self):
+        return self.client.name
+
+
+class SalesItem(models.Model):
+    sales = models.ForeignKey(Sales, related_name="sale_sale_item", on_delete=models.CASCADE, verbose_name="Venda")
+    product = models.ForeignKey(Product, related_name="product_sale_item", on_delete=models.CASCADE,
+                                verbose_name="Produto")
+    unit_price = models.DecimalField('Preço', max_digits=10, decimal_places=2, default='0', )
+
+    class Meta:
+        verbose_name = 'Venda Detalhe'
+        verbose_name_plural = 'Vendas Detalhe'
+
+    def __str__(self):
+        return self.product.name
 
 
 class Question(models.Model):
