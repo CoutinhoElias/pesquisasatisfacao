@@ -33,7 +33,7 @@ class Atendimento(models.Model):
                              on_delete=models.CASCADE)
     department = models.CharField('Departamento', max_length=15, choices=DEPARTMENT_CHOICES, default='3')
     person = models.ForeignKey('core.client', related_name='AtendimentoClient', on_delete=models.CASCADE)
-    product = models.ForeignKey('core.salesitem', related_name='Produtos', null=True, blank=True, verbose_name='Produto',
+    product = models.ForeignKey('core.product', related_name='Produtos', null=True, blank=True, verbose_name='Produto',
                                 on_delete=models.CASCADE)
     priority = models.PositiveIntegerField('Prioridade', default=0)
     contact = models.TextField('Contato', null=True, blank=True, max_length=50)
