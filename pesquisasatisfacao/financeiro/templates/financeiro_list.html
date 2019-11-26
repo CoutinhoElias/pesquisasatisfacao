@@ -41,13 +41,17 @@
                         <a href="{% url 'financeiro:financeiro_update' id=conta.id %}">{{ conta.id|linebreaks }}</a>
                     </td>
                     <td class="center-align">
-                        <a href="#">{{ conta.historico|linebreaks }}</a>
+                        {{ conta.historico|linebreaks }}
                     </td>
                     <td class="left-align">
-                        <a href="{% url 'core:person_client_update' pk=conta.pessoa.id %}">{{ conta.pessoa|linebreaks }}</a>
+                        {{ conta.pessoa|linebreaks }}
                     </td>
-                    <td class="right-align">
-                        <a href="#">{{ conta.valor_vendido|floatformat:"2" }}</a>
+                    <td class="right-align {% if conta.operacao == 'd' %}
+                                blue-text
+                            {% else %}
+                                red-text
+                            {% endif %}">
+                        {{ conta.valor_vendido|floatformat:"2" }}
                     </td>
                     <td class="center-align">
                         {{ conta.data_vencimento | date:"d/m/Y" }}
