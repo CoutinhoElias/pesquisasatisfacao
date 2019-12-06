@@ -26,7 +26,7 @@
                 <tr>
                     <th class="center-align">CRM</th>
                     <th class="center-align">Id.</th>
-                    <th class="center-align">Historico</th>
+                    <th class="left-align">Historico</th>
                     <th class="left-align">Nome</th>
                     <th class="right-align">Valor</th>
                     <th class="center-align">Dt. Vencimento</th>
@@ -44,17 +44,13 @@
                     <td class="center-align">
                         <a href="{% url 'financeiro:financeiro_update' id=t.id %}">{{ t.id|linebreaks }}</a>
                     </td>
-                    <td class="center-align">
+                    <td class="left-align">
                         {{ t.historico|linebreaks }}
                     </td>
                     <td class="left-align">
                         {{ t.pessoa|linebreaks }}
                     </td>
-                    <td class="right-align {% if t.operacao == 'd' %}
-                                blue-text
-                            {% else %}
-                                red-text
-                            {% endif %}">
+                    <td class="right-align">
                         {{ t.valor_vendido|floatformat:"2" }}
                     </td>
                     <td class="center-align">
@@ -68,7 +64,13 @@
                 {% endfor %}
 
                 <tr>
-                   <td></td> <td></td> <td></td> <td class="right-align"><strong>Total do dia:</strong></td> <td class="right-align"><strong>{{ transacoes|totalizar }}</strong></td> <td></td> <td></td>
+                   <td></td> <td></td> <td></td> <td class="right-align"><strong>Total do dia:</strong></td> <td class="right-align"><strong>{{ transacoes|totalizar }}</strong></td> <td>{% if transacoes|totalizar < 0 %}
+                                                                                                                                                                                           <i class="material-icons prefix">arrow_downward</i>
+                                                                                                                                                                                           {% elif transacoes|totalizar > 0 %}
+                                                                                                                                                                                           <i class="material-icons prefix">arrow_upward</i>
+                                                                                                                                                                                           {% else %}
+                                                                                                                                                                                           <i class="material-icons prefix">autorenew</i>
+                                                                                                                                                                                           {% endif %}</td> <td></td>
                 </tr>
             {% endfor %}
 
