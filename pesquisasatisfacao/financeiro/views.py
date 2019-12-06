@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -12,20 +12,96 @@ from pesquisasatisfacao.financeiro.forms import FinanceiroForm, PagamentoFormSet
 from pesquisasatisfacao.financeiro.models import Conta
 
 
-@login_required
-def financeirot_list(request):
+class Cel(object):
+    """
+    Class Helper used to store summaries
+    """
+    value = uval = None
+
+    def __add__(self,val):
+        if self.value:
+            self.value = self.value +  val
+        else:
+            self.value = val
+        self.uval = val
+        return val
+
+    def __str__(self):
+        return self.uval
+
+    def __unicode__(self):
+        return self.uval
+
+    @property
+    def total(self):
+        return self.value
+
+    def reset(self):
+        self.value = self.uval = None
+        return self
+
+
+# @login_required
+# def financeirot_list(request):
+#     q = request.GET.get('searchInput')
+#     print(request.GET)
+#     if q:
+#         contas = Conta.objects.filter(Q(pessoa__is_representative=False),
+#                                       Q(pessoa__name__icontains=q) |
+#                                       Q(pessoa__cdalterdata__icontains=q) |
+#                                       Q(valor_vendido__icontains=q) |
+#                                       Q(historico__descricao__icontains=q)).order_by('data_vencimento')
+#     else:
+#         contas = Conta.objects.filter(pessoa__is_representative=False).order_by('data_vencimento')
+#         # contanova = Conta.objects.values('data_vencimento').filter(pessoa__is_representative=False).aggregate(oldest_pubdate=Sum('valor_vendido'))
+#         groups = Conta.objects.annotate(total_dia=Sum('valor_vendido')).order_by('data_vencimento')
+#
+#         contas.novo = 0
+#         for conta in contas:
+#             # print(conta.valor_vendido)
+#             contas.novo = contas.novo + conta.valor_vendido
+#         print(contas.novo)
+#
+#     context = {'contas': contas, 'groups': groups}
+#     return render(request, 'financeiro_list.html', context)
+
+
+import itertools
+
+
+def financeiro_list(request):
     q = request.GET.get('searchInput')
-    print(request.GET)
+
+    contas = Conta.objects.filter(pessoa__is_representative=False).order_by('data_vencimento')
+
     if q:
-        contas = Conta.objects.filter(Q(pessoa__is_representative=False),
-                                      Q(pessoa__name__icontains=q) |
-                                      Q(pessoa__cdalterdata__icontains=q) |
-                                      Q(valor_vendido__icontains=q) |
-                                      Q(historico__descricao__icontains=q))
-    else:
-        contas = Conta.objects.filter(pessoa__is_representative=False)
-    context = {'contas': contas}
-    return render(request, 'financeiro_list.html', context)
+        contas = contas.filter(
+            Q(pessoa__name__icontains=q)
+            | Q(pessoa__cdalterdata__icontains=q)
+            | Q(valor_vendido__icontains=q)
+            | Q(historico__descricao__icontains=q)
+        )
+
+    contas = itertools.groupby(list(contas), lambda x: x.data_vencimento)
+    contas = [(k, list(g)) for k, g in contas]
+
+    # for data, group in contas:
+    #     total = 0
+    #
+    #     print(f'Data: {data}')
+    #     for transacao in group:
+    #         print(transacao)
+    #         if transacao.operacao == 'c':
+    #             transacao.valor_vendido
+    #         else:
+    #             transacao.valor_vendido * -1
+    #
+    #         # print(f'Tipo: {transacao.operacao}) | Valor: {transacao.valor_vendido}')
+    #         total += transacao.valor_vendido
+    #     contass = transacao,  {total}
+    #     print(f"Total: {total}")
+
+    return render(request, 'financeiro_list.html', {'contas': contas})
 
 
 @login_required

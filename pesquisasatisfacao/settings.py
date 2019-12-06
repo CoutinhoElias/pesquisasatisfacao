@@ -139,5 +139,5 @@ STATIC_URL = '/static/'
 
 #Auth
 LOGIN_URL = 'accounts:login'
-LOGOUT_REDIRECT_URL = 'home'
-LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'core:home'
+LOGIN_REDIRECT_URL = 'core:home'

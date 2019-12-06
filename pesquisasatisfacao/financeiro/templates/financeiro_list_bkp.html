@@ -1,7 +1,6 @@
 {% extends "index.html" %}
 {% load static %}
 {% load material_form %}
-{% load financeiro_tags %}
 
 
 {% block container %}
@@ -34,44 +33,60 @@
                 </tr>
             </thead>
 
+<!--            {% for group in groups %}-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        {{ group.total_dia|floatformat:"2" }}-->
+<!--                    </td>-->
+<!--                    <td class="center-align">-->
+<!--                        {{ group.data_vencimento | date:"d/m/Y" }}-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
 
-            {% for _, transacoes in contas %}
-                {% for t in transacoes %}
+
+            {% for conta in contas %}
                 <tr>
                     <td class="center-align">
-                        <a href="{% url 'core:person_client_home' pk=t.pessoa.id %}"><i class="material-icons prefix">home</i></a>
+                        <a href="{% url 'core:person_client_home' pk=conta.pessoa.id %}"><i class="material-icons prefix">home</i></a>
                     </td>
                     <td class="center-align">
-                        <a href="{% url 'financeiro:financeiro_update' id=t.id %}">{{ t.id|linebreaks }}</a>
+                        <a href="{% url 'financeiro:financeiro_update' id=conta.id %}">{{ conta.id|linebreaks }}</a>
                     </td>
                     <td class="center-align">
-                        {{ t.historico|linebreaks }}
+                        {{ conta.historico|linebreaks }}
                     </td>
                     <td class="left-align">
-                        {{ t.pessoa|linebreaks }}
+                        {{ conta.pessoa|linebreaks }}
                     </td>
-                    <td class="right-align {% if t.operacao == 'd' %}
+                    <td class="right-align {% if conta.operacao == 'd' %}
                                 blue-text
                             {% else %}
                                 red-text
                             {% endif %}">
-                        {{ t.valor_vendido|floatformat:"2" }}
+                        {{ conta.valor_vendido|floatformat:"2" }}
                     </td>
                     <td class="center-align">
-                        {{ t.data_vencimento | date:"d/m/Y" }}
+                        {{ conta.data_vencimento | date:"d/m/Y" }}
                     </td>
 
-                    <td class="center-align">{{ t.data_pagamento | date:"d/m/Y"}}</td>
+                    <td class="center-align">{{ conta.data_pagamento | date:"d/m/Y"}}</td>
                 </tr>
-                {% empty %}
-                    <div class="card-panel #424242 grey darken-3 center">NENHUM REGISTRO ENCONTRADO!</div>
-                {% endfor %}
-
-                <tr>
-                   <td></td> <td></td> <td></td> <td class="right-align"><strong>Total do dia:</strong></td> <td class="right-align"><strong>{{ transacoes|totalizar }}</strong></td> <td></td> <td></td>
-                </tr>
+            {% empty %}
+                <div class="card-panel #424242 grey darken-3 center">NENHUM REGISTRO ENCONTRADO!</div>
             {% endfor %}
 
+<!--            {% for conta in contas  %}-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        {{ conta.total_dia|floatformat:"2" }}-->
+<!--                    </td>-->
+<!--                    <td class="center-align">-->
+<!--                        {{ conta.data_vencimento | date:"d/m/Y" }}-->
+<!--                    </td>-->
+<!--                        {{ value|last }}-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
         </table>
     </div>
 
