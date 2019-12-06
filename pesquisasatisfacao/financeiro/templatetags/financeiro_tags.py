@@ -5,7 +5,7 @@ register = template.Library()
 
 @register.filter
 def totalizar(contas):
-    print(list(contas))
+    # print(list(contas))
     valores = [
         c.valor_vendido
         if c.operacao == 'd'

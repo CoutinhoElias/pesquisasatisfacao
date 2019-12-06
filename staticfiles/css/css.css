@@ -79,3 +79,14 @@ span{
 	width: 45%;
 	float: left;
 }
+
+/*DEFININDO FONTE DA FICHA*/
+
+@font-face {
+    font-family: 'DjangoITC';
+    src: url("/static/fonts/VarianeScript/Variane Script.ttf");
+}
+
+.personal-font{
+    font-family: DjangoITC, fantasy;
+}
