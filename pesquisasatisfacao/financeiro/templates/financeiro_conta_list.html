@@ -25,33 +25,41 @@
             </form>
         </div>
         <table class="highlight">
-            <thead class="#cfd8dc blue-grey lighten-4">
+            <thead class="card-panel grey darken-3 center">
                 <tr>
-                    <th class="center-align">CRM</th>
-                    <th class="center-align">Id.</th>
-                    <th class="center-align">Historico</th>
-                    <th class="left-align">Nome</th>
-                    <th class="right-align">Valor</th>
-                    <th class="center-align">Dt. Vencimento</th>
-                    <th class="center-align">Dt. Pagamento</th>
+                    <th class="center-align white-text">CRM</th>
+                    <th class="center-align white-text">Id.</th>
+                    <th class="left-align white-text">Historico</th>
+                    <th class="left-align white-text">Nome</th>
+                    <th class="left-align white-text">Operação</th>
+                    <th class="right-align white-text">Valor</th>
+                    <th class="center-align white-text">Dt. Vencimento</th>
+                    <th class="center-align white-text">Dt. Pagamento</th>
                 </tr>
             </thead>
             {% for conta in contas %}
-                <tr>
+                <tr class="{% if conta.operacao == 'd' %}
+                                black-text
+                            {% else %}
+                                red-text
+                            {% endif %}">
                     <td class="center-align">
-                        <a href="{% url 'person_client_home' pk=conta.pessoa.id %}"><i class="material-icons prefix">home</i></a>
+                        <a href="{% url 'core:person_client_home' pk=conta.pessoa.id %}"><i class="material-icons prefix">home</i></a>
                     </td>
                     <td class="center-align">
-                        <a href="{% url 'financeiro_update' id=conta.id %}">{{ conta.id|linebreaks }}</a>
-                    </td>
-                    <td class="center-align">
-                        <a href="#">{{ conta.historico|linebreaks }}</a>
+                        <a href="{% url 'financeiro:financeiro_update' id=conta.id %}">{{ conta.id|linebreaks }}</a>
                     </td>
                     <td class="left-align">
-                        <a href="{% url 'person_client_update' pk=conta.pessoa.id %}">{{ conta.pessoa|linebreaks }}</a>
+                        {{ conta.historico|linebreaks }}
+                    </td>
+                    <td class="left-align">
+                        {{ conta.pessoa|linebreaks }}
+                    </td>
+                    <td class="left-align">
+                        {{ conta.get_operacao_display }}
                     </td>
                     <td class="right-align">
-                        <a href="#">{{ conta.valor_vendido|floatformat:"2" }}</a>
+                        {{ conta.valor_vendido|floatformat:"2" }}
                     </td>
                     <td class="center-align">
                         {{ conta.data_vencimento | date:"d/m/Y" }}

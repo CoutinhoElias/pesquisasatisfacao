@@ -98,6 +98,7 @@ def random_time():
 
 # let alinhamentos = ['right', 'left', 'center'];
 # let rand = alinhamentos[Math.floor(Math.random() * alinhamentos.length)];
+
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -106,7 +107,7 @@ def register(request):
             print('<<<<==== FORM VALIDO ====>>>>')
             new = form.save(commit=False)
             new.save()
-            #form.save_m2m()
+            # form.save_m2m()
 
             return redirect(settings.LOGIN_URL)
         else:

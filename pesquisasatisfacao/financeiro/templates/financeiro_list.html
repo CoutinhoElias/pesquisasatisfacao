@@ -28,6 +28,7 @@
                     <th class="center-align white-text">Id.</th>
                     <th class="left-align white-text">Historico</th>
                     <th class="left-align white-text">Nome</th>
+                    <th class="right-align white-text">Operação</th>
                     <th class="right-align white-text">Valor</th>
                     <th class="center-align white-text">Dt. Vencimento</th>
                     <th class="center-align white-text">Dt. Pagamento</th>
@@ -51,6 +52,9 @@
                         {{ t.pessoa|linebreaks }}
                     </td>
                     <td class="right-align">
+                        {{ t.get_operacao_display }}
+                    </td>
+                    <td class="right-align">
                         {{ t.valor_vendido|floatformat:"2" }}
                     </td>
                     <td class="center-align">
@@ -64,13 +68,13 @@
                 {% endfor %}
 
                 <tr>
-                   <td></td> <td></td> <td></td> <td class="right-align"><strong>Total do dia:</strong></td> <td class="right-align"><strong>{{ transacoes|totalizar }}</strong></td> <td>{% if transacoes|totalizar < 0 %}
-                                                                                                                                                                                           <i class="material-icons prefix">arrow_downward</i>
-                                                                                                                                                                                           {% elif transacoes|totalizar > 0 %}
-                                                                                                                                                                                           <i class="material-icons prefix">arrow_upward</i>
-                                                                                                                                                                                           {% else %}
-                                                                                                                                                                                           <i class="material-icons prefix">autorenew</i>
-                                                                                                                                                                                           {% endif %}</td> <td></td>
+                   <td></td> <td></td> <td></td> <td></td> <td class="right-align"><strong>Total do dia:</strong></td> <td class="right-align"><strong>{{ transacoes|totalizar }}</strong></td> <td>{% if transacoes|totalizar < 0 %}
+                                                                                                                                                                      <i class="material-icons prefix">arrow_downward</i>
+                                                                                                                                                                           {% elif transacoes|totalizar > 0 %}
+                                                                                                                                                                           <i class="material-icons prefix">arrow_upward</i>
+                                                                                                                                                                           {% else %}
+                                                                                                                                                                           <i class="material-icons prefix">autorenew</i>
+                                                                                                                                                                           {% endif %}</td> <td></td>
                 </tr>
             {% endfor %}
 
