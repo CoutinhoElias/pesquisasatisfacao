@@ -79,5 +79,4 @@ class Pagamento(models.Model):
         verbose_name = 'Venda Detalhe'
         verbose_name_plural = 'Vendas Detalhe'
 
-    def __str__(self):
-        return self.conta.pessoa
+
