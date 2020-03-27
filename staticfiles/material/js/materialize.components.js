@@ -118,9 +118,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-/* eslint-env browser */
-
-/* global $ */
 var Dropdown =
 /*#__PURE__*/
 function (_HTMLElement) {
@@ -341,9 +338,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-/* eslint-env browser */
-
-/* global $, Turbolinks */
 var Form =
 /*#__PURE__*/
 function (_HTMLElement) {
@@ -356,10 +350,6 @@ function (_HTMLElement) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Form).call(this));
 
-    _this.onClick = function (event) {
-      _this._clickedButton = event.target;
-    };
-
     _this.onSubmit = function (event) {
       event.preventDefault();
 
@@ -368,9 +358,9 @@ function (_HTMLElement) {
       });
 
       if (_this._formEl.method == 'post') {
-        _this._performPost(event);
+        _this._performPost();
       } else {
-        _this._performGet(event);
+        _this._performGet();
       }
     };
 
@@ -415,17 +405,7 @@ function (_HTMLElement) {
       };
 
       Turbolinks.controller.adapter.showProgressBarAfterDelay();
-      var formData = new FormData(_this._formEl);
-
-      if (_this._clickedButton) {
-        if (_this._clickedButton.name) {
-          formData.append(_this._clickedButton.name, '');
-        }
-
-        _this._clickedButton = null;
-      }
-
-      xhr.send(formData);
+      xhr.send(new FormData(_this._formEl));
     };
 
     _this._performGet = function (event) {
@@ -438,27 +418,14 @@ function (_HTMLElement) {
   _createClass(Form, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      var _this2 = this;
-
-      this._clickedButton = null;
       this._formEl = this.querySelector('form');
 
       this._formEl.addEventListener('submit', this.onSubmit);
-
-      this.querySelectorAll('button[type=submit]').forEach(function (button) {
-        return button.addEventListener('click', _this2.onClick);
-      });
     }
   }, {
     key: "disconnectedCallback",
     value: function disconnectedCallback() {
-      var _this3 = this;
-
       this._formEl.removeEventListener('submit', this.onSubmit);
-
-      this.querySelectorAll('button[type=submit]').forEach(function (button) {
-        return button.removeEventListener('click', _this3.onClick);
-      });
     }
   }, {
     key: "action",
@@ -680,9 +647,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-/* eslint-env browser */
-
-/* global $, M */
 var Sidenav =
 /*#__PURE__*/
 function (_HTMLElement) {
@@ -697,12 +661,6 @@ function (_HTMLElement) {
   _createClass(Sidenav, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      var sidebarState = sessionStorage.getItem('viewflow_site_drawer_state');
-
-      if (window.innerWidth >= 992 && sidebarState == 'closed') {
-        $(this).find('.sidenav').removeClass('sidenav-fixed');
-      }
-
       $(this).find('.sidenav').sidenav();
       $(document).activeNavigation('#slide-out');
       $('#slide-out').perfectScrollbar();
@@ -718,80 +676,8 @@ function (_HTMLElement) {
   return Sidenav;
 }(_wrapNativeSuper(HTMLElement));
 
-;
-
-var SidenavTrigger =
-/*#__PURE__*/
-function (_HTMLElement2) {
-  _inherits(SidenavTrigger, _HTMLElement2);
-
-  function SidenavTrigger() {
-    var _this;
-
-    _classCallCheck(this, SidenavTrigger);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SidenavTrigger).call(this));
-
-    _this.onClick = function (event) {
-      var sidenavId = M.getIdFromTrigger(_this._trigger);
-      var sidenavInstance = document.getElementById(sidenavId).M_Sidenav;
-
-      if (sidenavInstance) {
-        if (sidenavInstance.isOpen) {
-          sidenavInstance.close();
-          sidenavInstance.isFixed = false;
-          $(document).find('.sidenav').removeClass('sidenav-fixed');
-          _this._main.style.marginLeft = '0';
-          _this._footer.style.marginLeft = '0';
-          sessionStorage.setItem('viewflow_site_drawer_state', 'closed');
-        } else {
-          sidenavInstance.isFixed = true;
-          $(document).find('.sidenav').addClass('sidenav-fixed');
-          sidenavInstance.open();
-          _this._main.style.marginLeft = null;
-          _this._footer.style.marginLeft = null;
-          sessionStorage.setItem('viewflow_site_drawer_state', 'open');
-        }
-      }
-
-      event.preventDefault();
-      event.stopPropagation();
-    };
-
-    return _this;
-  }
-
-  _createClass(SidenavTrigger, [{
-    key: "connectedCallback",
-    value: function connectedCallback() {
-      this._trigger = this.querySelector('.sidenav-trigger');
-      this._main = document.querySelector('main');
-      this._footer = document.querySelector('footer');
-
-      this._trigger.addEventListener('click', this.onClick);
-
-      var sidebarState = sessionStorage.getItem('viewflow_site_drawer_state');
-
-      if (window.innerWidth >= 992 && sidebarState == 'closed') {
-        var sidenavId = M.getIdFromTrigger(this._trigger);
-        var sidenavInstance = document.getElementById(sidenavId).M_Sidenav;
-        sidenavInstance.close();
-        this._main.style.marginLeft = '0';
-      }
-    }
-  }, {
-    key: "disconnectedCallback",
-    value: function disconnectedCallback() {
-      this._trigger.removeEventListener('click', this.onClick);
-    }
-  }]);
-
-  return SidenavTrigger;
-}(_wrapNativeSuper(HTMLElement));
-
 window.addEventListener('load', function () {
   window.customElements.define('dmc-sidenav', Sidenav);
-  window.customElements.define('dmc-sidenav-trigger', SidenavTrigger);
 });
 "use strict";
 
@@ -874,140 +760,4 @@ function (_HTMLElement) {
 
 window.addEventListener('load', function () {
   window.customElements.define('dmc-snackbar', Snackbar);
-});
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
-
-function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
-
-function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/* eslint-env browser */
-
-/* global $, M */
-var Textarea =
-/*#__PURE__*/
-function (_HTMLElement) {
-  _inherits(Textarea, _HTMLElement);
-
-  function Textarea() {
-    _classCallCheck(this, Textarea);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Textarea).call(this));
-  }
-
-  _createClass(Textarea, [{
-    key: "connectedCallback",
-    value: function connectedCallback() {
-      M.textareaAutoResize($(this).find('textarea'));
-    }
-  }]);
-
-  return Textarea;
-}(_wrapNativeSuper(HTMLElement));
-
-window.addEventListener('load', function () {
-  window.customElements.define('dmc-textarea', Textarea);
-});
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
-
-function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
-
-function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/* eslint-env browser */
-var TurbolinksElement =
-/*#__PURE__*/
-function (_HTMLElement) {
-  _inherits(TurbolinksElement, _HTMLElement);
-
-  function TurbolinksElement() {
-    var _this;
-
-    _classCallCheck(this, TurbolinksElement);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(TurbolinksElement).call(this));
-
-    _this._onClick = function (event) {
-      // https://github.com/turbolinks/turbolinks/issues/75#issuecomment-445325162
-      var anchorElement = event.target;
-      var isSamePageAnchor = anchorElement.hash && anchorElement.origin === window.location.origin && anchorElement.pathname === window.location.pathname;
-
-      if (isSamePageAnchor) {
-        window.Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(event.data.url, window.Turbolinks.uuid());
-        event.preventDefault();
-      }
-    };
-
-    _this._onLoad = function (event) {
-      if (window.location.hash) {
-        var element = document.getElementById(window.location.hash.substring(1));
-        var pos = element.getBoundingClientRect();
-        window.scrollTo(0, pos.y);
-      }
-    };
-
-    return _this;
-  }
-
-  _createClass(TurbolinksElement, [{
-    key: "connectedCallback",
-    value: function connectedCallback() {
-      document.addEventListener('turbolinks:click', this._onClick);
-    }
-  }, {
-    key: "disconnectedCallback",
-    value: function disconnectedCallback() {
-      document.removeEventListener('turbolinks:click', this._onClick);
-    }
-  }]);
-
-  return TurbolinksElement;
-}(_wrapNativeSuper(HTMLElement));
-
-window.addEventListener('load', function () {
-  window.customElements.define('dmc-turbolinks', TurbolinksElement);
 });

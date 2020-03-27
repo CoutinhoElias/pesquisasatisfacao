@@ -1,0 +1,54 @@
+body {
+    background: #d0cdcd;
+}
+
+#card-radius{
+    border-radius: 15px;
+    //margin-top:6em
+}
+
+#title-panel, #empty-panel{
+    color: #f4f8fa
+}
+
+
+#table-especial {
+    padding: 0;
+    width: 120%;
+}
+
+#width-100{
+    width: 100%;
+}
+
+.img-logo {
+    max-height: 64px!important;
+    padding: 15px 0!important;
+}
+
+
+.page-footer{
+	margin-top: 0 !important;
+}
+
+/*.chk_box input[type='checkbox'] {
+position: static!important;
+left: 0px!important;
+opacity: 1!important;
+visibility: visible!important;
+pointer-events: all!important;
+}*/
+
+
+/*DEFININDO FONTE DA FICHA*/
+
+@font-face {
+    font-family: 'DjangoITC';
+    src: url("/static/fonts/VarianeScript/Variane Script.ttf");
+}
+
+.personal-font{
+    font-family: DjangoITC, fantasy;
+}
+
+

@@ -4,6 +4,11 @@ html,body{
 	color: #383838;
 	font-family: sans-serif;
 }
+
+.col_center {
+    text-align:center;
+}
+
 .container{
 	max-width: 800px;
 	margin-right: auto;
