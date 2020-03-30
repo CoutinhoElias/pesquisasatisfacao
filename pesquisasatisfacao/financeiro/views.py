@@ -12,34 +12,6 @@ from pesquisasatisfacao.financeiro.forms import FinanceiroForm, PagamentoFormSet
 from pesquisasatisfacao.financeiro.models import Conta
 
 
-class Cel(object):
-    """
-    Class Helper used to store summaries
-    """
-    value = uval = None
-
-    def __add__(self,val):
-        if self.value:
-            self.value = self.value +  val
-        else:
-            self.value = val
-        self.uval = val
-        return val
-
-    def __str__(self):
-        return self.uval
-
-    def __unicode__(self):
-        return self.uval
-
-    @property
-    def total(self):
-        return self.value
-
-    def reset(self):
-        self.value = self.uval = None
-        return self
-
 
 # @login_required
 # def financeirot_list(request):

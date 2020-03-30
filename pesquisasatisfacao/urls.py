@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('pesquisasatisfacao.accounts.urls')),
     path('', include('pesquisasatisfacao.crm.urls')),
     path('', include('pesquisasatisfacao.financeiro.urls')),
+    path('', include('pesquisasatisfacao.restaurant.urls')),
     path('admin/', admin.site.urls),
 ]

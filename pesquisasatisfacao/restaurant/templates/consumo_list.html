@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+{% load static %}
+{% load material_form %}
+
+{% block container %}
+<div class="row">
+  {% for consumo in consumidos %}
+  <div class="col s12 m3 l3">
+    <div class="card">
+      <div class="card-image">
+        {% if consumo.name == 'CERVEJA' %}
+            <img src="{% static 'img/img/kaiser.jpg' %}" alt="" class="responsive-img"/>
+        {% elif consumo.name == 'CACHAÇA' %}   
+            <img src="{% static 'img/img/ypioca-ouro-e-prata.jpg' %}" alt="" class="responsive-img"/>
+        {% else %}   
+            <img src="{% static 'img/img/espetinho-frango.jpg' %}" alt="" class="responsive-img"/>
+        {% endif %}
+        <span class="card-title">Card Title</span>
+        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+      </div>
+      <div class="card-content">
+        <p>{{ consumo.name|linebreaks }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+<!--<div class="row responsive"> -->
+<!--  <div> -->
+<!--      {% for consumo in consumidos %} -->
+<!--          <div class="col s4 m4"> -->
+<!--            <div class="card"> -->
+<!--              <div class="card-image"> -->
+<!--                  {% if consumo.image %} -->
+<!--                      <img src="{{ consumo.smart.url }}" alt="" class="img-responsive"/> -->
+<!--                  {% else %} -->
+<!--                      <img src="http://placehold.it/285x160" alt="" class="img-responsive"/> -->
+<!--                  {% endif %} -->
+<!--                  {% if consumo.name == 'CERVEJA' %} -->
+<!--                     <img src="{% static 'img/img/kaiser.jpg' %}" alt="" class="responsive-img"/> -->
+<!--                  {% elif consumo.name == 'CACHAÇA' %}    -->
+<!--                     <img src="{% static 'img/img/ypioca-ouro-e-prata.jpg' %}" alt="" class="responsive-img"/> -->
+<!--                  {% else %}    -->
+<!--                     <img src="{% static 'img/img/espetinho-frango.jpg' %}" alt="" class="responsive-img"/> -->
+<!--                  {% endif %} -->
+<!--                <span class="card-title">Incluirei um titulo aqui</span> -->
+<!--              </div> -->
+<!--              <div class="card-content"> -->
+<!--                  <h5>{{ consumo }}</h5> -->
+<!--                  {{ consumo.name|linebreaks }} -->
+<!--              </div> -->
+<!--              <div class="card-action"> -->
+<!--                <a href="/">This is a link</a> -->
+<!--              </div> -->
+<!--            </div> -->
+<!--          </div> -->
+<!--      {% endfor %} -->
+<!--    </div> -->
+<!--  </div> -->
+
+{% endblock %}

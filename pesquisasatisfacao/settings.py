@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'pesquisasatisfacao.accounts',
     'pesquisasatisfacao.crm',
     'pesquisasatisfacao.financeiro',
+    'pesquisasatisfacao.restaurant',
 ]
 
 MIDDLEWARE = [
