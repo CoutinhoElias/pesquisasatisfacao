@@ -5,22 +5,22 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 # Create your models here.
-class ConsumoManager(models.Manager):
-    # FALTA RESOLVER ESSE PROBLEMA
-    def add_item(self, table, product, quantity,_user):
-        
-        consumo, created = self.get_or_create(table=table, 
-                                              product=product,
-                                              quantity=quantity, 
-                                              created_on=datetime.date.today(),
-                                              user=_user)
-        if not created:
-            print('Não Existe <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')  
-            consumo.quantity += 1
-            consumo.save()
-        # else:
-        #     print('Existe <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')    
-        return consumo    
+# class ConsumoManager(models.Manager):
+#     # FALTA RESOLVER ESSE PROBLEMA
+#     def add_item(self, table, product, quantity,_user):
+#         
+#         consumo, created = self.get_or_create(table=table, 
+#                                               product=product,
+#                                               quantity=quantity, 
+#                                               created_on=datetime.date.today(),
+#                                               user=_user)
+#         if not created:
+#             print('Não Existe <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')  
+#             consumo.quantity += 1
+#             consumo.save()
+#         # else:
+#         #     print('Existe <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')    
+#         return consumo    
 
 class Consumo(models.Model):
     table = models.PositiveIntegerField('Mesa') 
@@ -36,7 +36,7 @@ class Consumo(models.Model):
         auto_now=False
     )
 
-    objects = ConsumoManager()    
+    # objects = ConsumoManager()    
 
     class Meta:
         verbose_name = 'Consumo Detalhe'

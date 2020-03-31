@@ -15,39 +15,18 @@ def consumo_create(request):
     # request.session['person_id'] = 1
 
     if request.method == 'POST':
-        form = ConsumoForm(request.POST)
+        form = ConsumoForm(request.POST, request.user)
 
         # Retira toda validação do campo
         # form.errors.pop('user')
 
         if form.is_valid():
             print('<<<<==== FORM VALIDO ====>>>>')
-            new = form.save(commit=False)
-            # _user = request.user
-            # created_on=datetime.date.today(),
-
-            # lista = Consumo.objects.filter(table=new.table, product=new.product)
-            consumo, created = Consumo.objects.update_or_create(table=new.table, 
-                                              product=new.product,
-                                              quantity=new.quantity, 
-                                              user=request.user)
-            if not created:
-                consumo.quantity += 1
-                consumo.save()
-                # Consumo.objects.get_or_create(table=new.table, 
-                #                               product=new.product,
-                #                               quantity=new.quantity, 
-                #                               user=request.user)
-            # else:
-            #     Consumo.objects.update_or_create(
-            #         identifier=identifier, defaults={"name": name}
-
-
             # new = form.save(commit=False)
-            # new.user = request.user
-            # new.save()
-            # return HttpResponseRedirect('/consumo/listar/')
-            return HttpResponseRedirect('/')
+            #new.user = request.user
+            form.save(request.user)
+            return HttpResponseRedirect('/consumo/lista/')
+            # return HttpResponseRedirect('/')
 
         print('<<<<==== AVISO DE FORMULARIO INVALIDO ====>>>>')
         return render(request, 'financial_create.html', {'form': form})
