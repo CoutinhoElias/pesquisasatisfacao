@@ -26,7 +26,8 @@ class Consumo(models.Model):
     table = models.PositiveIntegerField('Mesa') 
     product = models.ForeignKey(Product, related_name="product_consumo_item", on_delete=models.CASCADE,
                                 verbose_name="Produto")
-    quantity = models.PositiveIntegerField('Quantidade')                       
+    quantity = models.DecimalField('Quantidade', max_digits=10, decimal_places=2, default='0', )
+    # models.PositiveIntegerField('Quantidade')                       
     data_pagamento = models.DateField(null=True, blank=True)
     # valor_vendido = models.DecimalField('Valor Vendido', max_digits=15, decimal_places=2)
     user = models.ForeignKey(User, related_name='Consumo_Usuario', on_delete=models.CASCADE)

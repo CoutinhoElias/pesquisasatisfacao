@@ -131,6 +131,19 @@
                     </li>
 
                     <li>
+                      <div class="collapsible-header"><i class="material-icons">restaurant</i>Restaurante</div>
+                      <div class="collapsible-body">
+                      <ul>
+                          {% for group in groups %}
+                          <li><a class="black-text darken-4" href="{% url 'restaurant:consumo_list' %}"><i class="material-icons">restaurant_menu</i>{{ group.name}}</a></li>
+                          {% endfor %}
+                          <li><a class="black-text darken-4" href="{% url 'core:invoice_add' %}"><i class="material-icons">date_range</i>Novo Pedido</a></li>
+                          <li><a class="black-text darken-4" href="#!">Em breve...</a></li>
+                      </ul>
+                      </div>
+                  </li>
+
+                    <li>
                         <div class="collapsible-header"><i class="material-icons">account_box</i>Usuário</div>
                         <div class="collapsible-body">
                         <ul>

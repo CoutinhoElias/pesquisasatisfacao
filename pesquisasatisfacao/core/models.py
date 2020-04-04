@@ -2,8 +2,22 @@ from django.db import models
 from django.urls import reverse
 
 
+class Group(models.Model):
+    name = models.CharField('Nome', max_length=100)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'Grupo'
+        verbose_name_plural = 'Grupos'
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField('Nome', max_length=100)
+    grupo = models.ForeignKey('Group', null=True, blank=True, related_name="grupo_produto", on_delete=models.CASCADE)
+    unit_price = models.DecimalField('Preço', max_digits=10, decimal_places=2, default='0', )
 
     class Meta:
         ordering = ('name',)

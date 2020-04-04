@@ -55,7 +55,8 @@ def atendimento_create(request, pk):
 @login_required
 def atendimento_update(request, id, cl):
     # Pega a chave da URL acima com (request, pk)
-    # joga na variável invoice na linha abaixo passando o modelo MESTRE e os parâmetros que desejo como filtro
+    # joga na variável invoice na linha abaixo passando o modelo MESTRE 
+    # e os parâmetros que desejo como filtro
     print(cl)
     client = get_object_or_404(Client, id=cl)
 

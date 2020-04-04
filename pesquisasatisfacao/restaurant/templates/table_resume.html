@@ -1,0 +1,86 @@
+{% extends "index.html" %}
+{% load static %}
+{% load material_form %}
+{% load consumo_tags %}
+
+
+{% block container %}
+
+    <div class="card larger" id="card-radius">
+        <div class="card-panel indigo darken-4 center " id="empty-panel">
+            <span class="white-text">CONTA DE MESA</span>
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6 s11">
+                        <i class="material-icons prefix">search</i>
+                        <input id="searchInput" name="searchInput" type="text" class="validate" autofocus>
+                        <label for="searchInput">Digite sua pesquisa aqui e tecle ENTER.</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <table class="highlight">
+            <thead class="card-panel grey darken-3 center">
+                <tr>
+                    <th class="center-align white-text">Código</th>
+                    <th class="left-align white-text">Produto</th>
+                    <th class="left-align white-text">Preço</th>
+                    <th class="center-align white-text">Quantidade</th>
+                    <th class="center-align white-text">Total</th>
+                    <th class="center-align white-text">Data</th>
+                    <th class="white-text"></th>
+                    <th class="white-text"></th>
+                </tr>
+            </thead>
+
+
+            {% for _, transacoes in contas %}
+                {% for t in transacoes %}
+                <tr>
+                    <td class="center-align">
+                        <a>{{ t.product.id | linebreaks }}</a>
+                    </td>
+
+                    <td class="left-align">
+                        {{ t.product | linebreaks }}
+                    </td>
+
+                    <td class="left-align">
+                        {{ t.product.unit_price | floatformat:"2" }}
+                    </td>
+
+                    <td class="center-align">
+                        {{ t.quantity | floatformat:"2"}}
+                    </td>  
+                    
+                    <td class="center-align">
+                        {{ t.total | floatformat:"2"}}
+                    </td>                     
+
+                    <td class="center-align">
+                        {{ t.created_on | date:"d/m/Y" }}
+                    </td>
+
+                    <td class="center-align">{{ t.data_pagamento | date:"d/m/Y"}}</td>
+                </tr>
+                {% empty %}
+                    <div class="card-panel #424242 grey darken-3 center">NENHUM REGISTRO ENCONTRADO!</div>
+                {% endfor %}
+
+                <tr>
+                   <td></td> <td></td> <td></td> <td></td> <td class="right-align"><strong>Total da Mesa:</strong></td> <td class="right-align"><strong>{{ transacoes|totalizar | floatformat:"2" }}</strong></td> <td>{% if transacoes|totalizar < 0 %}
+                                                                                                                                                                      <i class="material-icons prefix">arrow_downward</i>
+                                                                                                                                                                           {% elif transacoes|totalizar > 0 %}
+                                                                                                                                                                           <i class="material-icons prefix">arrow_upward</i>
+                                                                                                                                                                           {% else %}
+                                                                                                                                                                           <i class="material-icons prefix">autorenew</i>
+                                                                                                                                                                           {% endif %}</td> <td></td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+{% endblock %}

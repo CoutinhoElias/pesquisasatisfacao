@@ -6,8 +6,10 @@ from . import views
 app_name = 'restaurant'
 
 urlpatterns = [
-    path('consumo/novo/', views.consumo_create, name='consumo_create'),
+    # path('consumo/novo/', views.consumo_create, name='consumo_create'),
+    path('consumo/novo/<int:id>/', views.consumo_create, name='consumo_create'),
     path('consumo/lista/', views.consumo_list, name='consumo_list'),
+    path('consumo/conta/', views.table_resume, name='table_resume'),
     # path('consumo/<int:pk>/editar/', views.person_representative_update, name='person_representative_update'),
     # path('consumo/listar/', views.person_representative_list, name='person_representative_list'),
 ]

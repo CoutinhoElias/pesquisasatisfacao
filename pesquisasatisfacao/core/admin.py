@@ -2,7 +2,14 @@ from django.contrib import admin
 # from django.contrib.admin import TabularInline
 from django.contrib.admin import TabularInline
 
-from pesquisasatisfacao.core.models import Client, Search, Question, SearchItem, Product, Sales, SalesItem
+from pesquisasatisfacao.core.models import (Client, 
+                                            Search, 
+                                            Question, 
+                                            SearchItem, 
+                                            Group,
+                                            Product, 
+                                            Sales, 
+                                            SalesItem)
 
 
 class InlineSales(TabularInline):
@@ -19,10 +26,14 @@ class SalesAdmin(admin.ModelAdmin):
     # search_fields = ('products', 'client')
     inlines = [InlineSales, ]
 
+@admin.register(Group)
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'id', 'name')
+    search_fields = ('id', 'name')
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'id', 'name')
+    list_display = ('id', 'name', 'grupo')
     search_fields = ('id', 'name')
 
 

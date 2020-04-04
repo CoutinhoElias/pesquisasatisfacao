@@ -13,8 +13,16 @@ from django.views.generic import FormView, UpdateView
 from pesquisasatisfacao.core.forms import (QuestionForm,
                                            ClientForm,
                                            SearchForm,
-                                           SearchItemFormSet, RepresentativeForm, SalesForm, SalesItemFormSet)
-from pesquisasatisfacao.core.models import Search, Question, Client, SearchItem, Sales
+                                           SearchItemFormSet, 
+                                           RepresentativeForm, 
+                                           SalesForm, 
+                                           SalesItemFormSet)
+from pesquisasatisfacao.core.models import (Search, 
+                                            Question, 
+                                            Client, 
+                                            SearchItem, 
+                                            Sales, 
+                                            Group)
 from pesquisasatisfacao.crm.models import Atendimento
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -37,8 +45,17 @@ def home(request):
     moviments.aberto = moviments.total_aberto = open_count['closed__count']
     moviments.atendimentos = moviments.total_atendimento = attendance_count['closed__count']
 
+    
+
     context = {'moviments': moviments}
     return render(request, 'dashboard.html', context)
+
+
+# @login_required
+# def group_list(request):
+#     groups = Group.objects.all()
+#     print(groups)
+#     return render(request, 'search_list.html', {'groups': groups})    
 
 
 # ----------------------------------------------------------------------------------------------------------------------

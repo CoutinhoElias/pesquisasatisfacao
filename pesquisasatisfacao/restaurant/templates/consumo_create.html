@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+{% load static %}
+{% load material_form %}
+
+{% block container %}
+
+<!--    <div class="card larger" id="card-radius"> -->
+<!--        <div class="card-panel indigo darken-4 center " id="empty-panel"> -->
+<!--            <span class="white-text">PEDIDO</span> -->
+<!--        </div> -->
+<!--        <form method="POST" enctype="multipart/form-data">{% csrf_token %} -->
+<!-- -->
+<!--            <div class="card-content"> -->
+<!--                {% form %} -->
+<!-- -->
+<!--                {% endform %} -->
+<!--            </div> -->
+<!-- -->
+<!--            <div class="card-action"> -->
+<!--                <div class="right-align"> -->
+<!--                    <button class="waves-effect waves-light btn" type="submit">Registrar</button> -->
+<!--                </div> -->
+<!--            </div> -->
+<!--        </form> -->
+<!--    </div> -->
+
+
+    <div class="row">
+        <div class="col s2 m3 l3">
+
+        </div>
+        <div class="col s8 m6 l6">
+          <div class="card">
+            <div class="card-panel indigo darken-4 center " id="empty-panel">
+                <span class="white-text">PEDIDO</span>
+            </div>
+            <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    
+                <div class="card-content">
+                    {% form %}
+    
+                    {% endform %}
+                </div>
+    
+                <div class="card-action">
+                    <div class="right-align">
+                        <button class="waves-effect waves-light btn" type="submit">Registrar</button>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
+
