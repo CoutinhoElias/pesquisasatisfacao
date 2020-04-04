@@ -24,7 +24,7 @@
         <table class="highlight">
             <thead class="card-panel grey darken-3 center">
                 <tr>
-                    <th class="center-align white-text">Código</th>
+                    <th class="center-align white-text">Mesa</th>
                     <th class="left-align white-text">Produto</th>
                     <th class="left-align white-text">Preço</th>
                     <th class="center-align white-text">Quantidade</th>
@@ -40,7 +40,7 @@
                 {% for t in transacoes %}
                 <tr>
                     <td class="center-align">
-                        <a>{{ t.product.id | linebreaks }}</a>
+                        <a>{{ t.table | linebreaks }}</a>
                     </td>
 
                     <td class="left-align">
