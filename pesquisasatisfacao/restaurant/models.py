@@ -36,11 +36,12 @@ class Consumo(models.Model):
         auto_now_add=True,
         auto_now=False
     )
+    pay = models.BooleanField('Conta Paga', default=False)
 
     # objects = ConsumoManager()    
 
     class Meta:
         verbose_name = 'Consumo Detalhe'
         verbose_name_plural = 'Consumo Detalhes'
-        unique_together = (('table', 'product', 'created_on'),)
+        unique_together = (('table', 'product', 'created_on', 'pay'),)
         

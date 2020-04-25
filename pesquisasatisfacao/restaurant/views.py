@@ -18,7 +18,7 @@ def consumo_create(request, id):
     # Cria variável na session
     # request.session['person_id'] = 1
     id_product = get_object_or_404(Product, id=id)
-    print(id_product)
+
     if request.method == 'POST':
         form = ConsumoForm(request.POST, request.user)
 
@@ -31,7 +31,7 @@ def consumo_create(request, id):
             new = form.save(request.user)
             # new.user = request.user
             new.product = id_product
-            new.save()
+            # new.save()
             
             # form.save(request.user)
 

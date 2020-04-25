@@ -15,7 +15,7 @@ class ConsumoForm(forms.ModelForm):
         model = Consumo
         fields = ('table', 'product', 'quantity')
 
-        exclude = ('data_pagamento',)
+        exclude = ('data_pagamento', 'pay')
 
     layout = Layout(
         Fieldset("Lance o Pedido",
@@ -24,12 +24,13 @@ class ConsumoForm(forms.ModelForm):
                  Row(Span12('quantity')),
                  ),)
 
-    
+    # Pagar a conta tem que excluir a mesa
     def save(self, user, commit=True, **kwargs):
         data = self.cleaned_data
         data.update({
             "user": user, 
-            "created_on": date.today()
+            "created_on": date.today(),
+            'pay': False
         })          
         quantity = data.pop("quantity")
         
