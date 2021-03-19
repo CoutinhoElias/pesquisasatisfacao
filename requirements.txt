@@ -10,7 +10,7 @@ Django==2.2
 django-debug-toolbar==1.10.1
 django-material==1.4.1
 django-widget-tweaks==1.4.3
-djangorestframework==3.9.0
+djangorestframework==3.11.2
 gunicorn==19.9.0
 html5lib==1.0.1
 lxml==4.3.1
