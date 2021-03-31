@@ -13,7 +13,7 @@ django-widget-tweaks==1.4.3
 djangorestframework==3.9.0
 gunicorn==19.9.0
 html5lib==1.0.1
-lxml==4.3.1
+lxml==4.6.3
 pdfrw==0.4
 Pillow==5.4.1
 psycopg2==2.7.6.1
